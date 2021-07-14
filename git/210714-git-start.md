@@ -47,7 +47,7 @@ Git이 버전관리를 위한 '소프트웨어'라면, Github는 이 Git으로
 
 깃은 간단히 말해 "작업하고 메모해서, 넘긴다."
 
-![](https://s3-ap-northeast-2.amazonaws.com/pentutorials-user-file/module/3963/10395.png)
+![](https://s3-ap-northeast-2.amazonaws.com/opentutorials-user-file/module/3963/10395.png)
 
 1. git add
 2. git commit
