@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        a:hover{
+        font-weight: bold;
+        font-size: 20px;
+        }
+        .box{
+        width: 100px;
+        height: 100px;
+        background: tomato;
+        transition: 0.4s;
+        }
+        .box:hover{
+        width: 200px;
+        }
+        .box1{
+            width: 100px;
+            height: 100px;
+            background: tomato;
+            transition: 0.4s;
+        }
+        .box1:active{
+            width: 200px;
+            background: blue;
+        }
+        input{
+            width: 100px;
+            outline: none;
+            border: 1px solid lightgray;
+            padding: 5px 10px;
+            transition: 0.4s;
+        }
+        input:focus{
+            border-color: red;
+            width: 200px;
+        }
+    </style>
+</head>
+<body>
+    <a href="https://google.com">Google</a> 
+    <div class="box"></div>
+    <br><br>
+
+    <div class="box1"></div>
+    <br><br>
+
+    <input type="text">
+</body>
+</html>
