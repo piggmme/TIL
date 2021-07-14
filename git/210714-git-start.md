@@ -83,27 +83,27 @@ $ git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Cre
 ## git으로 project 시작하는 첫번째 방법: git init
 
 
-###1.원격 저장소 생성
+### 1.원격 저장소 생성
 
 - github에 들어가서, new repository로 원격 저장소를 생성한다.
 - 우리가 사용할 것은 새로 생성된 원격 저장소의 url 주소다.
 
 
-###2. working directory 를 생성
+### 2. working directory 를 생성
 
 `mkdir {새로운 디렉토리}`
 
 - `git status` 를 입력하면, 아직 깃 저장소가 아님이라고 뜬다.
 
 
-###3. staging area, localrepo 생성
+### 3. staging area, localrepo 생성
 
 `git init`
 
 - `git status` 를 입력하면, 저장소는 있지만 커밋이 없다고 뜬다.
 
 
-###4. git remote로 원격 저장소를 설정함
+### 4. git remote로 원격 저장소를 설정함
 
 `git remote add origin {원격 저장소 url}`
 
@@ -122,14 +122,14 @@ $ git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Cre
 
 
 
-###5. git add로 commit할 파일들을 묶음
+### 5. git add로 commit할 파일들을 묶음
 
 `git add {}`
 
 - 만약 전부 선택하고 싶다면, * 를 입력
 
 
-###6. git commit
+### 6. git commit
 
 `git commit`
 
@@ -138,7 +138,7 @@ $ git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Cre
 - commit 한 내용을 작성하면 된다.
 
 
-###7. master => main
+### 7. master => main
 
 - 예전에는 master을 사용했지만, main을 쓰는 추세라서 바꿔준다.
 - 아마 곧 수정될 수 도 있다.
@@ -151,7 +151,7 @@ $ git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Cre
 - master => main으로 수정함.
 
 
-###8. git push
+### 8. git push
 
 `git push -u origin main`
 
@@ -159,7 +159,7 @@ $ git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Cre
 - upstring set flag(-u)를 꼭 붙여주어야 한다.
 
 
-###9. 이후에 수정사항이 생긴 경우
+### 9. 이후에 수정사항이 생긴 경우
 
 - 5, 6, 8 과정을 실행한다
 
@@ -171,7 +171,7 @@ $ git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Cre
 
 
 
-###1. GitHub에서 new repository를 생성
+### 1. GitHub에서 new repository를 생성
 
 - 이 경우, initialize this repository with: 부분에 있는 3가지 체크박스를 모두 체크한다.
 	- ADD a README file
@@ -181,7 +181,7 @@ $ git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Cre
 - 그 다음 생성된 원격 저장소의 url을 copy한다.
 
 
-###2. clone
+### 2. clone
 
 `git clone {}`
 
@@ -189,7 +189,7 @@ $ git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Cre
 - clone을 하면, init/ remote를 해 줄 필요가 없다.
 
 
-###3. 이후에 수정사항이 생긴경우
+### 3. 이후에 수정사항이 생긴경우
 
 - git을 init으로 생성한 위의 경우와 마찬가지로, 5, 6, 8 과정을 실행하면 된다. 
 
