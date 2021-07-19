@@ -27,7 +27,7 @@
 - 태그들을 이용해서 데이터를 나타냄
 - 요즘엔 잘 사용되지 않고, JSON을 많이 사용한다.
 
-## JSON
+## 😘 JSON
 
 - JavaScript Object Notation
 - Object { key: value}
