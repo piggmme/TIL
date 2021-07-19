@@ -5,6 +5,7 @@
 // 1. string concatenation
 console.log('my'+'cat'); // my cat
 console.log('1'+2); // 12
+console.log(2+'1'); // 21
 console.log(`string literals: 1 + 2 = ${1+2}`); // string literals: 1 + 2 = 3
 console.log(`string literals:
 '''
@@ -100,8 +101,10 @@ console.log(0 == false);    // T
 console.log(0 === false);   // F
 console.log('' == false);   // T
 console.log('' === false);  // F
+console.log(null == false); // F
+console.log(undefined == false); // F
 console.log(null == undefined); // T
-console.log(null == undefined); // F
+console.log(null === undefined); // F
 
 
 // 8. Conditional operators: if

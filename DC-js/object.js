@@ -79,7 +79,7 @@ for (let key in ellie){
     console.log(key)
 }
 
-// for (value of iterable)
+// for (value of iterable) => 배열 
 const array = [1, 2, 4, 5];
 for(let value of array){ // array에 있는 값들이 value에 할당됨 
     console.log(value);

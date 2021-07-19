@@ -13,7 +13,7 @@ let globalName = 'global';
     console.log(name); // hello
     console.log(globalName); //global
 }
-console.log(name);
+console.log(name); // => 아무것도 출력되지 않음
 console.log(globalName);
 
 // 2-2. var (don't ever use this)
@@ -71,7 +71,7 @@ Number.MAX_SAFE_INTEGER;
 const char = 'c';
 const brendan = 'brendan';
 const greeting = 'hello' + brendan;
-console.log(`value: ${greeting}, type:${typeof greeting}`);
+console.log(`value: ${greeting}, type:${typeof greeting}`); // value: hellobrendan, type:string
 const helloBob = `hi ${brendan}!`; // template literals (string)
 console.log(`value: ${helloBob}, type: ${typeof helloBob}`); // 간편하다!
 
@@ -80,8 +80,8 @@ console.log(`value: ${helloBob}, type: ${typeof helloBob}`); // 간편하다!
 // true: any other value
 const canRead = true;
 const test = 3 < 1; // false
-console.log(`value: ${canRead}, type: ${typeof canRead}`);
-console.log(`value: ${test}, type: ${typeof test}`);
+console.log(`value: ${canRead}, type: ${typeof canRead}`); // value: true, type: boolean
+console.log(`value: ${test}, type: ${typeof test}`); // value: false, type: boolean
 
 // 4-5. null
 let nothing = null;
@@ -103,7 +103,7 @@ const gSymbol1 = Symbol.for('id');
 const gSymbol2 = Symbol.for('id');
 console.log(gSymbol1 === gSymbol2) // true
 console.log(`value: ${symbol1.description}, type: ${typeof symbol1}`);
-// valu = id, type: symbol
+// value: id, type: symbol
 
 // 4-8. object, real-life object, data structure
 const ellie = { name:'ellie', age: 20}

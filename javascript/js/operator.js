@@ -75,6 +75,10 @@ const i = null;
 const j = undefined;
 console.log(i == j); // true
 
+console.log(0 == '0'); // true
+console.log(0 == []); // true
+console.log('0' == []); // false => ?!
+
 
 // 4-3. !==, !=
 const k = 'k';
