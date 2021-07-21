@@ -25,6 +25,7 @@
 //   console.log(i);
 //   if (i === 8) break;
 // }
+// console.log(i);
 
 // Q4
 // const person1 = {
