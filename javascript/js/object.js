@@ -3,7 +3,7 @@
 // const dogName = '멍멍이';
 // const dogAge = 2;
 
-// 1. 객체: 관련있는 자료끼리 묶어서 관리
+/*****  1. 객체: 관련있는 자료끼리 묶어서 관리 *****/
 const dog = {
   name: "멍멍이",
   age: 2,
@@ -33,7 +33,7 @@ function print(hero) {
 print(ironMan);
 print(captainAmerica);
 
-// 2. 비구조화 할당/ 객체 구조 분해
+/***** 2. 비구조화 할당/ 객체 구조 분해 *****/
 function print2(hero) {
   const { alias, name, actor } = hero; // 객체 내부에서 값들을 빼옴
   const text = `${alias}(${name}) 역할을 맡은 배우는 ${actor} 이다`;
@@ -46,7 +46,7 @@ function print3({ alias, name, actor }) {
   console.log(text);
 }
 
-// 3. 객체 안에 함수 넣기
+/***** 3. 객체 안에 함수 넣기 *****/
 const cat = {
   name: "야옹이",
   sound: "야옹",
@@ -71,7 +71,7 @@ cow.say(); // 음매 => 자기가 속해있는 객체에서(this) sound를 찾�
 const catSay = cat.say;
 catSay(); // undefined
 
-// 4. Getter & Setter
+/***** 4. Getter & Setter *****/
 // 4-1. getter: 특정 값을 조회하려고 할 때 특정 코드를 실행시고, 값을 반환해줌
 const numbers = {
   a: 1,
@@ -134,7 +134,7 @@ numbers2.a = 9;
 console.log(numbers2.sum); // 16
 console.log(numbers2.sum); // 16
 
-// 5-1. 객체 생성자
+/***** 5-1. 객체 생성자 *****/
 function Animal(type, name, sound) {
   this.type = type; // this는 만들어진 객체를 지칭. 아래에서는 dog2, cat2
   this.name = name;
@@ -197,3 +197,106 @@ Cat.prototype = Animal.prototype;
 
 const a_dog3 = new Dog("멍멍이", "멍멍");
 const a_cat3 = new Cat("야옹이", "야옹");
+
+/***** 6. 비구조화 할당*****/
+// 6-1. 함수에서 비구조화 할당시 기본값 설정
+{
+  const object = { a: 1 };
+  function print({ a, b = 2 }) {
+    console.log(a);
+    console.log(b);
+  }
+  print(object); // 1, 2
+}
+
+// 6-2. 객체에서도 기본값 설정 가능
+{
+  const object = { a: 1 };
+  const { a, b = 2 } = object; // 비구조화 할당
+  console.log(a, b); // 1, 2
+}
+
+// 6-3. 비구조화 할당시 이름 바꾸기
+{
+  const animal = {
+    name: "doggy",
+    type: "dog",
+  };
+  //  const nickname = animal.name;
+  const { name: nickname } = animal;
+  console.log(nickname);
+}
+
+// 6-4. 배열에서 비구조화 할당
+{
+  const array = [1, 2];
+  //   const one = array[0];
+  //   const two = array[1];
+  const [one, two] = array;
+
+  console.log(one, two); // 1, 2
+}
+{
+  const array = [1];
+  //   const one = array[0];
+  //   const two = array[1];
+  const [one, two = 2] = array;
+
+  console.log(one, two); // 1, 2
+}
+
+// 6-5. 깊은 객체 값을 가져오기
+// 6-5-1. 비구조화 할당 두번 쓰기
+{
+  const deepObject = {
+    state: {
+      information: {
+        name: "velopert",
+        languages: ["korean", "english", "chinese"],
+      },
+    },
+    value: 5,
+  };
+  // 비구조화 할당 2번
+  const { name, languages } = deepObject.state.information;
+  const { value } = deepObject;
+
+  const extracted = {
+    name, // name: name 과 동일함. 키값과 value값이 같을 때 사용
+    languages,
+    value,
+  };
+
+  console.log(extracted);
+}
+// 6-5-2. 비구조화 할당 한번만
+{
+  const deepObject = {
+    state: {
+      information: {
+        name: "velopert",
+        languages: ["korean", "english", "chinese"],
+      },
+    },
+    value: 5,
+  };
+  // 비구조화 할당 한번에
+  const {
+    state: {
+      information: {
+        name,
+        languages: [firstLang, secondLang],
+      },
+    },
+    value,
+  } = deepObject;
+
+  const extracted = {
+    name, // name: name 과 동일함. 키값과 value값이 같을 때 사용
+    firstLang,
+    secondLang,
+    value,
+  };
+
+  console.log(extracted);
+}
