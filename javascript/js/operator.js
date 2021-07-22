@@ -145,6 +145,7 @@ console.log(value); // foo
 // 7-2. A && B
 // - A === truthy : B로 결정됨
 // - A === falsy : A로 결정됨
+// 앞의 것이 truthy일 때, 뒤에 것으로 결정하고 싶을 때 사용
 {
   const dog = {
     name: "멍멍이",
@@ -160,7 +161,7 @@ console.log(value); // foo
   console.log(true && "hello"); // 앞에 것이 truthy이면, 뒤에 것을 출력함
   console.log(false && "hello"); // false
   console.log("hello" && "bye"); // bye
-  console.log(null && "hello"); // 앞이 falsy니까 앞의 것을 출력
+  console.log(null && "hello"); // 앞이 falsy니까 앞의 것을 출력 null
   console.log(undefined && "hello"); // undefined
   console.log("" && "hello"); // ""
   console.log(NaN && "hello"); // Nan
@@ -171,12 +172,14 @@ console.log(value); // foo
 {
   const object = null;
   const name = object && object.name; // null
+  // const name = object.name // TypeError 발생!
   console.log(name);
 }
 
 // 7-3. A || B
 // - A === truthy : A로 결정
 // - A === falsy : B로 결정
+// 앞에 것이 falsy일 때, 뒤에걸로 결정하고 싶을 때 사용
 
 // 7-3-1. || 사용하기 전
 {
