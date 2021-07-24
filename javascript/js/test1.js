@@ -1,9 +1,8 @@
 // Q1
-function printHello(text){
-    console.log(`Hello, ${text}!`);
+function printHello(text) {
+  console.log(`Hello, ${text}!`);
 }
-printHello('kang');
-
+printHello("kang");
 
 // Q2
 // let a = 5;
@@ -25,7 +24,7 @@ printHello('kang');
 // }
 
 // Q4
-// '==' 는 데이터의 타입과 상관없이, 그 값을 비교한다. 
+// '==' 는 데이터의 타입과 상관없이, 그 값을 비교한다.
 // '===' 는 데이터의 타입이 같은지, 또 그 값이 같은지 비교한다.
 // 예를 들어 다음과 같은 코드가 있다.
 // {
