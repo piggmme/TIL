@@ -176,4 +176,38 @@
 
 ## 3. Forking Workflow
 
-...작성중
+![](https://media.vlpt.us/images/blackwidow/post/b4b5e4b1-ced8-417f-a4f7-386003ff5aac/gitfork_fullrequest.jpg)
+
+### 3-1. 팀장
+
+1. GitHub에서 new repo 생성
+2. repo 주소 복사하여, local disk에서 `$ git clone {repo 주소}`
+3. `$ git flow init` 하여 develop 브랜치를 생성
+4. `$ git push -u origin develop` 하여 원격 저장소에 push
+5. 그 후 GitHub에서 repo 주소를 팀원에게 보냄 => 팀원 (3-2의 1로)
+6. issues에서 팀원이 제시한 사항을 assigned/ labels 설정
+7. project 생성 => 팀원 (3-2의 6으로)
+8. pull request 확인. 맘에 안들면 딴지걸고 request change
+9. 맘에 들면 aprove & merge
+
+### 3-2. 팀원
+
+1. 팀장이 보내준 주소로 들어가 fork 함
+2. 본인 소유로 repo가 생성되는데, 그 주소를 복사
+3. local disk에 `$ git clone {repo 주소}`
+4. `$ git flow init` 하여 develop 브랜치 생성
+5. 팀장의 repo에 issues에 해야할 일을 확인 또는 작성 => 팀장 (3-1의 6으로)
+6. `$ git flow feature start {branch}`
+7. 일을 수행하고, add & commit
+8. 기능 개발 끝나면 `$ git flow feature finish {branch}` (develop에 merge되었음)
+9. `$ git push -u origin develop` 하면 나의 repo에 올라감.
+10. GitHub의 나의 repo에 들어가면 pull request 할 수 있음. pull request함.
+11. open된 이슈의 number을 꼭 적어주기. `resolved : #1` => 팀장 (3-1의 8로)
+12. 수정 요청에 대한 것은 3~8 과정 없이 바로 develop위에서 작업한다.
+13. 수정 작업 후 add & commit & push 하면 열려있는 이슈의 pull request에 붙는다.
+
+### 3-3. 나머지 팀원
+
+1. `$ git fetch origin develop`
+2. `$ git merge FETCH_HEAD`
+3. 위를 진행하면, 원격 디스크에 있는 변경 사항을 내려받을 수 있음.
