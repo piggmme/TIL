@@ -34,11 +34,11 @@
         d = 0;
       }
     }
-    // return dist.indexOf(Math.max(...dist));
+
     return Math.max(...dist);
   }
-  console.log(solution([1, 0, 0, 0, 1, 0, 0, 1, 0, 1]));
-  console.log(solution([0, 0, 0, 0, 1, 0, 0, 1, 0, 1]));
+  // console.log(solution([1, 0, 0, 0, 1, 0, 0, 1, 0, 1]));
+  // console.log(solution([0, 0, 0, 0, 1, 0, 0, 1, 0, 1]));
 }
 
 // mySol)
@@ -63,7 +63,8 @@
         }
       }
     }
-    return idx;
+    // return idx;
+    return len;
   }
   // console.log(solution([1, 0, 0, 0, 1, 0, 0, 1, 0, 1]));
 }

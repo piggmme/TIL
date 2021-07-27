@@ -11,74 +11,139 @@
 // - 마지막 선물까지 위를 반복한다.
 // - 가장 큰 갯수를 반환한다.
 
-function solution(nums, m) {
-  const N = nums.length;
-  let result = 0;
+// Sol)
+// 전부 다 해본다.
+{
+  function solution(product, m) {
+    let answer = 0;
+    let n = product.length;
+    // 음수가 되었을 때 바꿈.
+    product.sort((a, b) => a[0] + a[1] - (b[0] + b[1]));
 
-  // 선물 가격과 배송비 합을 기준으로 오름차순 정렬
-  nums.sort(function (a, b) {
-    return a[0] + a[1] - (b[0] + b[1]);
-  });
-
-  for (let i = 0; i < N; i++) {
-    let sum = nums[i][0] / 2 + nums[i][1]; // 할인 받은 선물
-    let cnt = 1;
-
-    for (let j = 0; j < N; j++) {
-      if (i !== j) {
-        // 나머지 선물들의 합
-        sum += nums[j][0] + nums[j][1];
-        cnt += 1;
-      } else {
-        // 자기 자신일 경우 pass
-        continue;
+    for (let i = 0; i < n; i++) {
+      let money = m - (product[i][0] / 2 + product[i][1]);
+      let cnt = 1;
+      for (let j = 0; i < n; i++) {
+        if (j !== i && product[j][0] + product[j][1] > money) break;
+        if (j !== i && product[j][0] + product[j][1] <= money) {
+          money -= product[j][0] + product[j][1];
+          cnt += 1;
+        }
       }
-      if (sum === m) {
-        // 예산과 같은 경우
-        result = result < cnt ? cnt : result;
-        break;
-      } else if (sum > m) {
-        // 예산을 넘긴 경우
-        result = result < cnt - 1 ? cnt - 1 : result;
-        break;
+      answer = Math.max(answer, cnt);
+    }
+
+    return answer;
+  }
+  console.log(
+    solution(
+      [
+        [6, 6],
+        [2, 2],
+        [4, 3],
+        [4, 5],
+        [10, 3],
+      ],
+      28
+    )
+  );
+  console.log(
+    solution(
+      [
+        [8, 6],
+        [2, 2],
+        [4, 3],
+        [4, 5],
+        [6, 4],
+      ],
+      27
+    )
+  );
+  console.log(
+    solution(
+      [
+        [8, 6],
+        [2, 2],
+        [4, 3],
+        [4, 5],
+        [12, 1],
+      ],
+      41
+    )
+  );
+}
+
+// MySol)
+{
+  function solution(nums, m) {
+    const N = nums.length;
+    let result = 0;
+
+    // 선물 가격과 배송비 합을 기준으로 오름차순 정렬
+    nums.sort(function (a, b) {
+      return a[0] + a[1] - (b[0] + b[1]);
+    });
+
+    for (let i = 0; i < N; i++) {
+      let sum = nums[i][0] / 2 + nums[i][1]; // 할인 받은 선물
+      let cnt = 1;
+
+      for (let j = 0; j < N; j++) {
+        if (i !== j) {
+          // 나머지 선물들의 합
+          sum += nums[j][0] + nums[j][1];
+          cnt += 1;
+        } else {
+          // 자기 자신일 경우 pass
+          continue;
+        }
+        if (sum === m) {
+          // 예산과 같은 경우
+          result = result < cnt ? cnt : result;
+          break;
+        } else if (sum > m) {
+          // 예산을 넘긴 경우
+          result = result < cnt - 1 ? cnt - 1 : result;
+          break;
+        }
       }
     }
+    return result;
   }
-  return result;
+  console.log(
+    solution(
+      [
+        [6, 6],
+        [2, 2],
+        [4, 3],
+        [4, 5],
+        [10, 3],
+      ],
+      28
+    )
+  );
+  console.log(
+    solution(
+      [
+        [8, 6],
+        [2, 2],
+        [4, 3],
+        [4, 5],
+        [6, 4],
+      ],
+      27
+    )
+  );
+  console.log(
+    solution(
+      [
+        [8, 6],
+        [2, 2],
+        [4, 3],
+        [4, 5],
+        [12, 1],
+      ],
+      41
+    )
+  );
 }
-// console.log(
-//   solution(
-//     [
-//       [6, 6],
-//       [2, 2],
-//       [4, 3],
-//       [4, 5],
-//       [10, 3],
-//     ],
-//     28
-//   )
-// );
-// console.log(
-//   solution(
-//     [
-//       [8, 6],
-//       [2, 2],
-//       [4, 3],
-//       [4, 5],
-//       [6, 4],
-//     ],
-//     27
-//   )
-// );
-// console.log(
-//   solution(
-//     [
-//       [8, 6],
-//       [2, 2],
-//       [4, 3],
-//       [4, 5],
-//       [12, 1],
-//     ],
-//     41
-//   )
-// );
