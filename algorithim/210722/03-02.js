@@ -23,7 +23,7 @@
     for (let i = 0; i < n; i++) {
       let money = m - (product[i][0] / 2 + product[i][1]);
       let cnt = 1;
-      for (let j = 0; i < n; i++) {
+      for (let j = 0; j < n; j++) {
         if (j !== i && product[j][0] + product[j][1] > money) break;
         if (j !== i && product[j][0] + product[j][1] <= money) {
           money -= product[j][0] + product[j][1];
