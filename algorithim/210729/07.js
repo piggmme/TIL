@@ -31,16 +31,17 @@
     }
     return answer;
   }
+  //  console.log(solution("bAcacbcba", "abc")); // 2 => 대소문자 구별!!
   // console.log(solution("bacacbcba", "abc")); // 3
   // console.log(solution("bacaAacba", "abc")); // 3
   // console.log(solution("bacddacba", "abc")); // 3
   //console.log(solution("bacacbcba", "aabc")); // 1
 }
 
-// MySol) => 틀린코드. 수정필요!
+// MySol) => 틀린코드. 수정필요! : 중복된 문자는 해결 못함 ㅠ,ㅠ
+// 그냥 이렇게 하면 안될거같음.
 {
   function solution(S, T) {
-    S = S.toLowerCase();
     let n = S.length;
     let k = T.length;
     let sH = new Map();
@@ -87,5 +88,5 @@
   // console.log(solution("bacacbcba", "abc")); // 3
   // console.log(solution("bacaAacba", "abc")); // 3
   // console.log(solution("bacddacba", "abc")); // 3
-  //  console.log(solution("bacacbcba", "aabc")); // 1이여야 하는데 0이다..!! ㅜㅜ
+  // console.log(solution("bacacbcba", "aabc")); // 1이여야 하는데 0이다..!! ㅜㅜ
 }

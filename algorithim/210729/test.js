@@ -34,13 +34,13 @@
 
     return max;
   }
-  console.log(solution([3, 2, 1, 2, 1, 3], [1, 0, 0, 1, 0, 0], 3)); // 9
-  console.log(solution([3, 2, 3, 2, 1, 3], [1, 0, 0, 1, 0, 0], 3)); // 10
-  console.log(solution([3, 2, 3, 2, 1, 3], [1, 1, 0, 0, 0, 0], 3)); // 11
-  console.log(solution([3, 2, 3, 2, 1, 3], [1, 1, 0, 0, 0, 0], 4)); // 14
-  console.log(solution([3, 2, 3, 2, 1, 3], [0, 0, 0, 0, 0, 0], 4)); // 10
-  console.log(solution([3, 2, 3, 2, 1, 10], [1, 0, 0, 1, 0, 0], 1)); // 15
-  console.log(solution([1, 1, 1, 1, 1, 9, 9], [1, 0, 0, 0, 0, 0], 1)); // 10
-  console.log(solution([1, 1, 1, 1, 1, 1], [1, 0, 0, 1, 0, 0], 1)); // 3
-  console.log(solution([10, 1, 1, 1, 1, 10], [0, 0, 0, 1, 0, 0], 1)); // 11
+  // console.log(solution([3, 2, 1, 2, 1, 3], [1, 0, 0, 1, 0, 0], 3)); // 9
+  // console.log(solution([3, 2, 3, 2, 1, 3], [1, 0, 0, 1, 0, 0], 3)); // 10
+  // console.log(solution([3, 2, 3, 2, 1, 3], [1, 1, 0, 0, 0, 0], 3)); // 11
+  // console.log(solution([3, 2, 3, 2, 1, 3], [1, 1, 0, 0, 0, 0], 4)); // 14
+  // console.log(solution([3, 2, 3, 2, 1, 3], [0, 0, 0, 0, 0, 0], 4)); // 10
+  // console.log(solution([3, 2, 3, 2, 1, 10], [1, 0, 0, 1, 0, 0], 1)); // 15
+  // console.log(solution([1, 1, 1, 1, 1, 9, 9], [1, 0, 0, 0, 0, 0], 1)); // 10
+  // console.log(solution([1, 1, 1, 1, 1, 1], [1, 0, 0, 1, 0, 0], 1)); // 3
+  // console.log(solution([10, 1, 1, 1, 1, 10], [0, 0, 0, 1, 0, 0], 1)); // 11
 }
