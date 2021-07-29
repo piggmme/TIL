@@ -13,6 +13,8 @@
 // 뒤 : push, pop / 앞 : shift, unshift
 // 효율성 생각해야해...
 // queue <= [nums[i], i]
+
+// Sol)
 {
   function solution(nums, k) {
     let answer = [];
@@ -35,6 +37,43 @@
     return answer;
   }
   // console.log(solution([11, 12, 15, 20, 25, 10, 20, 13, 15, 19], 3)); // [11, 12, 15, 10, 10, 10, 13, 13]
+}
+
+// mySecondTry)
+{
+  function solution(nums, k) {
+    let stack = []; // 0: 인덱스, 1: 매출액
+    let n = nums.length;
+    let result = [];
+    // (1) 초기 k일 동안 최소값 찾기
+    for (let i = 0; i < k; i++) {
+      // 1-1. 기존에 있던 숫자가 지금 들어오는 숫자보다 크면, 최소값이 될 일이 없으니 삭제해도 됨...
+      while (stack.length > 0 && nums[i] < stack[stack.length - 1][1])
+        stack.pop();
+      // 1-2. 숫자 들어옴
+      stack.push([i, nums[i]]);
+    }
+    // 1-3. 현재 최소값 저장
+    result.push(stack[0][1]);
+
+    // (2) 이후 최소값 구간 찾기.
+    for (let i = k; i < n; i++) {
+      // 2-1. 날짜 기한이 지난 아이는 삭제함
+      if (stack[0][0] === i - k) stack.shift();
+
+      while (stack.length > 0 && nums[i] < stack[stack.length - 1][1])
+        stack.pop();
+      // 2-2. 기존에 있던 숫자가 지금 들어오는 숫자보다 크면, 최소값이 될 일이 없으니 삭제해도 됨...
+
+      // 2-3. 숫자 들어옴.
+      stack.push([i, nums[i]]);
+
+      // 2-4. 현재의 최소값 저장
+      result.push(stack[0][1]);
+    }
+    return result;
+  }
+  console.log(solution([11, 12, 15, 20, 25, 10, 20, 13, 15, 19], 3)); // [11, 12, 15, 10, 10, 10, 13, 13]
 }
 
 // mySol)

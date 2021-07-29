@@ -58,20 +58,20 @@
     return answer;
   }
 
-  console.log(solution(2322113, 3)); //2113
-  console.log(solution(200200, 1)); //200
-  console.log(solution(123, 3)); //0
-  console.log(solution(23000, 2)); //0
-  console.log(solution(23000, 1)); //2000
-  console.log(solution(625437, 2)); //2437
-  console.log(solution(625437, 3)); //237
-  console.log(solution(625437, 4)); //23
-  console.log(solution(625437, 5)); //2
-  console.log(solution(625437, 6)); //0
-  console.log(solution(654321, 3)); //321
-  console.log(solution(2322113, 4)); //113
-  console.log(solution(2322113, 5)); //11
-  console.log(solution(2322113, 1)); //222113
+  // console.log(solution(2322113, 3)); //2113
+  // console.log(solution(200200, 1)); //200
+  // console.log(solution(123, 3)); //0
+  // console.log(solution(23000, 2)); //0
+  // console.log(solution(23000, 1)); //2000
+  // console.log(solution(625437, 2)); //2437
+  // console.log(solution(625437, 3)); //237
+  // console.log(solution(625437, 4)); //23
+  // console.log(solution(625437, 5)); //2
+  // console.log(solution(625437, 6)); //0
+  // console.log(solution(654321, 3)); //321
+  // console.log(solution(2322113, 4)); //113
+  // console.log(solution(2322113, 5)); //11
+  // console.log(solution(2322113, 1)); //222113
 }
 
 // mySol)
@@ -102,16 +102,16 @@
     let result = stack.join("");
     return parseInt(result);
   }
-  console.log(solution(1230, 3)); //0
-  console.log(solution(7612345, 5)); //12
-  console.log(solution(999102345, 5)); //234
-  console.log(solution(10000023, 2)); //2
-  console.log(solution(30000043, 3)); //0
-  console.log(solution(12345670, 7)); //0
-  console.log(solution(123456, 3)); //123
-  console.log(solution(12003, 3)); //0
-  console.log(solution(9, 1)); //0
-  console.log(solution(98765432, 7)); //2
+  // console.log(solution(1230, 3)); //0
+  // console.log(solution(7612345, 5)); //12
+  // console.log(solution(999102345, 5)); //234
+  // console.log(solution(10000023, 2)); //2
+  // console.log(solution(30000043, 3)); //0
+  // console.log(solution(12345670, 7)); //0
+  // console.log(solution(123456, 3)); //123
+  // console.log(solution(12003, 3)); //0
+  // console.log(solution(9, 1)); //0
+  // console.log(solution(98765432, 7)); //2
 }
 // 잘못된 풀이
 {
