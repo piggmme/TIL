@@ -1,4 +1,80 @@
-// 나름 괜찮은 풀이? -> 반례 ㅠㅠ흑흑 말미잘 ㅠ
+// 최소값 만들기
+// 자연수 N이 주어지면 N의 각 자릿수 중 K개를 지워 최솟값을 만드는 프로그램을 작성해라
+// N = 2322113, K = 3이면 => 2113
+// 제일 앞자리의 0은 자릿수로 인정하지 않는다.
+
+// Sol)
+{
+  function solution(nums, k) {
+    let answer;
+    let stack = [];
+    let str = nums.toString();
+
+    for (let x of str) {
+      while (k > 0 && stack.length && stack[stack.length - 1] > x) {
+        stack.pop();
+        k--;
+      }
+      stack.push(x);
+    }
+    answer = stack.join("");
+    answer = answer.substring(0, answer.length - k);
+    if (answer.length === 0) return 0;
+    return Number(answer);
+  }
+}
+
+// Sol) Stack !!
+{
+  function solution(num, k) {
+    let answer;
+    let stack = [];
+    num = String(num);
+
+    if (num.length === k) return 0;
+
+    for (let i = 0; i < num.length; i++) {
+      /*
+      스택이 비어있지 않고 k가 0보다 크고 
+      스택의 상단이 num[i]보다 크면 계속 pop해준다
+      */
+      while (stack.length !== 0 && k > 0 && stack[stack.length - 1] > num[i]) {
+        stack.pop();
+        k--;
+      }
+      //그리고 push
+      stack.push(num[i]);
+    }
+
+    //k가 0보다 크면 계속 k가 0이될때까지 계속 pop한다.
+    while (k > 0) {
+      stack.pop();
+      k--;
+    }
+
+    answer = stack.join("");
+    answer = Number(answer);
+
+    return answer;
+  }
+
+  console.log(solution(2322113, 3)); //2113
+  console.log(solution(200200, 1)); //200
+  console.log(solution(123, 3)); //0
+  console.log(solution(23000, 2)); //0
+  console.log(solution(23000, 1)); //2000
+  console.log(solution(625437, 2)); //2437
+  console.log(solution(625437, 3)); //237
+  console.log(solution(625437, 4)); //23
+  console.log(solution(625437, 5)); //2
+  console.log(solution(625437, 6)); //0
+  console.log(solution(654321, 3)); //321
+  console.log(solution(2322113, 4)); //113
+  console.log(solution(2322113, 5)); //11
+  console.log(solution(2322113, 1)); //222113
+}
+
+// mySol)
 {
   function solution(num, k) {
     let stack = [];
@@ -7,7 +83,6 @@
       return 0;
     }
     while (k > 0) {
-      if (arr.length === k) break;
       let min = 9;
       for (let i = 0; i < k + 1; i++) {
         if (min > arr[i]) min = arr[i]; // 해당 자리수가 될 수 있는 숫자중 가장 작은 수 고름
@@ -27,20 +102,6 @@
     let result = stack.join("");
     return parseInt(result);
   }
-  // console.log(solution(2322113, 3)); // 2113
-  // console.log(solution(200200, 1)); // 200
-  // console.log(solution(123, 3)); // 0
-  // console.log(solution(12, 4)); // 0
-  // console.log(solution(99999, 2)); // 999
-  // console.log(solution(123456, 2)); // 1234
-  // console.log(solution(123123, 3)); // 112
-  // console.log(solution(987651, 3)); // 651
-  // console.log(solution(141414, 3)); // 111
-  // console.log(solution(31313, 3));
-  // console.log(solution(101109, 3)); // 나: 9 / 답 : 1 ㅜㅜ??
-  // console.log(solution(101019, 3)); // 1
-  // console.log(solution(1000190, 3)); // 0
-
   console.log(solution(1230, 3)); //0
   console.log(solution(7612345, 5)); //12
   console.log(solution(999102345, 5)); //234

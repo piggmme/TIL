@@ -3,8 +3,56 @@
 // 만약 N=15이면
 // 7+8=15
 // 4+5+6=15
-// 1+2+3+4+5=15
+// 1+2+3+4+5= 15
 // 와 같이 총 3가지의 경우가 존재한다.
+
+// Sol2) 수학적인 기술
+// 7+8=15 = 6(1+2)
+// 4+5+6=15 = 3(1+2+3)
+// 1+2+3+4+5= 15
+{
+  function solution(n) {
+    let answer = 0;
+    cnt = 1;
+    n--;
+    while (n > 0) {
+      cnt++;
+      n -= cnt;
+      if (n % cnt == 0) answer++;
+    }
+    return answer;
+  }
+  // console.log(solution(15));
+}
+
+// Sol1) two pointer
+{
+  function solution(N) {
+    // N의 절반을 뚝 짤라서, 1~N/2 까지의 숫자를 배열안에 넣고,
+    // 그 배열안에서 연속된 자연수를 더했을 때, N이 되는지 찾으면 된다.
+    let nums = Array.from(
+      { length: parseInt(N / 2) + (N % 2) },
+      (v, i) => i + 1
+    );
+    let n = nums.length;
+    let result = 0;
+    let lt = 0;
+    let sum = 0;
+    for (let rt = 0; rt < n; rt++) {
+      sum += nums[rt];
+      while (sum > N) {
+        sum -= nums[lt++];
+      }
+      if (sum === N) result++;
+    }
+    return result;
+  }
+  //   console.log(solution(15)); //3
+  //   console.log(solution(45678)); //7
+  //   console.log(solution(98765)); //3
+}
+
+// mySol)
 {
   function solution(N) {
     // N의 절반을 뚝 짤라서, 1~N/2 까지의 숫자를 배열안에 넣고,
@@ -52,7 +100,7 @@
     }
     return result;
   }
-  console.log(solution(15)); //3
-  console.log(solution(45678)); //7
-  console.log(solution(98765)); //3
+  //   console.log(solution(15)); //3
+  //   console.log(solution(45678)); //7
+  //   console.log(solution(98765)); //3
 }
