@@ -10,3 +10,45 @@
 // 11
 // ▣ 반환값 형식
 // 1011
+
+// sol)
+{
+  function solution(n) {
+    let answer = 0,
+      tmp = [];
+    function DFS(n) {
+      if (n == 0) return;
+      else {
+        DFS(parseInt(n / 2));
+        tmp.push(n % 2);
+      }
+    }
+    DFS(n);
+    // 배열안에 있는걸 꺼내서 숫자화 한 다음 비교
+    for (let i = 0; i < tmp.length; i++) {
+      answer = answer * 10 + tmp[i];
+    }
+    return answer;
+  }
+  // console.log(solution(11)); // 1011
+  // console.log(solution(1024)); // 2^10 = 10 0000 0000
+}
+
+// mysol)
+{
+  function dfs(n, result) {
+    if (n === 0) {
+      return; // 종료 조건
+    } else {
+      result.push(n % 2); // 나머지
+      dfs(parseInt(n / 2), result); // 몫
+    }
+    return [...result].reverse(); // 결과 전달
+  }
+  function solution(n) {
+    let result = [];
+    return dfs(n, result).join("");
+  }
+  // console.log(solution(11)); // 1011
+  // console.log(solution(1024)); // 2^10 = 10 0000 0000
+}

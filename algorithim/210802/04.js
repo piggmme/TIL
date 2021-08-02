@@ -23,3 +23,70 @@
 // [3, 9, 11, 13]
 // ▣ 반환값 형식 3
 // NO
+
+// sol)
+{
+  function solution(nums) {
+    let answer = "NO";
+    let total = nums.reduce((a, b) => a + b, 0);
+    let flag = false; // 찾으면, 나머지들은 return 시킬 것
+    let n = nums.length;
+
+    function DFS(L, sum) {
+      if (flag) return; // 답을 찾고나서 들어오는 애들은 다 돌려보냄.
+      if (L === n) {
+        // 종료 조건
+        if (total - sum === sum) {
+          // 딱 절반
+          answer = "YES";
+          flag = true;
+        }
+      } else {
+        DFS(L + 1, sum + nums[L]); // 이번 L번째 원소는 사용함
+        DFS(L + 1, sum); // 이번 L번째 원소는 사용 안함
+      }
+    }
+    DFS(0, 0);
+    return answer;
+  }
+  // console.log(solution([1, 2, 3])); // Y
+  // console.log(solution([1, 3, 5, 6, 7, 10])); // Y
+  // console.log(solution([5, 2, 6, 9, 10, 12])); // Y
+  // console.log(solution([3, 9, 11, 13])); // N
+}
+
+// mysol) => 이러면 안돼!
+{
+  function solution(nums) {
+    let answer = "NO";
+    let set = [];
+    let part = [];
+    let n = nums.length;
+    sum = nums.reduce((acc, cur) => acc + cur, 0);
+
+    function dfs(i) {
+      if (i >= n) {
+        if (part.length !== 0 && part.length !== n) {
+          set.push(part.slice());
+          if (
+            sum - part.reduce((acc, cur) => acc + cur, 0) ===
+            parseInt(sum / 2)
+          ) {
+            answer = "YES";
+          }
+        }
+      } else {
+        part.push(nums[i]);
+        dfs(i + 1);
+        part.pop();
+        dfs(i + 1);
+      }
+    }
+    dfs(0);
+    return answer;
+  }
+  //   console.log(solution([1, 2, 3])); // Y
+  //   console.log(solution([1, 3, 5, 6, 7, 10])); // Y
+  //   console.log(solution([5, 2, 6, 9, 10, 12])); // Y
+  //   console.log(solution([3, 9, 11, 13])); // N
+}

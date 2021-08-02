@@ -16,3 +16,109 @@
 // [[15, 6], [30, 11], [23, 8], [14, 4], [10, 3], [20, 7]], 25
 // ▣ 반환값 형식 2
 // 74
+
+// sol)
+{
+  function solution(nums, m) {
+    let n = nums.length;
+    let max = Number.MIN_SAFE_INTEGER;
+    let total = nums.reduce((a, b) => a + b, 0);
+
+    function DFS(L, sum, time) {
+      if (time > m) return; // 시간이 m보다 크면 그만 동작!! 종료.
+
+      if (L === n) {
+        max = Math.max(sum, max);
+      } else {
+        // 푼다
+        DFS(L + 1, sum + nums[L][0], time + nums[L][1]);
+
+        // 풀지 않는다.
+        DFS(L + 1, sum, time);
+      }
+    }
+    DFS(0, 0, 0);
+    return max;
+  }
+  // console.log(
+  //   solution(
+  //     [
+  //       [10, 5],
+  //       [25, 12],
+  //       [15, 8],
+  //       [6, 3],
+  //       [7, 4],
+  //     ],
+  //     20
+  //   )
+  // ); // 41
+  // console.log(
+  //   solution(
+  //     [
+  //       [15, 6],
+  //       [30, 11],
+  //       [23, 8],
+  //       [14, 4],
+  //       [10, 3],
+  //       [20, 7],
+  //     ],
+  //     25
+  //   )
+  // ); // 74
+}
+
+// mysol)
+{
+  function solution(nums, m) {
+    let part = [];
+    let n = nums.length;
+    let max = 0;
+
+    function dfs(L) {
+      if (L >= n) {
+        // 종료 조건
+        if (part.length !== 0) {
+          let time = 0,
+            sum = 0;
+          for (let x of part) {
+            time += x[1];
+            sum += x[0];
+          }
+          if (time <= m && max < sum) max = sum;
+        }
+      } else {
+        part.push(nums[L]);
+        dfs(L + 1);
+        part.pop();
+        dfs(L + 1);
+      }
+    }
+    dfs(0);
+    return max;
+  }
+  //   console.log(
+  //     solution(
+  //       [
+  //         [10, 5],
+  //         [25, 12],
+  //         [15, 8],
+  //         [6, 3],
+  //         [7, 4],
+  //       ],
+  //       20
+  //     )
+  //   ); // 41
+  //   console.log(
+  //     solution(
+  //       [
+  //         [15, 6],
+  //         [30, 11],
+  //         [23, 8],
+  //         [14, 4],
+  //         [10, 3],
+  //         [20, 7],
+  //       ],
+  //       25
+  //     )
+  //   ); // 74
+}

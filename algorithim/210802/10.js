@@ -23,3 +23,96 @@
 // 5 50
 // ▣ 반환값 형식 2
 // [1, 2, 4, 3, 5]
+
+// sol)
+{
+  function solution(n, f) {
+    // 2차원 배열로 메모이제이션.
+    let dy = Array.from(Array(35), () => Array(35).fill(0));
+    let answer;
+    let flag = false;
+    let ch = Array.from({ length: n + 1 }, () => 0);
+    let p = [],
+      b = [];
+
+    function combi(n, r) {
+      if (dy[n][r] > 0) return dy[n][r];
+      if (n === r || r === 0) return 1;
+      else {
+        return (dy[n][r] = combi(n - 1, r - 1) + combi(n - 1, r));
+      }
+    }
+
+    function DFS(L, sum) {
+      if (flag) return;
+      if (L === n) {
+        if (sum === f) {
+          answer = p.slice();
+          flag = true;
+        }
+      } else {
+        for (let i = 1; i <= n; i++) {
+          if (ch[i] === 0) {
+            ch[i] = 1;
+            p.push(i);
+            DFS(L + 1, sum + p[p.length - 1] * b[L]);
+            ch[i] = 0;
+            p.pop();
+          }
+        }
+      }
+    }
+
+    for (let i = 0; i < n; i++) {
+      b.push(combi(n - 1, i));
+    }
+
+    DFS(0, 0);
+    return answer;
+  }
+  //   console.log(solution(4, 16));
+  //   console.log(solution(5, 50));
+}
+
+// sol2)
+{
+  function solution(n, f) {
+    // 2차원 배열로 메모이제이션.
+    let dy = Array.from(Array(35), () => Array(35).fill(0));
+    let answer;
+    let flag = false;
+    let ch = Array.from({ length: n + 1 }, () => 0);
+    let p = [],
+      b = [];
+
+    function DFS(L, sum) {
+      if (flag) return;
+      if (L === n) {
+        if (sum === f) {
+          answer = p.slice();
+          flag = true;
+        }
+      } else {
+        for (let i = 1; i <= n; i++) {
+          if (ch[i] === 0) {
+            ch[i] = 1;
+            p.push(i);
+            DFS(L + 1, sum + p[p.length - 1] * b[L]);
+            ch[i] = 0;
+            p.pop();
+          }
+        }
+      }
+    }
+
+    b.push(1);
+    for (let i = 1; i < n; i++) {
+      b.push((b[i - 1] * (n - i)) / i);
+    }
+
+    DFS(0, 0);
+    return answer;
+  }
+  //   console.log(solution(4, 16));
+  //   console.log(solution(5, 50));
+}

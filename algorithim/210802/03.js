@@ -1,4 +1,4 @@
-// 부분집합 구하기(DFS)
+// 3. 부분집합 구하기(DFS)
 // 자연수 N이 주어지면 1부터 N까지의 원소를 갖는 집합의 부분집합을 모두 출력하는 프로그램
 // 을 작성하세요.
 // ▣ 입력설명
@@ -10,3 +10,25 @@
 // 3
 // ▣ 반환값 형식
 // [[1, 2, 3], [1, 2], [1, 3], [1], [2, 3], [2], [3]]
+
+{
+  function solution(n) {
+    let answer = [];
+    let part = [];
+    function DFS(L) {
+      if (L === n + 1) {
+        // 종료
+        if (part.length !== 0) answer.push(part.slice()); // 5 (깊은 복사 해야함.)
+      } else {
+        part.push(L);
+        DFS(L + 1); // 8
+        part.pop();
+        DFS(L + 1); // 10
+      }
+    }
+    DFS(1);
+    return answer;
+  }
+
+  //console.log(solution(3));
+}
