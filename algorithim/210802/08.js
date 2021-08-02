@@ -65,5 +65,34 @@
     DFS(0);
     return answer;
   }
-  //  console.log(solution(3, 2));
+  // console.log(solution(3, 2));
+}
+
+// mytry)
+{
+  function solution(n, m) {
+    let answer = [];
+    let tmp = [];
+    let ch = Array.from({ length: n + 1 }, () => 0);
+
+    function DFS(L) {
+      if (L === m) {
+        answer.push(tmp.slice());
+      } else {
+        // n개의 숫자중 하나를 골라.
+        for (let i = 1; i <= n; i++) {
+          if (ch[i] === 0) {
+            ch[i] = 1;
+            tmp.push(i);
+            DFS(L + 1);
+            tmp.pop();
+            ch[i] = 0;
+          } // else return; // 이거 왜 안되지...
+        }
+      }
+    }
+    DFS(0);
+    return answer;
+  }
+  //console.log(solution(3, 2));
 }

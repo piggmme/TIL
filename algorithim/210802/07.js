@@ -36,3 +36,31 @@
   // console.log(solution(3, 2));
   //[[1, 1], [1, 2], [1, 3], [2, 1], [2, 2], [2, 3], [3, 1], [3, 2], [3, 3]]
 }
+
+// my try)
+{
+  function solution(n, m) {
+    let answer = [];
+    let tmp = [];
+    function DFS(L) {
+      if (L === m) {
+        // 종료조건, 깊이가 m이라는 것은 m중 반복문과 동일.
+        answer.push(tmp.slice()); // 깊은 복사!!!
+      } else {
+        // 뽑기.. n개의 수 중 하나를 뽑아야함.
+        for (let i = 1; i <= n; i++) {
+          tmp.push(i);
+          DFS(L + 1);
+          tmp.pop();
+        }
+        // 원래 넣거나 안넣거나 둘중에 하나를 고르는 것이면,
+        // DFS를 2번만 불러오면 됐다. (6번 문제)
+        // 하지만 얘는 n개의 경우를 세야하므로 ....
+        // DFS를 n번 불러와야한다.
+      }
+    }
+    DFS(0);
+    return answer;
+  }
+  //console.log(solution(3, 2));
+}

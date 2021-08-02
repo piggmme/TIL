@@ -119,46 +119,50 @@
 
 // ▣ 반환값 2
 // abbabbabbef
+
+// try again Using stack!!
 {
   function solution(str) {
+    let n = str.length;
     let stack = [];
-    let result = "";
-    let idx = 0;
-    let flag = false;
-    for (let x of str) {
-      if (!isNaN(parseInt(x))) {
-        // 숫자인 경우,
-        stack.push([idx, parseInt(x)]);
-      } else if (x === "(");
-      else if (x === ")") {
-        flag = true;
-      } else {
-        result += x;
-        idx += 1;
-      }
 
-      // flag가 true면, 작성한 문자들을 인덱스 이후부터 반복해야 한다
-      if (flag) {
-        con = stack[stack.length - 1];
-        let temp = result.slice(con[0]);
-        let len = temp.length;
-        for (let i = 0; i < con[1] - 1; i++) {
-          result += temp;
-          idx += len;
+    for (let i = 0; i < n; i++) {
+      // )를 만나면 그만 넣고, 반복시작해
+      if (str[i] === ")") {
+        let tmp = [];
+        while (stack[stack.length - 1] !== "(") tmp.unshift(stack.pop());
+        stack.pop(); // "(" 지움
+
+        // 반복할 숫자 결정.
+        let n1 = stack.pop();
+        let n2 = stack.pop();
+        // 2자리 수 처리
+        if (isNaN(n2)) stack.push(n2);
+        else {
+          n2 += n1;
+          n1 = n2;
         }
-        stack.pop();
-        flag = false;
+
+        // 숫자 만큼 반복함.
+        for (let j = 0; j < parseInt(n1); j++) {
+          stack.push(...tmp);
+        }
+      } else {
+        // 문자나 여는 괄호일 경우
+        stack.push(str[i]);
       }
     }
-    return result;
+    return stack.join("");
   }
-  // console.log(solution("3(ab)")); // ababab
-  // console.log(solution("k2(asd3(f))")); // kasdfffasdfff
-  // console.log(solution("2(ab)k3(bc)")); // ababkbcbcbc
-  // console.log(solution("3(a2(b))ef")); // abbabbabbef
-  // console.log(solution("2(a2(b))")); //  abbabb
-  // console.log(solution("2(a2(b2(c(2d))))"));
+  console.log(solution("3(ab)")); // ababab
+  console.log(solution("12(ab)")); // ababab
+  console.log(solution("k2(asd3(f))")); // kasdfffasdfff
+  console.log(solution("2(ab)k3(bc)")); // ababkbcbcbc
+  console.log(solution("3(a2(b))ef")); // abbabbabbef
+  console.log(solution("2(a2(b))")); //  abbabb
 }
+
+// mysol
 {
   function solution(str) {
     let stack = [];
@@ -169,7 +173,6 @@
     for (let x of str) {
       if (!isNaN(x)) {
         stack.push([idx, x]);
-        //  stack.push([start,end,num]);
       } else if (x === "(") {
       } else if (x === ")") {
         flag = true;
@@ -190,9 +193,10 @@
     }
     return result;
   }
-  console.log(solution("3(ab)")); // ababab
-  console.log(solution("k2(asd3(f))")); // kasdfffasdfff
-  console.log(solution("2(ab)k3(bc)")); // ababkbcbcbc
-  console.log(solution("3(a2(b))ef")); // abbabbabbef
-  console.log(solution("2(a2(b))")); //  abbabb
+  // console.log(solution("3(ab)")); // ababab
+  // console.log(solution("k2(asd3(f))")); // kasdfffasdfff
+  // console.log(solution("2(ab)k3(bc)")); // ababkbcbcbc
+  // console.log(solution("3(a2(b))ef")); // abbabbabbef
+  // console.log(solution("2(a2(b))")); //  abbabb
+  // console.log(solution("2(a2(b2(c(2d))))"));
 }

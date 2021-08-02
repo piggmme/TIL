@@ -24,20 +24,20 @@
     let max = Number.MIN_SAFE_INTEGER;
     let total = nums.reduce((a, b) => a + b, 0);
 
-    function DFS(L, sum, time) {
+    function DFS(L, sum, time, tsum) {
       if (time > m) return; // 시간이 m보다 크면 그만 동작!! 종료.
-
+      if (sum + (total - tsum) < max) return; // 이후에 더하게 될 나머지 값들을 전부 더해도, 최대값이 되지 못하면 그만!
       if (L === n) {
         max = Math.max(sum, max);
       } else {
         // 푼다
-        DFS(L + 1, sum + nums[L][0], time + nums[L][1]);
+        DFS(L + 1, sum + nums[L][0], time + nums[L][1], tsum + nums[L][0]);
 
         // 풀지 않는다.
-        DFS(L + 1, sum, time);
+        DFS(L + 1, sum, time, tsum + nums[L][0]);
       }
     }
-    DFS(0, 0, 0);
+    DFS(0, 0, 0, 0);
     return max;
   }
   // console.log(

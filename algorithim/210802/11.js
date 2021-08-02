@@ -53,5 +53,5 @@
     DFS(0, 1);
     return answer;
   }
-  console.log(solution(4, 2));
+  //console.log(solution(4, 2));
 }

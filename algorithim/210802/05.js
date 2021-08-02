@@ -17,6 +17,31 @@
 // ▣ 반환값 형식 2
 // 372
 
+// my try)
+{
+  function solution(nums, c) {
+    let n = nums.length;
+    let answer = Number.MIN_SAFE_INTEGER;
+    let total = nums.reduce((acc, cur) => acc + cur, 0);
+
+    function DFS(L, s, ts) {
+      if (s > c) return;
+      if (s + (total - ts) < answer) return;
+      if (L === n) {
+        // 종료조건
+        answer = Math.max(answer, s);
+      } else {
+        DFS(L + 1, s + nums[L], ts + nums[L]);
+        DFS(L + 1, s, ts + nums[L]);
+      }
+    }
+    DFS(0, 0, 0);
+    return answer;
+  }
+  // console.log(solution([81, 58, 42, 33, 61], 259)); //  242
+  // console.log(solution([34, 56, 55, 67, 33, 76, 63, 43], 379)); // 372
+}
+
 // sol) cut edge
 {
   function solution(nums, c) {
@@ -41,7 +66,7 @@
   // console.log(solution([34, 56, 55, 67, 33, 76, 63, 43], 379)); // 372
 }
 
-// mysol)
+// mysol2)
 {
   function solution(nums, c) {
     let n = nums.length;

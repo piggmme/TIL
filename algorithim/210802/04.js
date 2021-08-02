@@ -24,6 +24,38 @@
 // ▣ 반환값 형식 3
 // NO
 
+// try)
+{
+  function solution(nums) {
+    let answer = "NO";
+    let flag = false;
+    let n = nums.length;
+    let total = nums.reduce((acc, cur) => acc + cur, 0);
+
+    function DFS(L, sum) {
+      if (flag) return;
+      if (L === n) {
+        // 종료
+        if (total - sum === sum) {
+          flag = true;
+          answer = "YES";
+        }
+      } else {
+        // 더하거나
+        DFS(L + 1, sum + nums[L]);
+        // 더하지 않거나
+        DFS(L + 1, sum);
+      }
+    }
+    DFS(0, 0);
+    return answer;
+  }
+  // console.log(solution([1, 2, 3])); // Y
+  // console.log(solution([1, 3, 5, 6, 7, 10])); // Y
+  // console.log(solution([5, 2, 6, 9, 10, 12])); // Y
+  // console.log(solution([3, 9, 11, 13])); // N
+}
+
 // sol)
 {
   function solution(nums) {

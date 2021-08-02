@@ -69,5 +69,5 @@
     console.log(minH.get());
     minH.show();
   }
-  console.log(solution([5, 4, 3, 6, 7, 2, 9]));
+  //console.log(solution([5, 4, 3, 6, 7, 2, 9]));
 }

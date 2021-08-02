@@ -36,6 +36,7 @@
       b = [];
 
     function combi(n, r) {
+      // nCr을 구함.
       if (dy[n][r] > 0) return dy[n][r];
       if (n === r || r === 0) return 1;
       else {
