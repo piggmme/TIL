@@ -1,0 +1,27 @@
+function solution(s){  
+    let answer="";
+    let stack=[];
+    for(let x of s){
+        if(x!==')') stack.push(x);
+        else{
+            let tmp="";
+            while(stack.length){
+                let c=stack.pop();
+                if(c==='('){
+                    let num="";
+                    while(stack.length!==0 && !isNaN(stack[stack.length-1])){
+                        num=stack.pop()+num;
+                    }
+                    stack.push(tmp.repeat(Number(num)));
+                    break;
+                }
+                else{
+                    tmp=c+tmp;
+                }
+            }
+        }
+    }
+    answer=stack.join('');
+    return answer;
+}
+console.log(solution("aabb3(3(a)b)"));

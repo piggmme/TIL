@@ -1,0 +1,25 @@
+function solution(s){  
+    let answer="";
+    let sH = new Map();
+    for(let x of s){
+        sH.set(x, (sH.get(x) || 0)+1);
+    }
+    let tmp=[...sH].sort((a, b)=>{
+        if(a[1]===b[1]) return a[0].charCodeAt()-b[0].charCodeAt();
+        return b[1]-a[1];
+    });
+    for(let [key, val] of tmp){
+        answer+=key.repeat(val);
+    }
+    return answer;
+}
+//console.log(solution("aaAAcccbbbBB")); //bbbcccAABBaa
+//console.log(solution("kdkDKKGkdkgks")); //kkkkkKKddDGgs
+//console.log(solution("ckdowiskjgwigAGD")); //ggiikkwwADGcdjos
+//console.log(solution("dkjgkdkjglkdjg")); //kkkkdddgggjjjl
+//console.log(solution("dkjgskjgkDKJGSKGKSG")); //GGGKKKkkkSSggjjDJds
+//console.log(solution("STUDENTteacher")); //TTeeDENSUachrt
+//console.log(solution("dkkgsg")); //ggkkds
+//console.log(solution("akgAgkdAgkskAgkjg")); //gggggkkkkkAAAadjs
+//console.log(solution("aaAAcccbbbBB")); //bbbcccAABBaa
+//console.log(solution("KDKGKSGKJLSDJGLJS")); //KKKKGGGJJJSSSDDLL

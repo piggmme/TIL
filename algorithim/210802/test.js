@@ -61,7 +61,6 @@
     let len = arr.length;
     let ch = Array.from({ length: len }, () => 0);
     let flag = false;
-    let tmp = [];
 
     function DFS(L, sum) {
       if (L === len) {
@@ -83,8 +82,14 @@
     if (flag) return answer;
     else return -1;
   }
-  console.log(solution(123)); // 132
-  console.log(solution(321)); // -1
-  console.log(solution(20573)); // 20735
-  console.log(solution(53421)); // 54123
+  // console.log(solution(156)); //165
+  // console.log(solution(330)); //-1
+  // console.log(solution(27711)); //71127
+  // console.log(solution(54312)); //54321
+  // console.log(solution(765423)); //765432
+  // console.log(solution(33051)); //33105
+  // console.log(solution(6543721)); //6547123
+  // console.log(solution(3902830)); //3903028
+  // console.log(solution(54321)); //-1
+  // console.log(solution(54300)); //-1
 }

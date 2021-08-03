@@ -3,21 +3,23 @@
 // 레벨탐색 출력 : 1 2 3 4 5 6 7
 // 아래 코드는 Queue 자료구조를 이용해 위에 트리를 레벨탐색한 코드입니다. 스스로 분석해
 // 보세요.
-// function solution(){
-// let answer="";
-// function BFS(){
-// let queue=[];
-// queue.push(1);
-// while(queue.length){
-// let v=queue.shift();
-// answer+=v+" ";
-// for(let nv of [v*2, v*2+1]){
-// if(nv>7) continue;
-// queue.push(nv);
-// }
-// }
-// }
-// BFS();
-// return answer;
-// }
-// console.log(solution());
+{
+  function solution() {
+    let answer = "";
+    function BFS() {
+      let queue = [];
+      queue.push(1);
+      while (queue.length) {
+        let v = queue.shift();
+        answer += v + " ";
+        for (let nv of [v * 2, v * 2 + 1]) {
+          if (nv > 7) continue;
+          queue.push(nv);
+        }
+      }
+    }
+    BFS();
+    return answer;
+  }
+  //  console.log(solution());
+}

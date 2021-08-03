@@ -16,3 +16,53 @@
 // [3, 5, 7, 8, 9, 12, 14], 4, 8
 // ▣ 반환값 형식 2
 // 5
+
+// sol) 바로 썸에 증가.
+{
+  function solution(nums, m, k) {
+    let n = nums.length;
+    let result = 0;
+
+    function DFS(L, s, sum) {
+      if (L === m) {
+        // m개를 뽑음
+        if (sum % k === 0) result += 1;
+      } else {
+        for (let i = s; i < n; i++) {
+          DFS(L + 1, i + 1, sum + nums[i]);
+        }
+      }
+    }
+    DFS(0, 0, 0);
+    return result;
+  }
+  //   console.log(solution([2, 4, 5, 8, 12], 3, 6)); // 2
+  //   console.log(solution([3, 5, 7, 8, 9, 12, 14], 4, 8)); // 5
+}
+
+// mysol)
+{
+  function solution(nums, m, k) {
+    let n = nums.length;
+    let tmp = [];
+    let result = 0;
+
+    function DFS(L, s) {
+      if (L === m) {
+        // m개를 뽑음
+        let sum = tmp.reduce((acc, cur) => acc + cur, 0);
+        if (sum % k === 0) result += 1;
+      } else {
+        for (let i = s; i < n; i++) {
+          tmp.push(nums[i]);
+          DFS(L + 1, i + 1);
+          tmp.pop();
+        }
+      }
+    }
+    DFS(0, 0);
+    return result;
+  }
+  //   console.log(solution([2, 4, 5, 8, 12], 3, 6)); // 2
+  //   console.log(solution([3, 5, 7, 8, 9, 12, 14], 4, 8)); // 5
+}
