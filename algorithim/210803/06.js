@@ -33,6 +33,53 @@
 // 1,2 양념 => 1+2 = 3
 // 2,3,4 양념 => 2+4+8 = 14
 
+// mysol
+{
+  function solution(nums, d, k) {
+    let n = nums.length; // 학생수
+    let st = Array.from({ length: n }, () => 0); // 학생
+    let answer = Number.MIN_SAFE_INTEGER;
+    let pow = Array.from({ length: d + 1 }, () => 0); // 양념 번호에 가중치.
+
+    // 양념통 번호 가중치 구함
+    pow[1] = 1;
+    for (let i = 2; i <= d; i++) {
+      pow[i] = pow[i - 1] * 2;
+    }
+    // 학생별로 양념통 가중치 구함
+    for (let i = 0; i < n; i++) {
+      for (let j = 0; j < nums[i].length; j++) {
+        // nums[i] : 해당 학생이 원하는 양념 가지수
+        st[i] += pow[nums[i][j]];
+      }
+    }
+
+    // DFS 조합으로 양념통 k개 선택하고, 전체 학생 중 먹을 수 있는 학생수를 카운트
+    // 먹을 수 있는 학생은, 양념통과 비트연산을 취했을 때, 학생 비트가 나와야함.
+    function DFS(L, s, bit) {
+      if (L === k) {
+        // 양념통 다 선택함
+        let cnt = 0;
+        for (let j = 0; j < n; j++) {
+          if ((bit & st[j]) === st[j]) cnt++;
+        }
+        answer = Math.max(answer, cnt);
+      } else {
+        for (let i = s; i <= d; i++) {
+          // 양념통 선택
+          DFS(L + 1, i + 1, bit + pow[i]);
+        }
+      }
+    }
+    DFS(0, 1, 0);
+    return answer;
+  }
+  //   console.log(
+  //     solution([[1], [2, 3], [3], [1, 2], [], [2, 1], [2, 3, 4], [3, 4]], 4, 3)
+  //   ); //6
+}
+
+// sol)
 {
   function solution(nums, d, k) {
     let n = nums.length; // 학생수

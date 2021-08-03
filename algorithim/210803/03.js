@@ -19,6 +19,53 @@
 // 6
 // 입력설명 : [a, b]는 a정점에서 b정점으로 이동할 수 있다는 의미입니다
 
+// mysol2)
+{
+  function solution(n, edges) {
+    let answer = 0;
+    let graph = Array.from(Array(n + 1), () => Array()); // n+1개의 빈배열 생성
+    let ch = Array.from({ length: n + 1 }, () => 0); // 방문했는지..
+
+    for (let [a, b] of edges) {
+      graph[a].push(b);
+    }
+
+    function DFS(v) {
+      if (v === n) {
+        // 끝까지 방문했다
+        answer++;
+      } else {
+        for (let nv of graph[v]) {
+          if (ch[nv] === 0) {
+            // 방문 아직 안했다면...
+            ch[nv] = 1;
+            DFS(nv);
+            // 나와서 방문 해제
+            ch[nv] = 0;
+          }
+        }
+      }
+    }
+
+    ch[1] = 1; // 루트 방문
+    DFS(1);
+    return answer;
+  }
+  //   console.log(
+  //     solution(5, [
+  //       [1, 2],
+  //       [1, 3],
+  //       [1, 4],
+  //       [2, 1],
+  //       [2, 3],
+  //       [2, 5],
+  //       [3, 4],
+  //       [4, 2],
+  //       [4, 5],
+  //     ])
+  //   ); // 6
+}
+
 // mysol
 {
   function solution(n, edges) {

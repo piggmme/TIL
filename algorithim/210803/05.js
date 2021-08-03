@@ -12,6 +12,55 @@
 // [1, 1, 0, 1, 1, 0, 0], [1, 0, 0, 0, 1, 0, 0], [1, 0, 1, 0, 1, 0, 0]]
 // ▣ 반환값 형식 1
 // 5
+
+// my try)
+{
+  function solution(board) {
+    let n = board.length;
+    let dx = [-1, 0, 1, -1, 1, -1, 0, 1];
+    let dy = [1, 1, 1, 0, 0, -1, -1, -1];
+    let answer = 0;
+
+    function DFS(x, y) {
+      for (let i = 0; i < 8; i++) {
+        // 8방면으로 뺑뺑 돌며 섬인 곳을 찾는다.
+        let nx = x + dx[i];
+        let ny = y + dy[i];
+
+        if (nx >= 0 && nx < n && ny >= 0 && ny < n && board[nx][ny] === 1) {
+          // 경계 내에서 섬인 경우
+          board[nx][ny] = 0; // 방문 처리
+          DFS(nx, ny);
+        }
+      }
+    }
+
+    for (let i = 0; i < n; i++) {
+      for (let j = 0; j < n; j++) {
+        if (board[i][j] === 1) {
+          // 섬인 경우
+          board[i][j] = 0; // 방문 철
+          DFS(i, j);
+          answer++;
+        }
+      }
+    }
+    return answer;
+  }
+  //   console.log(
+  //     solution([
+  //       [1, 1, 0, 0, 0, 1, 0],
+  //       [0, 1, 1, 0, 1, 1, 0],
+  //       [0, 1, 0, 0, 0, 0, 0],
+  //       [0, 0, 0, 1, 0, 1, 1],
+  //       [1, 1, 0, 1, 1, 0, 0],
+  //       [1, 0, 0, 0, 1, 0, 0],
+  //       [1, 0, 1, 0, 1, 0, 0],
+  //     ])
+  //   ); // 5
+}
+
+// sol)
 {
   function solution(board) {
     let dx = [-1, 0, 1, -1, 1, -1, 0, 1];

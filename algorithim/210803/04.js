@@ -18,6 +18,48 @@
 // 즉 1번, 2번, 3번, 4번, 5번 학생이 같은 동아리 이고, 6번 혼자서 동아리, 7번 혼자서 동아리가 됩니
 // 다.
 
+// mysol2)
+{
+  function solution(n, edges) {
+    let answer = 0;
+    let graph = Array.from(Array(n + 1), () => Array());
+    let ch = Array.from({ length: n + 1 }, () => 0);
+
+    // 인접 리스트 생성
+    for (let [a, b] of edges) {
+      graph[a].push(b);
+    }
+
+    // DFS 완전 탐색
+    function DFS(v) {
+      for (let nv of graph[v]) {
+        if (ch[nv] === 0) {
+          ch[nv] = 1;
+          DFS(nv);
+        }
+      }
+    }
+
+    // 전체 학생을 뺑뺑 돌면서 확인함
+    for (let i = 0; i < n; i++) {
+      if (ch[i] === 0) {
+        ch[i] = 1;
+        DFS(i);
+        answer++;
+      }
+    }
+    return answer;
+  }
+  //   console.log(
+  //     solution(7, [
+  //       [1, 2],
+  //       [2, 3],
+  //       [1, 4],
+  //       [1, 5],
+  //     ])
+  //   ); // 3
+}
+
 //mysol
 {
   function solution(n, edges) {

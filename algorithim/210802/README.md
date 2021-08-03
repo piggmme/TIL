@@ -8,7 +8,7 @@
 
 ## 3. [부분집합 구하기(DFS)](./03.js)
 
-<img src="3번부분집합.png" alt="drawing" width="400"/>
+<img src="3번부분집합.jpg" alt="drawing" width="400"/>
 
 ## 4. ❤️[합이 같은 부분집합(DFS)](./04.js)
 
@@ -24,7 +24,7 @@
 
 ## ------순열과 조합은 매우 중요함!------
 
-<img src="순열조합정리.png" alt="drawing" width="400"/>
+<img src="순열조합정리.jpeg" alt="drawing" width="400"/>
 
 ## 8. [순열 구하기](./08.js)
 
