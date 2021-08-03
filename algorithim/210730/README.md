@@ -14,12 +14,12 @@
 
 ### [최대힙 구현](./maxHeap.js)
 
-![](최대힙.png)
+<img src="최대힙.png" alt="drawing" width="400"/>
 
 ## 7. [동전 교환: 풀지말고, 비교만.](./07.js)
 
 ## [DFS 중위](./dfs.js)
 
-![](dfs중위.png)
+<img src="dfs중위.png" alt="drawing" width="400"/>
 
 ## [test](./test.js)
