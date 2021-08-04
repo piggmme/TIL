@@ -23,3 +23,4 @@
 ## 7. [토마토(BFS)](./07.js)
 
 <img src="7.png" alt="drawing" width="400"/>
+<img src="7byme.png" alt="drawing" width="400"/>

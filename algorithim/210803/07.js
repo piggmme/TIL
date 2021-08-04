@@ -19,6 +19,77 @@
 // [[0, 0, -1, 0, 0, 0], [0, 0, 1, 0, -1, 0], [0, 0, -1, 0, 0, 0], [0, 0, 0, 0, -1, 1]]
 // ▣ 반환값 형식 1
 // 4
+
+// mysol)
+{
+  function solution(board) {
+    let dx = [-1, 1, 0, 0];
+    let dy = [0, 0, -1, 1];
+    let answer = 0;
+    let n = board.length; // 행
+    let m = board[0].length; // 열
+    let queue = [];
+
+    // 큐 돌아가면서, 큐가 빌 때 까지 반복!
+    function BFS() {
+      while (queue.length) {
+        let v = queue.shift();
+
+        for (let i = 0; i < 4; i++) {
+          // 4방향 뺑뺑 돌면서... 인접한 안익은 토마토 찾기
+          let nx = v[0] + dx[i];
+          let ny = v[1] + dy[i];
+
+          if (nx >= 0 && nx < n && ny >= 0 && ny < m && board[nx][ny] === 0) {
+            board[nx][ny] = board[v[0]][v[1]] + 1; // 익은 토마토로 바꿈, 날짜는 이전 토마토 + 1
+            queue.push([nx, ny]);
+            answer = Math.max(answer, board[nx][ny]);
+          }
+        }
+      }
+    }
+
+    // 익은 토마토 찾아서 인덱스를 큐에 넣기
+    for (let i = 0; i < n; i++) {
+      for (let j = 0; j < m; j++) {
+        // console.log(board[i][j]);
+        if (board[i][j] === 1) {
+          queue.push([i, j]);
+        }
+      }
+    }
+
+    BFS();
+
+    // 전체 상자 다시 뺑뺑 돌면서, 안익은 토마토가 있는지 확인
+    for (let i = 0; i < n; i++) {
+      for (let j = 0; j < m; j++) {
+        if (board[i][j] === 0) {
+          return -1;
+        }
+      }
+    }
+
+    return answer - 1;
+  }
+  //   console.log(
+  //     solution([
+  //       [0, 0, -1, 0, 0, 0],
+  //       [0, 0, 1, 0, -1, 0],
+  //       [0, 0, -1, 0, 0, 0],
+  //       [0, 0, 0, 0, -1, 1],
+  //     ])
+  //   ); // 4
+  //   console.log(
+  //     solution([
+  //       [0, 0, -1, 0, 0, 0],
+  //       [0, 0, 1, 0, -1, 0],
+  //       [0, 0, -1, 0, 0, -1],
+  //       [0, 0, 0, 0, -1, 0],
+  //     ])
+  //   ); // -1
+}
+
 {
   // 익은 토마토들은 L = 1에 전부 큐에 저장해야함.
   // 동시 다발적으로 발생
@@ -30,6 +101,7 @@
     let m = board[0].length; // 열
     let dist = Array.from(Array(n), () => Array(m).fill(0));
     let queue = [];
+
     function BFS(x, y) {
       while (queue.length) {
         // 큐에 원소가 있을때 까지
