@@ -24,23 +24,25 @@
 // mysol)
 {
   function solution(n, nums, s1, s2) {
-    let answer = "YES";
     let unf = Array.from({ length: n + 1 }, (v, i) => i);
-
-    function Find(v) {
-      if (v === unf[v]) return v;
-      else return (unf[v] = Find(unf[v]));
+    function Find(x) {
+      if (x === unf[x]) return x;
+      else return (unf[x] = Find(unf[x])); // 부모를 갱신
     }
     function Union(a, b) {
       let fa = Find(a);
       let fb = Find(b);
-      if (fa !== fb) unf[fa] = fb;
+      if (fa !== fb) {
+        unf[fa] = unf[fb]; // 같은 부모 처리 함
+      }
     }
+
     for (let [a, b] of nums) {
       Union(a, b);
     }
-    if (Find(s1) !== Find(s2)) answer = "NO";
-    return answer;
+
+    if (Find(s1) !== Find(s2)) return "NO";
+    else return "YES";
   }
   //   console.log(
   //     solution(

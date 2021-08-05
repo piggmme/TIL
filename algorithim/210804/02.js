@@ -19,6 +19,53 @@
 // ▣ 반환값 형식 1
 // 196
 
+{
+  function solution(n, edges) {
+    edges.sort((a, b) => a[2] - b[2]); // 금액 기준 오름차순
+    let unf = Array.from({ length: n + 1 }, (v, i) => i);
+    let answer = 0;
+
+    function Find(x) {
+      // 집합 번호 찾기. 찾으면서 갱신도 함.
+      if (x === unf[x]) return x;
+      else return (unf[x] = Find(unf[x]));
+    }
+
+    for (let [a, b, c] of edges) {
+      let fa = Find(a);
+      let fb = Find(b);
+      if (fa !== fb) {
+        // edges에서 같은 배열안에 들어있다는 것은, 연결되어 있는 것인데, 집합 번호가 다른 상태
+        // 집합 번호를 같게 설정 해준다.
+        // 도시들은 초기에 전부 각각의 집합이지만, 이런 Union과정을 통해 연결 될 애들은 다 연결된다.
+        // 만약 집합 번호가 같은 경우에 edges에서 같은 배열안에 들어있어도, 이미 같은 집합번호 이기 때문에
+        // Union이 일어나지 않고, 따라서 비용 누적도 일어나지 않는다.
+        unf[fa] = fb;
+        answer += c; // 비용 누적
+      }
+    }
+    return answer;
+  }
+
+  //   console.log(
+  //     solution(9, [
+  //       [1, 2, 12],
+  //       [1, 9, 25],
+  //       [2, 3, 10],
+  //       [2, 8, 17],
+  //       [2, 9, 8],
+  //       [3, 4, 18],
+  //       [3, 7, 55],
+  //       [4, 5, 44],
+  //       [5, 6, 60],
+  //       [5, 7, 38],
+  //       [7, 8, 35],
+  //       [8, 9, 15],
+  //     ])
+  //   ); // 196
+}
+
+// sol)
 // 트리는 회로가 존재하지 않는다
 {
   function solution(n, edges) {

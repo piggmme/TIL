@@ -116,6 +116,6 @@
     let answer = BFS();
     return answer ? answer : -1; // 리턴값이 있으면 도착한것임.
   }
-  console.log(solution([2, 2, 0, 2, 1, 1])); // 3
-  console.log(solution([1, 0, 1, 1, 3, 1, 2, 1])); // -1
+  // console.log(solution([2, 2, 0, 2, 1, 1])); // 3
+  // console.log(solution([1, 0, 1, 1, 3, 1, 2, 1])); // -1
 }

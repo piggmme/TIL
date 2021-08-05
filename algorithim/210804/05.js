@@ -21,8 +21,38 @@
 // 예제설명) 802cm 랜선에서 4개, 743cm 랜선에서 3개, 457cm 랜선에서 2개, 539cm 랜선에서 2개를
 // 잘라내 모두 11개를 만들 수 있다.
 
+// mytry)
 {
-  function solution2(nums, n) {
+  function solution(nums, n) {
+    let lt = 1,
+      rt = 10000;
+    let answer = 0;
+
+    function Count(len) {
+      let cnt = 0;
+      for (let x of nums) {
+        cnt += parseInt(x / len);
+      }
+      return cnt;
+    }
+
+    while (lt <= rt) {
+      let mid = parseInt((lt + rt) / 2);
+      if (Count(mid) >= n) {
+        // 만들 수 있는 랜선의 갯수가 n보다 많다는 것은, 자르는 기준 길이를 너무 짧게 했다는 뜻
+        answer = mid; // 하지만 정답이 될 수 있는 경우임.
+        lt = mid + 1;
+      } else {
+        rt = mid - 1;
+      }
+    }
+    return answer;
+  }
+  console.log(solution([802, 743, 457, 539], 11)); // 200
+}
+
+{
+  function solution(nums, n) {
     // 1~10000 사이에는 무조건 있을 것.
     let answer = 0;
     let lt = 1;
@@ -47,5 +77,5 @@
     }
     return answer;
   }
-  //console.log(solution([802, 743, 457, 539], 11));
+  //   console.log(solution([802, 743, 457, 539], 11)); // 200
 }
