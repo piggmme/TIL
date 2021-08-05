@@ -63,7 +63,8 @@
     let dy = Array.from({ length: n }, () => 0);
 
     // 끝나는 시간을 기준으로 오름차순 정렬.
-    // 시간표문제, 예약시간문제 같은 문제는 끝시간을 기준으로 정렬하고, 맨 처음부터 가장 많이 선택하는 것을 고르면 됨
+    // 시간표문제, 예약시간문제 같은 문제는 끝시간을 기준으로 정렬하고,
+    // 맨 처음부터 가장 많이 선택하는 경우의 수를 찾으면 된다
     times.sort((a, b) => a[1] - b[1]);
     let answer = 0;
 
@@ -88,6 +89,47 @@
     }
 
     // console.log(dy); // [5, 20, 21, 27, 28]
+    return answer;
+  }
+  // console.log(
+  //   solution(
+  //     [
+  //       [3, 5, 20],
+  //       [4, 7, 16],
+  //       [1, 2, 5],
+  //       [11, 13, 7],
+  //       [9, 10, 6],
+  //     ],
+  //     2
+  //   )
+  // ); //28
+}
+
+// mytry)
+{
+  function solution(times, r) {
+    let n = times.length;
+    let dy = Array.from({ length: n }, () => 0);
+
+    // 끝나는 시간순!!!!!!!! 정렬
+    times.sort((a, b) => a[1] - b[1]);
+    dy[0] = times[0][2]; // 효율성
+    let answer = 0;
+
+    for (let i = 0; i < n; i++) {
+      let a_s = times[i][0]; // 기준의 시작시간
+      let a_m = times[i][2]; // 기준의 효율성
+      let max = 0;
+      for (let j = i - 1; j >= 0; j--) {
+        let b_e = times[j][1]; // 비교의 종료시간
+        if (a_s >= b_e + r && dy[j] > max) {
+          max = dy[j];
+        }
+      }
+      dy[i] = max + a_m;
+      answer = Math.max(dy[i], answer);
+    }
+    console.log(dy);
     return answer;
   }
   // console.log(

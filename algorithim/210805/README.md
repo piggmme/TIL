@@ -31,3 +31,7 @@
 ## 8. [최대공통부분문자열(LCS)](./08.js)
 
 <img src="img/8.png" alt="drawing" width="400"/>
+
+## [test - 마운틴 수열](./test.js)
+
+## 9. [최소편집](./09.js)

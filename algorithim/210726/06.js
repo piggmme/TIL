@@ -4,6 +4,13 @@
 // 선생님의 발표가 끝난 후 어떤 기호의 후보가 학급 회장이 되었는지 출력하는 프로그램을 작 성하세요.
 // 반드시 한 명의 학급회장이 선출되도록 투표결과가 나왔다고 가정합니다.
 
+// ▣ 입력설명
+// 매개변수 s에 N(5<=N<=50)개의 투표용지에 쓰여져 있던 각 후보의 기호가 선생님이 발표한 순서대로 문자열로 입력됩니다.
+// ▣ 출력설명
+// 학급 회장으로 선택된 기호를 출력합니다.
+// ▣ 매개변수 형식 BACBACCACCBDEDE
+// ▣ 반환값 형식 C
+
 /*
 // - Map 객체 사용해야함.
 {
@@ -33,40 +40,42 @@
   // expected output: 2
 }*/
 
-// Sol)
-function solution(s) {
-  let sh = new Map();
-  let max = 0,
-    person;
-  for (let x of s) {
-    sh.set(x, sh.get(x) + 1 || 1); // 단축 논리 기법, key값이 없다면 NaN(falsy)라 1로 결정됨.
-  }
-  for (let [key, value] of sh) {
-    if (max < value) {
-      max = value;
-      person = key;
+{
+  // Sol)
+  function solution(s) {
+    let sh = new Map();
+    let max = 0,
+      person;
+    for (let x of s) {
+      sh.set(x, sh.get(x) + 1 || 1); // 단축 논리 기법, key값이 없다면 NaN(falsy)라 1로 결정됨.
     }
+    for (let [key, value] of sh) {
+      if (max < value) {
+        max = value;
+        person = key;
+      }
+    }
+    return person;
   }
-  return person;
 }
-
-/*
-// MySol)
-function solution(s) {
-  let cnt = {};
-  let max = 0,
-    person;
-  for (let i = 0; i < s.length; i++) {
-    if (s[i] in cnt) cnt[s[i]] += 1;
-    // key값 있는지 확인.
-    else cnt[s[i]] = 1;
-  }
-  for (let key in cnt) {
-    if (cnt[key] > max) {
-      max = cnt[key];
-      person = key;
+{
+  // MySol)
+  function solution(s) {
+    let cnt = {};
+    let max = 0,
+      person;
+    for (let i = 0; i < s.length; i++) {
+      if (s[i] in cnt) cnt[s[i]] += 1;
+      // key값 있는지 확인.
+      else cnt[s[i]] = 1;
     }
+    for (let key in cnt) {
+      if (cnt[key] > max) {
+        max = cnt[key];
+        person = key;
+      }
+    }
+    return person;
   }
-  return person;
-}*/
-console.log(solution("BACBACCACCBDEDE"));
+  console.log(solution("BACBACCACCBDEDE"));
+}

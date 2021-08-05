@@ -15,6 +15,35 @@
 // ▣ 반환값 형식 1
 // 4
 
+// my try)
+{
+  function solution(nums) {
+    let n = nums.length;
+    let dy = Array.from({ length: n }, () => 0);
+    let answer = 0;
+    dy[0] = 0;
+
+    for (let i = 0; i < n; i++) {
+      let tmp = []; // 기준보다 작은 숫자의 dy를 저장
+      for (let j = i - 1; j >= 0; j--) {
+        if (nums[i] > nums[j]) {
+          tmp.push(dy[j]);
+        }
+      }
+      if (tmp.length === 0) dy[i] = 1;
+      // 기준보다 작은 숫자가 없다면...
+      else {
+        dy[i] = Math.max(...tmp) + 1; // 가장 컸던 dy를 찾고 1을 증가시켜 저장
+        answer = Math.max(answer, dy[i]);
+      }
+    }
+
+    return answer; // 가장 긴 부분 수열을 찾는다.
+  }
+  //console.log(solution([5, 3, 7, 8, 6, 2, 9, 4])); // 4
+  // console.log(solution([5, 3, 7, 8, 6, 2, 9, 4, 2, 1])); // 4
+}
+
 // sol
 {
   function solution(nums) {
@@ -23,6 +52,7 @@
     let arr = [],
       max_idx = 0;
     let dy = Array.from({ length: n }, () => 0);
+    // dy[i] : i번째 항이 마지막 항이 되는 최대 부분 증가 수열의 길이
     let pa = [];
     dy[0] = 1;
     for (let i = 0; i < n; i++) {
@@ -60,6 +90,7 @@
     return answer;
   }
   //console.log(solution([5, 3, 7, 8, 6, 2, 9, 4])); // 4
+  // console.log(solution([5, 3, 7, 8, 6, 2, 9, 4, 2, 1])); // 4
 }
 
 // mysol
@@ -76,7 +107,7 @@
       for (let j = 0; j < i; j++) {
         // 기준 보다 앞
         if (nums[i] > nums[j]) {
-          // 기준보다 작은 수라면
+          // 기준보다 작은 수라면, 작은 수의 인덱스를 push
           tmp.push(j);
         }
       }
