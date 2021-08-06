@@ -35,3 +35,5 @@
 ## [test - 마운틴 수열](./test.js)
 
 ## 9. [최소편집](./09.js)
+
+<img src="img/9.png" alt="drawing" width="400"/>

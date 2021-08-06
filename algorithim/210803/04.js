@@ -101,6 +101,7 @@
   //   ); // 3
 }
 
+// sol)
 {
   function solution(n, edges) {
     let graph = Array.from(Array(n + 1), () => Array());

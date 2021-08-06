@@ -8,9 +8,8 @@
 
 ## 4. [연속 부분수열 2(음수)](./04.js)
 
-### [문제 설명 pdf](./4번풀이.pdf)
-
-어려움...
+<img src="4-1.png" alt="drawing" width="400"/>
+<img src="4-2.png" alt="drawing" width="400"/>
 
 ## 5. [연속 부분수열(부분집합)](./05.js)
 

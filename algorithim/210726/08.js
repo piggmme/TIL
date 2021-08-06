@@ -29,7 +29,7 @@
         // 단어를 하나하나 접근함
         let x = words[j].substring(0, i + 1);
         if (sH.has(x)) {
-          // key값이 없어! unique 하지 않다! 끝! 그만돌아!
+          // key값이 있어! unique 하지 않다! 끝! 그만돌아!
           flag = false;
           break;
         }

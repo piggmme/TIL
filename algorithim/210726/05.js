@@ -13,7 +13,7 @@
 // ▣ 반환값 형식 1
 //YES
 // ▣ 매개변수 형식 2
-abcabbakcba;
+//abcabbakcba;
 // ▣ 반환값 형식 2
 //YES
 // ▣ 매개변수 형식 3
