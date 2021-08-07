@@ -78,5 +78,5 @@
     }
     return answer; // 7
   }
-  console.log(solution(["go", "gone", "guild"]));
+  // console.log(solution(["go", "gone", "guild"]));
 }
