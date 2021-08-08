@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box{
+            width:100px;
+            height: 100px;
+            background: deeppink;
+            border-radius: 10px;
+            margin: 30px;
+            animation: movemove 2s 2s;
+            /* 애니메이션의 전 후 상태를 설정 */
+            /* both: 애니메이션 시작위치 => 동작 => 애니메이션 끝위치 */
+            animation-fill-mode: both;
+        }
+        @keyframes movemove{
+           0%{
+            transform: translate(100px, 100px);
+            background: dodgerblue
+           }
+           100%{
+            transform: translate(300px, 100px);
+            background: deeppink;
+           }
+        }
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+</body>
+</html>

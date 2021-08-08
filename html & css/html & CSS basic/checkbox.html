@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        input[type="checkbox"] {
+            display:none;
+        }
+        input[type="checkbox"] + label{
+            cursor: pointer;
+            display: flex;
+            justify-content: center; 
+            align-items: center;
+        }
+        input[type="checkbox"] + label::before{
+            content: "";
+            display:inline-block;
+            width: 24px;
+            height: 24px;
+            background:url(images/checkbox.svg) left top no-repeat;
+            cursor:pointer;
+        }
+        input[type="checkbox"]:checked + label::before {
+            content: "";
+            display:inline-block;
+            width: 24px;
+            height: 24px;
+            background: url(images/checked.svg) center no-repeat, url(images/checkbox.svg) left top no-repeat;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <input type="checkbox" id="c1" name="cc" />
+        <label for="c1">Check Box</label>
+    </div>
+</body>
+</html>

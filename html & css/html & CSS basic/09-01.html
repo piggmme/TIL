@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .section{
+            background: red;
+        }
+        #section{
+            background: blue;
+        }
+    </style>
+</head>
+<body>
+    <!--class 여러개 가능-->
+    <div class="section"></div>
+    <div class="section"></div>
+    <div class="section"></div>
+    <div class="section"></div>
+    <div class="section"></div>
+
+    <!--id 한개만 가능-->
+    <div id="section"></div>
+    <!-- <div id="section"></div> -->
+
+    <script>
+        const section = document.querySelector('.section');
+        const sectionId = document.getElementById('section');
+    </script>
+</body>
+</html>

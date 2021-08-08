@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    form.was-validated input:invalid {
+      border-color: red;
+    }
+  </style>
+</head>
+<body>
+  <form>
+    <input name="email" placeholder="email" required type="email" minlength="6"/>
+    <span id="error"></span>
+    <button>Submit</button>
+  </form>
+
+  <script>
+    function onload() {
+      document.querySelectorAll('input').forEach(input => {
+        
+        input.addEventListener('invalid', (e) => {
+          document.forms[0].classList.add('was-validated');
+          /**
+           * 브라우져 툴팁 숨김 
+           */ 
+          e.preventDefault();
+        })
+      })
+    }
+
+    document.addEventListener('DOMContentLoaded', onload)
+  </script>
+</body>
+</html>

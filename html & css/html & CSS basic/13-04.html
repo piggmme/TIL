@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css">
+    <style>
+        .child{
+            width: 100px;
+            height: 100px;
+            background: tomato;
+            /* float:left; */
+            /* 기본적으로 형제끼리 좌우에서 만나면 +가 되어, 40px */
+            /* 마진중복 - 형제가 위아래에서 만나면 20px */
+            margin: 20px; 
+        }
+    </style>
+</head>
+<body>
+    <div class="parent">
+        <div class="child"></div>
+        <div class="child"></div>
+        <div class="child"></div>
+    </div>
+</body>
+</html>
