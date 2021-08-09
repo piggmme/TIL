@@ -4,6 +4,9 @@
 
 - [main.css](../project/main.css)
 
+<br>
+<br>
+
 ### 1-1. 3단 레이아웃 & 4단 레이아웃
 
   <img src="../img/5-1.png" width="400" />
@@ -22,17 +25,24 @@
 </div>
 ```
 
+<br>
+
 ### 1-2. User agent stylesheet
 
 - 설정하지 않았는데 마진이 들어가있넹?
 
   <img src="../img/5-2.png" width="400" />
 
+<br>
+<br>
+
 ## 2. header
 
 - Web Developer
 
   <img src="../img/2.png" width="400" />
+
+<br>
 
 ### 2-1. 로고
 
@@ -47,19 +57,25 @@
   이미지 바꾸기 쉬움!
   반응형에 많이 사용됨.
 
-#### img로 사용할거얌
+<br>
+
+#### 여기선 img로 사용할거얌
 
 - a 태그가 img 태그를 감싸고 있어야 함
-- h1으로 감싸쟈!
+- h1으로 감싸쟈! (for outline algorithm...)
 - alt 대체 텍스트는 신경써서 작성하자...
 
   `h1.logo>a>img`
 
 ```html
 <h1 class="logo">
-  <a href="./index.html"><img src="./assets/logo.png" alt="Web Cafe" /></a>
+  <a href="./index.html">
+    <img src="./assets/logo.png" alt="Web Cafe" />
+  </a>
 </h1>
 ```
+
+<br>
 
 ### 2-2. 링크모음
 
@@ -85,12 +101,17 @@
 
 - 수식 평가 : `control + shift + Y`
 
+<br>
+
 #### (참고) 네이밍
 
 - PC(TC) : `MemberService`
 - CC(camel case) : `meberService`
 - KC(kebab case) : `member-service`
 - SC : `member_service`
+
+<br>
+<br>
 
 ## 3. main
 
@@ -103,6 +124,8 @@
   <div class="group group3">group3</div>
 </main>
 ```
+
+<br>
 
 ### 3-1. 디자인을 위해서, html을 수정하지 말자!
 
@@ -121,6 +144,8 @@
   width: 940px;
 }
 ```
+
+<br>
 
 ### 3-2. 요소의 크기를 결정하는 것
 
@@ -142,9 +167,14 @@
 }
 ```
 
+<br>
+
 ### 3-3. border-box;
 
-- box-sizing
+- `box-sizing: border-box`
+  - 너비(`width`, `height`)에 안쪽 여백(`padding`)과 테두리선(`border`)를 포함하여 요소의 크기를 계산
+- `box-sizing: content-box` : 기본값
+  - 너비(`width`, `height`)만으로 요소의 크기를 계산
 
 ```css
 *,
@@ -155,12 +185,16 @@
 }
 ```
 
+<br>
+
 ### 3-4. group
 
 [flex-box tricks](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
 
 - 인터넷 익스플로어에서 사용할 수 있게 해야함. => space-evenly 사용 못해
-- flex-items의 order는 기본적으로 0값임.
+- `flex-items`의 `order`는 기본적으로 0값임.
+- `flex: 증가너비(0) 감소너비(1) 기본너비(auto);`
+- `order`이 작을수록 앞 순서로 옴.
 
 ```css
 .main {

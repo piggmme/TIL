@@ -2,22 +2,41 @@
 
 ## 1. Internet
 
+<br>
+
 ### 1-1. Internet Service
 
 Telnet, IRC, e-mail, Archie, Usenet, Gopher, FTP, WWW
 
 : 위와 같은 다양한 서비스들이 Web으로 통합되어왔다.
 
+<br>
+
 ### 1-2. WWW (World Wide Web)
 
-- Who : Tim Berners-Lee
+- WWW: 인터넷에 연결된 컴퓨터를 통해 사람들이 정보를 공유할 수 있는 전세계적인 정보공간
 
-웹의 아버지, 웹의 전설
+- 인터넷과 동의어로 사용되는 경우가 많은데 사실은 완전히 다른 개념이다.
 
-- Why
+- 인터넷 : 컴퓨터가 서로 연결되어 통신을 주고받는 컴퓨터끼리의 네트워크
 
-for connect
+- 웹 : 그 인터넷상에 정보가 얽혀있는 무형의 정보 네트워크, 인터넷에선 웹뿐 아니라 전자 메일과 같은 다른 서비스가 쓰이기도 함. 인터넷이 더 큰 개념
 
+#### Who : Tim Berners-Lee
+
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Sir_Tim_Berners-Lee.jpg/540px-Sir_Tim_Berners-Lee.jpg" alt="Tim Berners-Lee" width="400"/>
+
+- 웹의 아버지, 웹의 전설
+
+- 월드 와이드 웹의 하이퍼텍스트 시스템을 고안하여 개발하고, 인터넷의 기반을 닦았다.
+
+- URL, HTTP, HTML 최초 설계와 구현
+
+#### Why
+
+- For Connect
+
+<br>
 <br>
 
 ## 2. Web
@@ -28,6 +47,8 @@ for connect
 
 - Front-End
 
+<br>
+
 ### 2-1. Web 기술
 
 - HTML 5 : 건강한 신체, 구조
@@ -36,11 +57,15 @@ for connect
 
 - JavaScript : 스마트한 두뇌
 
+<br>
+
 ### 2-2. Web Standard 웹 표준
 
 - [World Wide Web Consortiums](https://www.w3.org/)
 
 - Web의 역사 : 제프리 젤드만의 웹표준 가이드
+
+<br>
 
 ### 2-3. Web Accessibility 웹 접근성
 
@@ -76,11 +101,18 @@ SEO(Search Engine Optimization)
 
 저사양 또는 저속회선
 
+<br>
+
 [카푸친 원숭이 실험](https://youtu.be/llQSJ6GLNwM)
+
+<br>
+<br>
 
 ## 3.다양한 브라우저로 Cross Browsing
 
 - Chrome, FireFox, Safari, ...
+
+<br>
 
 ### 3-1. 실습 환경
 
@@ -91,6 +123,8 @@ SEO(Search Engine Optimization)
 - [Light House](https://chrome.google.com/webstore/detail/lighthouse/blipmdconlkpinefehnmjammfjpmpbjk)
 
 - [VisBug](https://chrome.google.com/webstore/detail/visbug/cdockenadnadldjbbgcallicgledbeoc/related?hl=ko)
+
+<br>
 
 ### 3-2. VSC
 
