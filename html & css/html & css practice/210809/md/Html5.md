@@ -32,7 +32,7 @@
 ## 2. HTML4.01, XHTML1.9과 HTML5의 차이점
 
 - 콘텐츠 모델
-  <img src="img/2-1.png" width="400">
+  <img src="../img/2-1.png" width="400">
 
 문법 체크를 꼭 하도록 하자.
 

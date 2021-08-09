@@ -8,8 +8,6 @@ Telnet, IRC, e-mail, Archie, Usenet, Gopher, FTP, WWW
 
 : 위와 같은 다양한 서비스들이 Web으로 통합되어왔다.
 
-: 인터넷은 경계를 넓혀나간다.
-
 ### 1-2. WWW (World Wide Web)
 
 - Who : Tim Berners-Lee

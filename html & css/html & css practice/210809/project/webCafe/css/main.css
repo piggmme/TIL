@@ -1,0 +1,67 @@
+*,
+*::before,
+*::after {
+  /* 가상 요소 선택자 :: */
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+}
+.container {
+  background-color: gray;
+}
+
+/* footer을 전체영역에 걸쳐 표현하기 위해서 */
+.header,
+.visual,
+.main,
+.slogan {
+  /* 요소의 크기를 결정하는 것은 width + padding + border + margin */
+  width: 940px;
+  margin: 0 auto;
+}
+.header {
+  background-color: yellow;
+}
+.visual {
+  background-color: orange;
+}
+
+.main {
+  background-color: aqua;
+  height: 50vh;
+  display: flex;
+  /* justify-content: space-evenly;  => explore에서 동작하지 않음 */
+  /* 아래와 같이 접근함 */
+  padding: 30px;
+  justify-content: space-between;
+}
+.group {
+  /* flex-basis: 100%;
+  flex-grow: 1;
+  flex-shrink: 1; 
+  flex: 1 1 100%; */
+}
+.group1 {
+  background-color: red;
+  /* flex-basis: 50%; 축소되는 값을 컨트롤 할 수 있음 */
+  width: 250px; /* 전통적인 방식 */
+  order: 1; /* 모든 flex-item의 order는 0번 */
+}
+.group2 {
+  background-color: olive;
+  width: 380px;
+  /* 커스텀 레이아웃을 사용자가 자유롭게 설정할 때 ... order을 잘 사용해야함. */
+  order: -1;
+}
+.group3 {
+  background-color: violet;
+  width: 190px;
+}
+
+.slogan {
+  background-color: purple;
+}
+.footer {
+  background-color: tomato;
+}
