@@ -124,7 +124,7 @@
     }
     return pH.get(answer_key) || 0;
   }
-  //   console.log(solution("()(()()"));
-  //   console.log(solution("()(()(")); // ()() 최선. 2개 삭제.
-  //   console.log(solution(")))(((")); // 0
+  // console.log(solution("()(()()"));
+  // console.log(solution("()(()(")); // ()() 최선. 2개 삭제.
+  // console.log(solution(")))(((")); // 0
 }
