@@ -1,13 +1,15 @@
 ## 1. 레이아웃
 
-[main.html](../project/main.html)
-[main.css](../project/main.css)
+- [main.html](../project/main.html)
+
+- [main.css](../project/main.css)
 
 ### 1-1. 3단 레이아웃 & 4단 레이아웃
 
   <img src="../img/5-1.png" width="400" />
 
 - 우리는 3단 레이아웃 + 5단 세부화
+
   `.contiainer>header.header+div.visual+main.main+article.slogan+footer.footer`
 
 ```html
@@ -50,6 +52,7 @@
 - a 태그가 img 태그를 감싸고 있어야 함
 - h1으로 감싸쟈!
 - alt 대체 텍스트는 신경써서 작성하자...
+
   `h1.logo>a>img`
 
 ```html
@@ -64,6 +67,7 @@
 
 - 홈, 로그인은 독립되었지만 링크모음임
 - ul 클래스로 모아주고, li속 a로 링크 설정
+
   `ul>li*2>a`
 
 ```html
@@ -74,6 +78,7 @@
 ```
 
 - 약어로 랩핑 : `option + cmd + G`
+
   ` ul>li*>a[href="#]`
 
 <img src="../img/2-3.png" width="400" />
@@ -82,10 +87,10 @@
 
 #### (참고) 네이밍
 
-- PC(TC) : MemberService
-- CC(camel case) : meberService
-- KC(kebab case) : member-service
-- SC : member_service
+- PC(TC) : `MemberService`
+- CC(camel case) : `meberService`
+- KC(kebab case) : `member-service`
+- SC : `member_service`
 
 ## 3. main
 
