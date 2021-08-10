@@ -229,3 +229,52 @@
   width: 190px;
 }
 ```
+
+### 4. Header CSS
+
+- validate local
+
+<img src="../img/validate-local.png" width="400" />
+
+<br>
+
+- margin auto를 회원가입에게 줌
+
+<img src="../img/4.png" width="400" />
+
+```css
+.member-service {
+  list-style: none;
+  display: flex;
+  padding-left: 0;
+}
+.member-service li {
+  padding: 0.5em;
+  text-transform: uppercase; /*대문자*/
+}
+.member-service a {
+  text-decoration: none;
+  color: #ffffff;
+  font-size: 1.5em;
+}
+.member-service li:nth-child(3) {
+  margin-right: auto; /* margin auto*/
+}
+```
+
+- logo 배치
+
+```css
+.header {
+  background-color: blue;
+  position: relative;
+}
+.logo {
+  /* 헤더(컨테이너)를 기준으로 */
+  position: absolute;
+  left: 0;
+  right: 0;
+  text-align: center;
+  margin: 0;
+}
+```

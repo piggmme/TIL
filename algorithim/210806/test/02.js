@@ -29,6 +29,8 @@
 
 // ▣ 반환값 형식 3
 // [-2, -1, -3, 2]
+
+// my sol)
 {
   // 스택
   function solution(nums) {
@@ -63,4 +65,39 @@
   //   console.log(solution([3, 5, -2, -5])); // [3]
   //   console.log(solution([-2, -1, -3, 1, 3])); // [-2, -1, -3, 1, 3]
   //   console.log(solution([-2, -1, 2, 1, -3, 2])); // [-2, -1, -3, 2]
+}
+
+// sol)
+{
+  function solution(nums) {
+    let answer = [];
+    let stack = [],
+      flag;
+    for (let x of nums) {
+      if (x > 0) stack.push(x);
+      else {
+        if (stack.length === 0 || stack[stack.length - 1] < 0) {
+          stack.push(x);
+        } else {
+          flag = 0;
+          while (stack.length > 0 && stack[stack.length - 1] > 0) {
+            let left = stack.pop();
+            if (Math.abs(left) < Math.abs(x)) {
+              flag = 1;
+            } else if (Math.abs(left) === Math.abs(x)) {
+              flag = 0;
+              break;
+            } else {
+              stack.push(left);
+              flag = 0;
+              break;
+            }
+          }
+          if (flag) stack.push(x);
+        }
+      }
+    }
+    answer = stack;
+    return answer;
+  }
 }

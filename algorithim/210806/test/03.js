@@ -19,72 +19,7 @@
 // ▣ 반환값 형식
 // 9
 
-// BFS?
-{
-  function solution(nums, k) {
-    let n = nums.length;
-
-    while (k > 0) {
-      let one = Array(n).fill(0);
-      let zero = Array(n).fill(0);
-      // 연속된 1이 얼마 있는지 표현
-      if (nums[0] === 1) one[0] = 1;
-      for (let i = 1; i < n; i++) {
-        if (nums[i] === 1) {
-          one[i] = one[i - 1] + 1;
-        }
-      }
-      // 최종 연속 값으로 갱신
-      for (let i = n - 1; i >= 1; i--) {
-        if (nums[i] === 1 && nums[i - 1]) one[i - 1] = one[i];
-      }
-      // 0이 들어가면 좋은 자리를 가중치를 두어 표현
-      // 오른쪽으로 밀면서
-      if (one[0] === 1) zero[1] = 2;
-      for (let i = 1; i < n - 1; i++) {
-        if (one[i] > 0) {
-          if (one[i + 1] === 0) zero[i + 1] = one[i] + 1;
-        }
-      }
-      // 왼쪽에서 밀면서
-      if (one[n - 1] === 1) zero[n - 2] = zero[n - 2] + one[n - 1] + 1;
-      for (let i = n - 2; i >= 0; i--) {
-        if (one[i] > 0) {
-          if (one[i - 1] === 0) zero[i - 1] = zero[i - 1] + one[i] + 1;
-        }
-      }
-
-      // 최대 중요한 위치 찾기
-      let idx = 0,
-        max = 0;
-      for (let i = 0; i < n; i++) {
-        if (max < zero[i]) {
-          idx = i;
-          max = zero[i];
-        }
-      }
-      // 1을 삽입
-      nums[idx] = 1;
-      k--;
-    }
-
-    let answer = 0,
-      one = Array(n).fill(0);
-    // 연속된 1 찾기
-    if (nums[0] === 1) one[0] = 1;
-    for (let i = 1; i < n; i++) {
-      if (nums[i] === 1) {
-        one[i] = one[i - 1] + 1;
-      }
-    }
-
-    return Math.max(...one);
-  }
-  // console.log(solution([1, 0, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 0, 0, 1], 2));
-  //console.log(solution([0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0], 2)); // 5
-}
-
-// 제출
+// mysol)
 {
   {
     function solution(nums, k) {
@@ -107,4 +42,24 @@
     }
     //   console.log(solution([1, 0, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 0, 0, 1], 2)); // 9
   }
+}
+
+// sol)
+{
+  function solution(nums, k) {
+    let answer = 0,
+      lt = 0,
+      cnt = 0;
+    for (let rt = 0; rt < nums.length; rt++) {
+      if (nums[rt] === 0) cnt++;
+      while (cnt > k) {
+        if (nums[lt] === 0) cnt--;
+        lt++;
+      }
+      answer = Math.max(answer, rt - lt + 1);
+    }
+    return answer;
+  }
+
+  //console.log(solution([1, 1, 0, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1], 2));
 }
