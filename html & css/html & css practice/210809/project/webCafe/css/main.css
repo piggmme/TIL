@@ -1,14 +1,23 @@
+@import url("./fonts.css");
+
 *,
 *::before,
 *::after {
   /* 가상 요소 선택자 :: */
   box-sizing: border-box;
 }
+a {
+  text-decoration: none;
+  /* 부모가 가진 폰트색, 검정 */
+  color: inherit;
+}
 body {
   margin: 0;
+  font-family: "Spoqa Han Sans Neo", sans-serif;
+  font-weight: 400;
 }
 .container {
-  background-color: gray;
+  background-color: gainsboro;
 }
 
 /* footer을 전체영역에 걸쳐 표현하기 위해서 */
@@ -21,68 +30,83 @@ body {
   margin: 0 auto;
 }
 .header {
-  background-color: blue;
+  background-color: #ffffff;
   position: relative;
+  border-radius: 0 0 15px 15px;
 }
+/* 로고 */
 .logo {
   /* 헤더(컨테이너)를 기준으로 */
+  margin-top: 0;
+  margin-bottom: 0;
   position: absolute;
-  left: 0;
-  right: 0;
-  text-align: center;
-  margin: 0;
+  top: 45px;
+  left: 65px;
+
+  /* h2에 부여되어있는 font 스타일 때문에 여백이 생김.*/
+  line-height: 1;
 }
+.logo a,
+.logo img {
+  display: block;
+}
+
+/* 안내 링크 */
 .member-service {
+  background-color: yellowgreen;
+  /* display: flex;
+  justify-content: flex-end; */
   list-style: none;
-  display: flex;
+  margin: 0;
   padding-left: 0;
+  /* 공백 문자 없애기 위해 폰트 크기를 없앰 */
+  font-size: 0;
+  line-height: 0;
+  text-align: right;
+  padding: 2px 0;
 }
 .member-service li {
-  padding: 0.5em;
-  text-transform: uppercase; /*대문자*/
+  /* 공백 문자 때문에 li간의 공백이 생김 => inline */
+  display: inline-block;
+  font-size: 0.875rem;
+  line-height: 1.15;
+}
+/* 2번째 부터 몽땅! (css는 1번부터 시작) */
+.member-service li:nth-child(n + 2)::before {
+  content: ":";
 }
 .member-service a {
-  text-decoration: none;
-  color: #ffffff;
-  font-size: 1.5em;
-}
-.member-service li:nth-child(3) {
-  margin-right: auto;
+  display: inline-block;
+  padding: 8px;
+  text-transform: uppercase;
 }
 
 .visual {
-  background-color: orange;
+  background-color: #06d6a0;
 }
 
 .main {
-  background-color: aqua;
-  height: 50vh;
-  display: flex;
-  /* justify-content: space-evenly;  => explore에서 동작하지 않음 */
-  /* 아래와 같이 접근함 */
-  padding: 30px;
-  justify-content: space-between;
+  background-color: #118ab2;
+  display: flow-root;
+  padding: 30px 15px;
+  min-height: 450px;
 }
 .group {
-  /* flex-basis: 100%;
-  flex-grow: 1;
-  flex-shrink: 1; 
-  flex: 1 1 100%; */
+  margin: 0 15px;
 }
 .group1 {
-  background-color: red;
-  /* flex-basis: 50%; 축소되는 값을 컨트롤 할 수 있음 */
-  width: 250px; /* 전통적인 방식 */
-  order: 1; /* 모든 flex-item의 order는 0번 */
+  background-color: #cdb4db;
+  float: left;
+  width: 250px;
 }
 .group2 {
-  background-color: olive;
+  background-color: #ffc8dd;
+  float: left;
   width: 380px;
-  /* 커스텀 레이아웃을 사용자가 자유롭게 설정할 때 ... order을 잘 사용해야함. */
-  order: -1;
 }
 .group3 {
-  background-color: violet;
+  background-color: #a2d2ff;
+  float: left;
   width: 190px;
 }
 
