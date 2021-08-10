@@ -1,6 +1,6 @@
 # WebCafe
 
-## <HTML>
+## HTML
 
 ## 1. 레이아웃
 
@@ -176,9 +176,9 @@
 
 <br>
 
-## <CSS>
+## CSS
 
-### 0. 유용한 사이트
+## 0. 유용한 사이트
 
 - [toast UI](https://ui.toast.com/weekly-pick/ko_20210402)
 
@@ -293,6 +293,8 @@
 }
 ```
 
+<br><br>
+
 ## 2. Header CSS
 
 - validate local
@@ -348,7 +350,9 @@
 }
 ```
 
-## 2-2. 다시 배치
+<br><br>
+
+### 2-2. 다시 배치
 
 ### 2-2-1. [컨테이닝 블록 식별](https://developer.mozilla.org/ko/docs/Web/CSS/Containing_block)
 
