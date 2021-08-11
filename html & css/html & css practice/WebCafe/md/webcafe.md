@@ -1,0 +1,643 @@
+# WebCafe
+
+## HTML
+
+## 1. 레이아웃
+
+- [main.html](../project/main.html)
+
+- [main.css](../project/main.css)
+
+<br>
+<br>
+
+### 1-1. 3단 레이아웃 & 4단 레이아웃
+
+  <img src="../img/5-1.png" width="400" />
+
+- 우리는 3단 레이아웃 + 5단 세부화
+
+  `.contiainer>header.header+div.visual+main.main+article.slogan+footer.footer`
+
+```html
+<div class="contiainer">
+  <header class="header"></header>
+  <div class="visual"></div>
+  <main class="main"></main>
+  <article class="slogan"></article>
+  <footer class="footer"></footer>
+</div>
+```
+
+<br>
+
+### 1-2. User agent stylesheet
+
+- 설정하지 않았는데 마진이 들어가있넹?
+
+  <img src="../img/5-2.png" width="400" />
+
+<br>
+<br>
+
+## 2. header
+
+- Web Developer
+
+  <img src="../img/2.png" width="400" />
+
+<br>
+
+### 2-1. 로고
+
+#### 이미지로 구성되어 있음
+
+- 처음부터 img태그?
+  상황에 따라 이미지를 바꾸기 어려움
+  js로 할 수 있지만 성능이 안좋아...
+  이미지를 바꾸지 않을 때는 좋음.
+
+- 배경처리 : [Responsive Logos](http://www.responsivelogos.co.uk/)
+  이미지 바꾸기 쉬움!
+  반응형에 많이 사용됨.
+
+<br>
+
+#### 여기선 img로 사용할거얌
+
+- a 태그가 img 태그를 감싸고 있어야 함
+- h1으로 감싸쟈! (for outline algorithm...)
+- alt 대체 텍스트는 신경써서 작성하자...
+
+  `h1.logo>a>img`
+
+```html
+<h1 class="logo">
+  <a href="./index.html">
+    <img src="./assets/logo.png" alt="Web Cafe" />
+  </a>
+</h1>
+```
+
+<br>
+
+### 2-2. 링크모음
+
+#### 홈, 로그인
+
+- 홈, 로그인은 독립되었지만 링크모음임
+- ul 클래스로 모아주고, li속 a로 링크 설정
+
+  `ul>li*2>a`
+
+```html
+<ul class="member-service">
+  <li><a>홈</a></li>
+  <li><a>로그인</a></li>
+</ul>
+```
+
+- 약어로 랩핑 : `option + cmd + G`
+
+  ` ul>li*>a[href="#]`
+
+<img src="../img/2-3.png" width="400" />
+
+- 수식 평가 : `control + shift + Y`
+
+<br>
+
+## 2-3. nav
+
+<img src="../img/nav.png" width="400" />
+
+- `h2`는 접근성을 위한 숨김 컨텐츠
+
+  - 전체적인 맥락을 파악하게함.
+  - `<h2 class="a11y-hidden"></h2>`
+  - accessibility-hidden
+
+- html
+
+```html
+<nav class="navigation">
+  <h2 class="a11y-hidden">메인 메뉴</h2>
+  <ul class="menu">
+    <li class="menu-item is-active">
+      <button type="button" class="menu-button">HTML에 대해</button>
+      <ul class="sub-menu menu-html">
+        <li>
+          <a href="#">HTML5 소개</a>
+        </li>
+        <li>
+          <a href="#">레퍼런스 소개</a>
+        </li>
+        <li>
+          <a href="#">활용예제</a>
+        </li>
+      </ul>
+    </li>
+    <li class="menu-item">...</li>
+    <li class="menu-item">...</li>
+    <li class="menu-item">...</li>
+    <li class="menu-item">...</li>
+    <li class="menu-item">...</li>
+  </ul>
+</nav>
+```
+
+- 결과
+
+  <img src="../img/nav2.png" width="400" />
+
+<br>
+
+#### (참고) 네이밍
+
+- PC(TC) : `MemberService`
+- CC(camel case) : `meberService`
+- KC(kebab case) : `member-service`
+- SC : `member_service`
+
+<br>
+<br>
+
+## 3. main
+
+- `div.group.group$*3{group$}`
+
+```html
+<main class="main">
+  <div class="group group1">group1</div>
+  <div class="group group2">group2</div>
+  <div class="group group3">group3</div>
+</main>
+```
+
+<br>
+
+## CSS
+
+## 0. 유용한 사이트
+
+- [toast UI](https://ui.toast.com/weekly-pick/ko_20210402)
+
+- [color](https://coolors.co/)
+
+- [컨테이닝 블록](https://developer.mozilla.org/ko/docs/Web/CSS/Containing_block)
+
+- [접근성 기술](https://www.youtube.com/channel/UCTI6h7Vb05Td63qHQ3wjySQ)
+
+<br><br>
+
+### 1-1. 디자인을 위해서, html을 수정하지 말자!
+
+- footer 만 제외하고, 나머지의 width를 결정하는 방법을 사용
+
+```css
+.container {
+  background-color: gray;
+}
+
+/* footer을 전체영역에 걸쳐 표현하기 위해서 */
+.header,
+.visual,
+.main,
+.slogan {
+  width: 940px;
+}
+```
+
+<br>
+
+### 1-2. 요소의 크기를 결정하는 것
+
+- `margin: 0 auto;` 는 가운데 정렬하는 꼼수다.
+
+  <img src="../img/3-2.png" width="400" />
+
+```css
+.header,
+.visual,
+.main,
+.slogan {
+  /* 요소의 크기를 결정하는 것은 width + padding + border + margin */
+  width: 940px;
+  padding: 20px;
+  border: 10px solid black;
+  /* auto: width + padding + border 을 제외한 나머지 영역을 margin으로 설정한다. */
+  margin: 0 auto;
+}
+```
+
+<br>
+
+### 1-3. border-box;
+
+- `box-sizing: border-box`
+  - 너비(`width`, `height`)에 안쪽 여백(`padding`)과 테두리선(`border`)를 포함하여 요소의 크기를 계산
+- `box-sizing: content-box` : 기본값
+  - 너비(`width`, `height`)만으로 요소의 크기를 계산
+
+```css
+*,
+*::before,
+*::after {
+  /* 가상 요소 선택자 :: */
+  box-sizing: border-box;
+}
+```
+
+<br>
+
+### 1-4. group
+
+[flex-box tricks](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
+
+- 인터넷 익스플로어에서 사용할 수 있게 해야함. => space-evenly 사용 못해
+- `flex-items`의 `order`는 기본적으로 0값임.
+- `flex: 증가너비(0) 감소너비(1) 기본너비(auto);`
+- `order`이 작을수록 앞 순서로 옴.
+
+```css
+.main {
+  background-color: aqua;
+  height: 50vh;
+  display: flex;
+  /* justify-content: space-evenly;  => explore에서 동작하지 않음 */
+  /* 아래와 같이 접근함 */
+  padding: 30px;
+  justify-content: space-between;
+}
+.group {
+  /* flex-basis: 100%;
+  flex-grow: 1;
+  flex-shrink: 1; 
+  flex: 1 1 100%; */
+}
+.group1 {
+  background-color: red;
+  /* flex-basis: 50%; 축소되는 값을 컨트롤 할 수 있음 */
+  width: 250px; /* 전통적인 방식 */
+  order: 1; /* 모든 flex-item의 order는 0번 */
+}
+.group2 {
+  background-color: olive;
+  width: 380px;
+  /* 커스텀 레이아웃을 사용자가 자유롭게 설정할 때 ... order을 잘 사용해야함. */
+  order: -1;
+}
+.group3 {
+  background-color: violet;
+  width: 190px;
+}
+```
+
+<br><br>
+
+## 2. Header CSS
+
+- validate local
+
+<img src="../img/validate-local.png" width="400" />
+
+<br>
+
+### 2-1. Flex 안쓰고 배치
+
+- `margin-right: auto`를 회원가입에게 줌
+  - 요소들이 채워지고 남은 공백이 회원가입의 오른쪽에 배치됨
+
+<img src="../img/4.png" width="400" />
+
+```css
+.member-service {
+  list-style: none;
+  display: flex;
+  padding-left: 0;
+}
+.member-service li {
+  padding: 0.5em;
+  text-transform: uppercase; /*대문자*/
+}
+.member-service a {
+  text-decoration: none;
+  color: #ffffff;
+  font-size: 1.5em;
+}
+.member-service li:nth-child(3) {
+  margin-right: auto; /* margin auto*/
+}
+```
+
+<br>
+
+- logo 배치 : `positon: relative;`
+  - header를 기준으로 위치가 이동됨.
+
+```css
+.header {
+  background-color: blue;
+  position: relative;
+}
+.logo {
+  /* 헤더(컨테이너)를 기준으로 */
+  position: absolute;
+  left: 0;
+  right: 0;
+  text-align: center;
+  margin: 0;
+}
+```
+
+<br><br>
+
+### 2-2. 다시 배치
+
+### 2-2-1. [컨테이닝 블록 식별](https://developer.mozilla.org/ko/docs/Web/CSS/Containing_block)
+
+컨테이닝 블록의 식별 과정은 position 속성에 따라 완전히 달라집니다.
+
+1. position 속성이 static, relative, sticky 중 하나이면, 컨테이닝 블록은 가장 가까운 조상 블록 컨테이너(inline-block, block, list-item 등의 요소), 또는 가장 가까우면서 서식 맥락을 형성하는 조상 요소(table, flex, grid, 아니면 블록 컨테이너 자기 자신)의 콘텐츠 영역 경계를 따라 형성됩니다.
+
+2. position 속성이 absolute인 경우, 컨테이닝 블록은 position 속성 값이 static이 아닌(fixed, absolute, relative, sticky) 가장 가까운 조상의 내부 여백 영역입니다.
+
+3. position 속성이 fixed인 경우, 컨테이닝 블록은 뷰포트나 페이지 영역(페이지로 나뉘는 매체인 경우)입니다.
+
+4. position 속성이 absolute나 fixed인 경우, 다음 조건 중 하나를 만족하는 가장 가까운 조상의 내부 여백 영역이 컨테이닝 블록이 될 수도 있습니다.
+
+- transform이나 perspective (en-US) 속성이 none이 아님.
+- will-change 속성이 transform이나 perspective임.
+- (?)filter 속성이 none임. (Firefox에선 will-change가 filter일 때도 적용)
+  contain 속성이 paint임.
+
+<br>
+
+### 2-2-1-2. transform이나 perspective (en-US) 속성이 none이 아님.
+
+<img src="../img/containing.png" width=400>
+
+```html
+<div class="box">
+  <h1 class="logo">
+    <a href="./index.html"><img src="./assets/logo.png" alt="Web Cafe" /></a>
+  </h1>
+</div>
+```
+
+```css
+.box {
+  background-color: red;
+  /*float와 유사하게, logo가 붕 뜬상태임.*/
+  height: 50px;
+  transform: translateX(200px);
+}
+.logo {
+  /* 헤더(컨테이너)를 기준으로 */
+  margin-top: 0;
+  margin-bottom: 0;
+  background-color: blue;
+  /* position absolute일 때 */
+  position: absolute;
+  top: 45px;
+  left: 65px;
+}
+```
+
+<br>
+
+### 2-2-2. logo의 `line-height`
+
+```css
+.logo {
+  /* 헤더(컨테이너)를 기준으로 */
+  margin-top: 0;
+  margin-bottom: 0;
+  background-color: blue;
+  position: absolute;
+  top: 45px;
+  left: 65px;
+
+  /* h2에 부여되어있는 font 스타일 때문에 여백이 생김.*/
+  line-height: 0;
+}
+```
+
+<br><br>
+
+### 2-2-3. 폰트 - [스포카 산스](https://spoqa.github.io/spoqa-han-sans/)
+
+- 폰트 연결
+
+- CDN : 다른데에 있는겨 연결해서 쓰는거 ...
+
+```css
+@import url("./fonts.css");
+body {
+  margin: 0;
+  font-family: "Spoqa Han Sans Neo", sans-serif;
+  font-weight: 400;
+}
+a {
+  text-decoration: none;
+  /* 부모가 가진 폰트색, 검정 */
+  color: inherit;
+}
+```
+
+<br><br>
+
+### 2-2-4. member-service
+
+#### 2-2-4-1. 글자들 간의 공백 때문에 ....
+
+<img src="../img/span.png" width=400/>
+
+- 다음과 같이 괴랄한 마크업을 옛날엔 사용했음
+
+```html
+<ul class="member-service">
+  <li><a href="#">홈</a></li>
+  <li><a href="#">로그인</a></li>
+  <li><a href="#">회원가입</a></li>
+  <li><a href="#">사이트맵</a></li>
+  <li><a href="#">english</a></li>
+</ul>
+```
+
+```css
+/* 안내 링크 */
+.member-service {
+  background-color: yellowgreen;
+  /* display: flex;
+  justify-content: flex-end; */
+  list-style: none;
+  margin: 0;
+  padding-left: 0;
+}
+.member-service li {
+  /* 공백 문자 때문에 li간의 공백이 생김 => inline */
+  display: inline;
+}
+```
+
+<br>
+
+- 다른 대안 : `inline-block`으로, 부모의 `font-size`를 없애서...
+
+```css
+.member-service {
+  background-color: yellowgreen;
+  /* display: flex;
+  justify-content: flex-end; */
+  list-style: none;
+  margin: 0;
+  padding-left: 0;
+  /* 공백 문자 없애기 위해 폰트 크기를 없앰 */
+  font-size: 0;
+  line-height: 0;
+  text-align: right;
+}
+.member-service li {
+  /* 공백 문자 때문에 li간의 공백이 생김 => inline */
+  display: inline-block;
+  font-size: 0.875rem;
+  line-height: 1.15;
+}
+```
+
+#### 2-2-4-2. " : " 삽입
+
+- css 상에서 삽입
+  - 스크린리더를 사용하면 읽어짐
+
+```css
+/* 2번째 부터 몽땅! (css는 1번부터 시작) */
+.member-service li:nth-child(n + 2)::before {
+  content: ":";
+}
+```
+
+<br>
+
+- HTML 에서 삽입 : [YouTube 영상](https://www.youtube.com/playlist?list=PLtaz5vK7MbK3EAPhmB2gFnCU9qU72YMq3)
+  - 스크린리더에서 읽지 않음!
+  - [aria 설명](https://developer.mozilla.org/ko/docs/Web/Accessibility/ARIA)
+
+```html
+<li>
+  <a href="#">홈</a><span aria-hidden="true">:<span>
+</li>
+```
+
+<br><br>
+
+## 3. main
+
+### 3-1. Float
+
+- [Float 유튜브 영상](https://www.youtube.com/watch?v=xara4Z1b18I)
+
+- float은 부모 컨테이너를 기준으로 붕 뜨어 배치된다.
+
+- 따라서 부모 컨테이너 안에 자식들이 모두 붕 뜨게 되면 부모의 높이가 없어지고, 부모 컨테이너 이후에 오는 요소들이 겹치게 된다.
+
+- float된 요소들을 부모 컨텐츠 안에 넣기 위해 부모의 높이를 고정하는 것은 좋지 않다.
+
+<br>
+
+#### 3-1-1. [BFS - (block format context](https://developer.mozilla.org/ko/docs/Web/Guide/CSS/Block_formatting_context)
+
+- 요소들을 float하여 가로로 배치하고, 슬로건은 밑에 고정하기위해, 다음과 같이 `overflow: hidden` 하면, group1을 부모를 기준으로 움직였을 때, 짤리게 된다.!!
+
+```css
+.main {
+  background-color: aqua;
+  /* BFC - 이거 쓰지마...*/
+  overflow: hidden;
+  /* 넘치는 자식 요소를 제거*/
+}
+.group {
+  height: 30vh;
+  width: 200px;
+}
+.group1 {
+  background-color: red;
+  float: left;
+  position: relative;
+  /* main-overflow 때문에 짤려서 나옴.... */
+  top: -20px;
+  left: -20px;
+  /* width: 250px;  */
+}
+```
+
+- 결과 : 레이아웃 무너짐!
+
+<img src="../img/float1.png" width=400>
+
+<br>
+<br>
+
+### 3-1-2. 마크업을 수정
+
+- 마크업을 수정하는 것은 좋은 방법은 아님...
+
+- HTML
+
+```html
+<main class="main">
+  <div class="group group1">group1</div>
+  <div class="group group2">group2</div>
+  <div class="group group3">group3</div>
+  <div class="clearfix"></div>
+</main>
+```
+
+- CSS
+
+```css
+.clearfix {
+  clear: both;
+}
+```
+
+### 3-1-3. 가상요소 선택자를 사용
+
+- CSS
+
+```css
+.main::after {
+  content: "";
+  display: block; /* 가상요소는 블락이 아니기 때문에, 블락으로 표현 */
+  clear: both;
+}
+```
+
+### 3-1-4. 부모에게 `flow-root` 적용
+
+```css
+.main {
+  background-color: #118ab2;
+  display: flow-root;
+}
+```
+
+### 3-2. 요소간의 배치
+
+```css
+.main {
+  background-color: #118ab2;
+  display: flow-root;
+  padding: 30px 15px;
+  min-height: 450px;
+}
+.group {
+  margin: 0 15px;
+}
+```
+
+<img src="../img/float2.png" width=400>
+
+<br>
+<br>

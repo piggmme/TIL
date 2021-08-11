@@ -1,0 +1,118 @@
+@import url("./fonts.css");
+
+*,
+*::before,
+*::after {
+  /* 가상 요소 선택자 :: */
+  box-sizing: border-box;
+}
+a {
+  text-decoration: none;
+  /* 부모가 가진 폰트색, 검정 */
+  color: inherit;
+}
+body {
+  margin: 0;
+  font-family: "Spoqa Han Sans Neo", sans-serif;
+  font-weight: 400;
+}
+.container {
+  background-color: gainsboro;
+}
+
+/* footer을 전체영역에 걸쳐 표현하기 위해서 */
+.header,
+.visual,
+.main,
+.slogan {
+  /* 요소의 크기를 결정하는 것은 width + padding + border + margin */
+  width: 940px;
+  margin: 0 auto;
+}
+.header {
+  background-color: #ffffff;
+  position: relative;
+  border-radius: 0 0 15px 15px;
+}
+/* 로고 */
+.logo {
+  /* 헤더(컨테이너)를 기준으로 */
+  margin-top: 0;
+  margin-bottom: 0;
+  position: absolute;
+  top: 45px;
+  left: 65px;
+
+  /* h2에 부여되어있는 font 스타일 때문에 여백이 생김.*/
+  line-height: 1;
+}
+.logo a,
+.logo img {
+  display: block;
+}
+
+/* 안내 링크 */
+.member-service {
+  background-color: yellowgreen;
+  /* display: flex;
+  justify-content: flex-end; */
+  list-style: none;
+  margin: 0;
+  padding-left: 0;
+  /* 공백 문자 없애기 위해 폰트 크기를 없앰 */
+  font-size: 0;
+  line-height: 0;
+  text-align: right;
+  padding: 2px 0;
+}
+.member-service li {
+  /* 공백 문자 때문에 li간의 공백이 생김 => inline */
+  display: inline-block;
+  font-size: 0.875rem;
+  line-height: 1.15;
+}
+/* 2번째 부터 몽땅! (css는 1번부터 시작) */
+.member-service li:nth-child(n + 2)::before {
+  content: ":";
+}
+.member-service a {
+  display: inline-block;
+  padding: 8px;
+  text-transform: uppercase;
+}
+
+.visual {
+  background-color: #06d6a0;
+}
+
+.main {
+  background-color: #118ab2;
+  display: flow-root;
+  padding: 30px 15px;
+  min-height: 450px;
+}
+.group {
+  margin: 0 15px;
+}
+.group1 {
+  background-color: #cdb4db;
+  float: left;
+  width: 250px;
+}
+.group2 {
+  background-color: #ffc8dd;
+  float: left;
+  width: 380px;
+}
+.group3 {
+  background-color: #a2d2ff;
+  float: left;
+  width: 190px;
+}
+
+.slogan {
+  background-color: purple;
+}
+.footer {
+  background-color: tomato;
+}
