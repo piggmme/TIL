@@ -589,9 +589,11 @@ a {
   > [clip-path 웹페이지](https://bennettfeely.com/clippy/)
 
   - 적용 전
+
     <img src="../img/clip-path1.png" width="400">
 
   - 적용 후 : 가시적으로 사라짐...
+
     <img src="../img/clip-path2.png" width="400">
 
 <br>
