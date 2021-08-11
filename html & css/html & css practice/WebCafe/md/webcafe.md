@@ -4,9 +4,9 @@
 
 ## 1. 레이아웃
 
-- [main.html](../project/main.html)
+- [main.html](../project/webCafe/main.html)
 
-- [main.css](../project/main.css)
+- [main.css](../project/webCafe/css/main.css)
 
 <br>
 <br>
@@ -176,6 +176,8 @@
 
 <br>
 
+---
+
 ## CSS
 
 ## 0. 유용한 사이트
@@ -187,6 +189,12 @@
 - [컨테이닝 블록](https://developer.mozilla.org/ko/docs/Web/CSS/Containing_block)
 
 - [접근성 기술](https://www.youtube.com/channel/UCTI6h7Vb05Td63qHQ3wjySQ)
+
+- [그라디언트](https://www.colorzilla.com/gradient-editor/)
+
+- [fontello - 아이콘](https://fontello.com/)
+
+- [nuli](https://nuli.navercorp.com/)
 
 <br><br>
 
@@ -532,9 +540,381 @@ a {
 
 <br><br>
 
-## 3. main
+### 2-3. navigation
 
-### 3-1. Float
+- [항공사의 ARIA적용](https://www.youtube.com/watch?v=qhuCggwxy9s&list=PLtaz5vK7MbK0wauPYD9VtgkwX2Bx_Ygo3)
+
+- [화면을 보는 스크린리더 사용자](https://www.youtube.com/watch?v=kidbJ82Eukg&list=PLtaz5vK7MbK0wauPYD9VtgkwX2Bx_Ygo3&index=7)
+
+<br>
+
+#### 2-3-1. 숨김 컨텐츠 (a11y-hidden)
+
+> 눈에는 안보이지만, 리더기는 접근할 수 있도록 해야함...
+> 유틸리티 컨텐츠
+
+- negative margin 공부하기
+
+```css
+/* 숨김 컨텐츠 */
+.a11y-hidden {
+  background-color: red;
+  /* 1. display: none */
+  /* 접근성에서 치명적임 */
+  /* 검색엔진이 접근하지 못함... */
+
+  /* 2. position: absolute, top: -9999em */
+  /* 사용성에 문제가 발생...*/
+  /* 스크린리더가 읽으려고 top위로 탁 튀어버림...*/
+
+  /* 3. width 1px, height 1px, overflow hidden */
+  /* 가상 커서가 찾을 수 있도록...*/
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  /* negative margin : 공부해보기! */
+  margin: -1px;
+  clip-path: polygon(0 0, 0 0, 0 0);
+
+  /* clip 사용 */
+  /* clip: rect(0 0 0 0);
+  clip: rect(0, 0, 0, 0);
+  clip-path: inset(50%); */
+}
+```
+
+- clip-path 눈속임
+
+  > [clip-path 웹페이지](https://bennettfeely.com/clippy/)
+
+  - 적용 전
+    <img src="clip-path1" width="400">
+
+  - 적용 후 : 가시적으로 사라짐...
+    <img src="clip-path2" width="400">
+
+<br>
+
+#### 2-3-1. 메인메뉴
+
+- 레이아웃 잡음
+
+```css
+/* 메인 메뉴 */
+.menu {
+  background-color: orange;
+  margin: 0;
+  padding-left: 0;
+  /*list-style-type*/
+  list-style: none;
+}
+```
+
+- 레이아웃 잡고나니 member-service의 englsh 글씨 레이아웃이 안맞는게 보임
+  > 아래와 같이 수정
+
+```css
+/* 안내 링크 */
+.member-service {
+  ...
+  /* engish 오른쪽을 땅기기 */
+  /* 1. margin 사용 */
+  /* margin-right: -10px; */
+
+  /* 2. position 사용 */
+  position: relative;
+  right: -10px;
+}
+```
+
+- 메인메뉴
+
+```css
+.navigation {
+  /* 투명선 트릭. 바깥선이 겹치지 못하게... */
+  padding-bottom: 50px;
+  /* 로고 위치 이동 */
+  padding: 5px 0 0 0;
+}
+.menu {
+  background-color: orange;
+  margin: 0;
+  padding-left: 225px;
+  /*list-style-type*/
+  list-style: none;
+  /* display: flow-root; => 높이 고정하면 안해도 돼 */
+  height: 45px;
+  /* border 말고 다른 방법으로 경계선 긋기
+  상자 크기에 영향을 주지 않음... */
+  box-shadow: 0 -2px 0 0 #000;
+}
+/* 익스플로어 6는 float방향과 같은 방향으로 margin을 넣으면
+버그가 생김... 2배로 적용됨... 이때는 display: inline으로 하면됨 */
+/* .menu .menu-item:first-child {
+  margin-left: 225px;
+} */
+.menu-item {
+  float: left;
+  /* 높이 상속되어, button에서 써먹음 */
+  /* height: 100%; */
+}
+.menu-button {
+  /* border none보단 0이 좋다...*/
+  border: 0;
+  border-left: 2px solid rgba(255, 255, 255, 0.7);
+  padding: 0 19px;
+  line-height: 45px;
+  font-weight: 700;
+  font-size: 1.0625rem;
+  background-color: transparent;
+  color: white;
+  /* 글씨 테두리, 오른쪽 하단 */
+  text-shadow: 1px 1px 0 #000, -1px -1px 0 #000;
+}
+.sub-menu {
+  position: absolute;
+  display: none;
+}
+```
+
+<br>
+
+- 메인 메뉴 & 하단 링크 처리
+
+```css
+/* 메인 메뉴 */
+.navigation {
+  /* 투명선 트릭. 바깥선이 겹치지 못하게... */
+  /* padding-bottom: 50px; */
+  padding: 5px 0 45px 0;
+}
+.menu {
+  /* 백그라운드 이미지가 렌더링 되지 않았을 때, organge색을 입히게 함... */
+  background-image: linear-gradient(-45deg, red 0, orange);
+  background-color: orange;
+
+  margin: 0;
+  padding-left: 225px;
+  /*list-style-type*/
+  list-style: none;
+  /* display: flow-root; => 높이 고정하면 안해도 돼 */
+  height: 45px;
+  /* border 말고 다른 방법으로 경계선 긋기
+  상자 크기에 영향을 주지 않음... */
+  box-shadow: 0 -2px 0 0 #000;
+
+  border-radius: 0 0 5px 5px;
+}
+/* 익스플로어 6는 float방향과 같은 방향으로 margin을 넣으면
+버그가 생김... 2배로 적용됨... 이때는 display: inline으로 하면됨 */
+/* .menu .menu-item:first-child {
+  margin-left: 225px;
+} */
+.menu-item {
+  float: left;
+  /* 높이 상속되어, button에서 써먹음 */
+  /* height: 100%; */
+  position: relative;
+}
+
+.is-active .menu-button {
+  color: #ff0;
+}
+/* 글씨 길이 만큼 밑줄을 생성 */
+.menu-item.is-active .menu-button:after {
+  content: "";
+  display: block;
+  height: 2px;
+  background-color: #000;
+}
+.menu-button {
+  /* border none보단 0이 좋다...*/
+  border: 0;
+  border-left: 2px solid rgba(255, 255, 255, 0.7);
+  padding: 0 19px;
+  line-height: 45px;
+  font-weight: 700;
+  font-size: 1.0625rem;
+  background-color: transparent;
+  color: white;
+  /* 글씨 테두리, 오른쪽 하단 */
+  text-shadow: 1px 1px 0 #000, -1px -1px 0 #000;
+}
+.sub-menu {
+  position: absolute;
+  display: none;
+  top: 50px;
+  white-space: nowrap;
+  padding-left: 0;
+}
+.is-active .sub-menu {
+  display: block;
+  margin: 0;
+  padding-left: 0;
+  list-style: none;
+}
+.menu-html,
+.menu-css,
+.menu-standards {
+  left: 0;
+}
+.menu-accessiblity,
+.menu-qna,
+.menu-archive {
+  right: 0;
+}
+.sub-menu li {
+  display: inline-block;
+}
+.sub-menu a {
+  display: inline-block;
+  padding: 8px 10px 8px 0;
+  margin-right: 10px;
+}
+.sub-menu a:hover,
+.sub-menu a:focus {
+  color: #f00;
+}
+.sub-menu a::before {
+  content: "\f192";
+  font-family: "fontello";
+  font-weight: normal;
+  display: inline-block;
+  text-decoration: inherit;
+  width: 1em;
+  margin-right: 0.2em;
+  text-align: center;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1em;
+  margin-left: 0.2em;
+}
+.sub-menu a:hover::before,
+.sub-menu a:focus::before {
+  content: "\e800";
+}
+```
+
+- 최종
+  <img src="../img/menu.png" width=400/>
+
+<br><br>
+
+## 3. 비주얼영역 설정
+
+### 배경에 이미지 레이아웃할 때...
+
+- px과 %가 다르게 동작한다.
+
+<img src="../img/visual.png" width=400/>
+
+```css
+body {
+  margin: 0;
+  font-family: "Spoqa Han Sans Neo", sans-serif;
+  font-weight: 400;
+  /* 배경 이미지 두 곳에서 나누어서 처리하면...*/
+  /* background: linear-gradient(#ccc 0%, #eee 35%, #eee 50%, #fff 100%); */
+}
+.container {
+  /* background: url(./images/bg_flower.png) no-repeat 50% 0 fixed; */
+
+  /* 배경 이미지 한 곳에서 처리하면...*/
+  /* 멀티백그라운드 할 때는 마지막 이미지에 콜백컬러를 설정해주어야 함...*/
+  background: url(./images/bg_flower.png) no-repeat 50% 0, #999 linear-gradient(#ccc
+          0%, #eee 35%, #eee 50%, #fff 100%);
+}
+```
+
+```html
+<div class="visual">
+  <p class="visual-text">Web Standards &amp; Accessibility</p>
+</div>
+```
+
+<br>
+
+### 비주얼 배경에 이미지 애니메이션 삽입
+
+- [파이어폭스 개코 reflow](https://www.youtube.com/watch?v=ZTnIxIA5KGw)
+
+- [애니메이션 성능](https://www.slideshare.net/wsconf/css-animation-wsconfseoul2017-vol2?qid=00007390-0825-4176-81e2-0af696727fec&v=&b=&from_search=15)
+
+```css
+/* 비주얼 */
+@keyframes moveEffect {
+  /* 애니메이션 : 글씨 크기, 이동, 투명도 변화 */
+  /* 애니메이션 시나리오 짜기...
+    글씨 크기 : font-size 
+    투명도: opacity, rgba(,0)
+    이동: position absolute, padding margin => 성능 저하.
+    transform translate => 이거 쓰자...
+  */
+  0% {
+    font-size: 12px;
+    color: rgba(0, 0, 0, 0);
+    transform: translate(0, 0);
+  }
+  100% {
+    font-size: 24px;
+    color: rgba(0, 0, 0, 1);
+    transform: translate(400px, 75px);
+  }
+}
+.visual {
+  height: 120px;
+  position: relative;
+}
+/* 꽃 이미지 넣기 */
+@keyframes fadeEffect {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+.visual::before,
+.visual::after {
+  content: "";
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  /* background-repeat: no-repeat; */
+  animation: fadeEffect 2000ms infinite alternate;
+}
+.visual::before {
+  background: url(./images/ani_flower_01.png), url(./images/ani_flower_02.png);
+  background-position: 0 -10px, 670px 0;
+  background-repeat: no-repeat;
+}
+.visual::after {
+  background: url(./images/ani_flower_03.png), url(./images/ani_flower_04.png);
+  background-position: 300px 0, 800px 0;
+  background-repeat: no-repeat;
+  animation-delay: 1000ms;
+}
+/* 글씨 */
+.visual-text {
+  display: inline-block;
+  background-color: yellow;
+  animation: moveEffect 1s;
+  animation-fill-mode: forwards;
+  margin: 0;
+}
+```
+
+- 최종
+  <img src="../img/visual-ani.png" width=400/>
+
+<br><br>
+
+## 4. main
+
+### 4-1. Float
 
 - [Float 유튜브 영상](https://www.youtube.com/watch?v=xara4Z1b18I)
 
@@ -546,7 +926,7 @@ a {
 
 <br>
 
-#### 3-1-1. [BFS - (block format context](https://developer.mozilla.org/ko/docs/Web/Guide/CSS/Block_formatting_context)
+#### 4-1-1. [BFS - (block format context](https://developer.mozilla.org/ko/docs/Web/Guide/CSS/Block_formatting_context)
 
 - 요소들을 float하여 가로로 배치하고, 슬로건은 밑에 고정하기위해, 다음과 같이 `overflow: hidden` 하면, group1을 부모를 기준으로 움직였을 때, 짤리게 된다.!!
 
@@ -579,7 +959,7 @@ a {
 <br>
 <br>
 
-### 3-1-2. 마크업을 수정
+### 4-1-2. 마크업을 수정
 
 - 마크업을 수정하는 것은 좋은 방법은 아님...
 
@@ -602,7 +982,7 @@ a {
 }
 ```
 
-### 3-1-3. 가상요소 선택자를 사용
+### 4-1-3. 가상요소 선택자를 사용
 
 - CSS
 
@@ -614,7 +994,7 @@ a {
 }
 ```
 
-### 3-1-4. 부모에게 `flow-root` 적용
+### 4-1-4. 부모에게 `flow-root` 적용
 
 ```css
 .main {
@@ -623,7 +1003,7 @@ a {
 }
 ```
 
-### 3-2. 요소간의 배치
+### 4-2. 요소간의 배치
 
 ```css
 .main {

@@ -11,13 +11,53 @@ a {
   /* 부모가 가진 폰트색, 검정 */
   color: inherit;
 }
+/* 숨김 컨텐츠 */
+.a11y-hidden {
+  background-color: red;
+  /* 1. display: none */
+  /* 접근성에서 치명적임 */
+  /* 검색엔진이 접근하지 못함... */
+
+  /* 2. position: absolute, top: -9999em */
+  /* 사용성에 문제가 발생...*/
+  /* 스크린리더가 읽으려고 top위로 탁 튀어버림...*/
+
+  /* 3. width 1px, height 1px, overflow hidden */
+  /* 가상 커서가 찾을 수 있도록...*/
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  /* negative margin : 공부해보기! */
+  margin: -1px;
+  clip-path: polygon(0 0, 0 0, 0 0);
+
+  /* clip 사용 */
+  /* clip: rect(0 0 0 0);
+  clip: rect(0, 0, 0, 0);
+  clip-path: inset(50%); */
+}
 body {
   margin: 0;
   font-family: "Spoqa Han Sans Neo", sans-serif;
   font-weight: 400;
+  /* 배경 이미지 두 곳에서 나누어서 처리하면...*/
+  /* background: linear-gradient(#ccc 0%, #eee 35%, #eee 50%, #fff 100%); */
 }
 .container {
-  background-color: gainsboro;
+  /* background: url(./images/bg_flower.png) no-repeat 50% 0 fixed; */
+
+  /* 배경 이미지 한 곳에서 처리하면...*/
+  /* 멀티백그라운드 할 때는 마지막 이미지에 콜백컬러를 설정해주어야 함...*/
+  background: url(./images/bg_flower.png) no-repeat 50% 0,
+    #999 linear-gradient(#ccc 0%, #eee 35%, #eee 50%, #fff 100%);
+
+  /* 내 생각 
+  background: #999;
+  background-image: url(./images/bg_flower.png),
+    linear-gradient(#ccc 0%, #eee 35%, #eee 50%, #fff 100%);
+  background-repeat: no-repeat;
+  background-position: 50% 0%; */
 }
 
 /* footer을 전체영역에 걸쳐 표현하기 위해서 */
@@ -33,6 +73,7 @@ body {
   background-color: #ffffff;
   position: relative;
   border-radius: 0 0 15px 15px;
+  padding: 0 30px;
 }
 /* 로고 */
 .logo {
@@ -53,7 +94,6 @@ body {
 
 /* 안내 링크 */
 .member-service {
-  background-color: yellowgreen;
   /* display: flex;
   justify-content: flex-end; */
   list-style: none;
@@ -64,6 +104,13 @@ body {
   line-height: 0;
   text-align: right;
   padding: 2px 0;
+  /* background-color: pink; */
+  /* engish 오른쪽을 땅기기 */
+  /* 1. margin-right: -10px; */
+  /* 2. position: relative;
+  right: -10px; */
+  /* 3. member-service li:last-child a의 padding 처리 
+  > 근데 이 방법은 키보드로 접근할 때 별로일 수 있다...*/
 }
 .member-service li {
   /* 공백 문자 때문에 li간의 공백이 생김 => inline */
@@ -80,11 +127,185 @@ body {
   padding: 8px;
   text-transform: uppercase;
 }
+.member-service li:last-child a {
+  padding-right: 0;
+}
+/* 메인 메뉴 */
+.navigation {
+  /* 투명선 트릭. 바깥선이 겹치지 못하게... */
+  /* padding-bottom: 50px; */
+  padding: 5px 0 45px 0;
+}
+.menu {
+  /* 백그라운드 이미지가 렌더링 되지 않았을 때, organge색을 입히게 함... */
+  background-image: linear-gradient(-45deg, red 0, orange);
+  background-color: orange;
 
-.visual {
-  background-color: #06d6a0;
+  margin: 0;
+  padding-left: 225px;
+  /*list-style-type*/
+  list-style: none;
+  /* display: flow-root; => 높이 고정하면 안해도 돼 */
+  height: 45px;
+  /* border 말고 다른 방법으로 경계선 긋기
+  상자 크기에 영향을 주지 않음... */
+  box-shadow: 0 -2px 0 0 #000;
+
+  border-radius: 0 0 5px 5px;
+}
+/* 익스플로어 6는 float방향과 같은 방향으로 margin을 넣으면
+버그가 생김... 2배로 적용됨... 이때는 display: inline으로 하면됨 */
+/* .menu .menu-item:first-child {
+  margin-left: 225px;
+} */
+.menu-item {
+  float: left;
+  /* 높이 상속되어, button에서 써먹음 */
+  /* height: 100%; */
+  position: relative;
 }
 
+.is-active .menu-button {
+  color: #ff0;
+}
+/* 글씨 길이 만큼 밑줄을 생성 */
+.menu-item.is-active .menu-button:after {
+  content: "";
+  display: block;
+  height: 2px;
+  background-color: #000;
+}
+.menu-button {
+  /* border none보단 0이 좋다...*/
+  border: 0;
+  border-left: 2px solid rgba(255, 255, 255, 0.7);
+  padding: 0 19px;
+  line-height: 45px;
+  font-weight: 700;
+  font-size: 1.0625rem;
+  background-color: transparent;
+  color: white;
+  /* 글씨 테두리, 오른쪽 하단 */
+  text-shadow: 1px 1px 0 #000, -1px -1px 0 #000;
+  cursor: pointer;
+}
+.sub-menu {
+  position: absolute;
+  display: none;
+  top: 50px;
+  white-space: nowrap;
+  padding-left: 0;
+}
+.is-active .sub-menu {
+  display: block;
+  margin: 0;
+  padding-left: 0;
+  list-style: none;
+}
+.menu-html,
+.menu-css,
+.menu-standards {
+  left: 0;
+}
+.menu-accessibility,
+.menu-qna,
+.menu-archive {
+  right: 0;
+}
+.sub-menu li {
+  display: inline-block;
+}
+.sub-menu a {
+  display: inline-block;
+  padding: 8px 0;
+  margin-right: 10px;
+}
+.sub-menu a:hover,
+.sub-menu a:focus {
+  color: #f00;
+}
+.sub-menu a::before {
+  content: "\f192";
+  font-family: "fontello";
+  font-weight: normal;
+  display: inline-block;
+  text-decoration: inherit;
+  width: 1em;
+  margin-right: 0.2em;
+  text-align: center;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1em;
+  margin-left: 0.2em;
+}
+.sub-menu a:hover::before,
+.sub-menu a:focus::before {
+  content: "\e800";
+}
+
+/* 비주얼 */
+@keyframes moveEffect {
+  /* 애니메이션 : 글씨 크기, 이동, 투명도 변화 */
+  /* 애니메이션 시나리오 짜기...
+    글씨 크기 : font-size 
+    투명도: opacity, rgba(,0)
+    이동: position absolute, padding margin => 성능 저하.
+    transform translate => 이거 쓰자...
+  */
+  0% {
+    font-size: 12px;
+    color: rgba(0, 0, 0, 0);
+    transform: translate(0, 0);
+  }
+  100% {
+    font-size: 24px;
+    color: rgba(0, 0, 0, 1);
+    transform: translate(400px, 75px);
+  }
+}
+.visual {
+  height: 120px;
+  position: relative;
+}
+/* 꽃 이미지 넣기 */
+@keyframes fadeEffect {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+.visual::before,
+.visual::after {
+  content: "";
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  /* background-repeat: no-repeat; */
+  animation: fadeEffect 2000ms infinite alternate;
+}
+.visual::before {
+  background: url(./images/ani_flower_01.png), url(./images/ani_flower_02.png);
+  background-position: 0 -10px, 670px 0;
+  background-repeat: no-repeat;
+}
+.visual::after {
+  background: url(./images/ani_flower_03.png), url(./images/ani_flower_04.png);
+  background-position: 300px 0, 800px 0;
+  background-repeat: no-repeat;
+  animation-delay: 1000ms;
+}
+/* 글씨 */
+.visual-text {
+  display: inline-block;
+  background-color: yellow;
+  animation: moveEffect 1s;
+  animation-fill-mode: forwards;
+  margin: 0;
+}
 .main {
   background-color: #118ab2;
   display: flow-root;
