@@ -589,10 +589,10 @@ a {
   > [clip-path 웹페이지](https://bennettfeely.com/clippy/)
 
   - 적용 전
-    <img src="clip-path1" width="400">
+    <img src="../img/clip-path1" width="400">
 
   - 적용 후 : 가시적으로 사라짐...
-    <img src="clip-path2" width="400">
+    <img src="../img/clip-path2" width="400">
 
 <br>
 
@@ -797,6 +797,7 @@ a {
 ```
 
 - 최종
+
   <img src="../img/menu.png" width=400/>
 
 <br><br>
@@ -908,6 +909,7 @@ body {
 ```
 
 - 최종
+
   <img src="../img/visual-ani.png" width=400/>
 
 <br><br>
