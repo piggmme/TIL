@@ -196,6 +196,12 @@
 
 - [nuli](https://nuli.navercorp.com/)
 
+- [HTML-CSS](https://github.com/dreamfulbud/TIL)
+
+- [프로젝트 document 정리](https://shhn0509.gitbook.io/react/)
+
+- [NHN 코딩컨벤션](https://nuli.navercorp.com/data/convention/NHN_Coding_Conventions_for_Markup_Languages.pdf)
+
 <br><br>
 
 ### 1-1. 디자인을 위해서, html을 수정하지 말자!
@@ -376,8 +382,8 @@
 
 - transform이나 perspective (en-US) 속성이 none이 아님.
 - will-change 속성이 transform이나 perspective임.
-- (?)filter 속성이 none임. (Firefox에선 will-change가 filter일 때도 적용)
-  contain 속성이 paint임.
+- filter 속성이 none이 아님. (Firefox에선 will-change가 filter일 때도 적용)
+- contain 속성이 paint임.
 
 <br>
 
@@ -1025,3 +1031,353 @@ body {
 
 <br>
 <br>
+
+### 4-3. 로그인
+
+#### 로그인 레이아웃
+
+  <img src="../img/login-layout.png" width="400">
+
+- 예전엔 테이블을 만들고, 다음과 같이 병합해 가면서 만들었다.
+
+  <img src="../img/login-table.png" width="400">
+
+  이렇게 작성하면, tap으로 접근할 때, 아이디 => 로그인버튼 => 비밀번호 순으로 접근된다... 논리적이지 않음!
+
+<br>
+
+#### 로그인 마크업
+
+- XHTML1.0에서 form에 fieledset이 필수, HTML4.01은 필수 아님
+
+  <img src="../img/login-markup.png" width="400">
+
+- div > label + input
+
+- HTML
+
+  ```html
+  <section class="login">
+    <h2 class="login-heading">로그인</h2>
+    <form
+      method="POST"
+      action="https://formspree.io/seulbinim@gmail.com"
+      class="login-form"
+      id="form-id"
+    >
+      <fieldset>
+        <legend class="a11y-hidden">회원 로그인 폼</legend>
+        <div class="user-email">
+          <label for="userEmail">아이디</label
+          ><input
+            type="email"
+            id="userEmail"
+            name="userEmail"
+            required
+            placeholder="아이디(이메일)"
+          />
+        </div>
+        <div class="user-password">
+          <label for="userPassword">비밀번호</label
+          ><input
+            type="password"
+            id="userPassword"
+            name="userPassword"
+            required
+            placeholder="8자리 이상"
+          />
+        </div>
+        <button class="button-login" type="submit" form="form-id">
+          로그인
+        </button>
+      </fieldset>
+    </form>
+    <ul class="sign">
+      <li class="signup"><a href="#">회원가입</a></li>
+      <li class="find"><a href="#">아이디/비밀번호 찾기</a></li>
+    </ul>
+  </section>
+  ```
+
+  - label은 반드시 사용해야함.
+
+  - label 안에 img 삽입 가능
+
+  - XHTML1.0 : required="required"
+
+  - name: 서버로 데이터를 보낼 때 필요
+
+  - form안에 button을 넣어줘야함
+
+    > form 밖에서 button을 쓰고 싶다면? form의 id를 설정. button에 form의 id를 연결!
+
+<br>
+
+- CSS : 내가 작성
+
+  ```css
+  .group1 {
+    /* background-color: #000; */
+    float: left;
+    width: 280px;
+  }
+  /* 로그인 폼 */
+  .login {
+    background-color: orange;
+    border-radius: 10px;
+    padding: 10px;
+  }
+  .login-heading {
+    margin: 0;
+    padding-left: 10px;
+    padding-bottom: 10px;
+    font-size: 18px;
+    color: yellow;
+  }
+  .login fieldset {
+    border: 0;
+    padding: 0;
+    padding: 15px;
+    margin: 0;
+    background-color: white;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    position: relative;
+  }
+  .login .user-email,
+  .login .user-password {
+    display: flex;
+  }
+  .login .user-email {
+    margin-bottom: 10px;
+  }
+  .user-email > label,
+  .user-password > label {
+    display: block;
+    width: 65px;
+    /* float: left; */
+  }
+  .user-email input,
+  .user-password input {
+    /* background-color: yellow; */
+    width: 45%;
+    /* float: left; */
+  }
+  .button-login {
+    position: absolute;
+    display: block;
+    width: 55px;
+    height: 50px;
+    top: 15px;
+    right: 12px;
+    background-color: orangered;
+    border: 0;
+    border-radius: 5px;
+  }
+  ```
+
+<br><br>
+
+- 강사님 작성
+
+  - 강사님의 레이아웃
+
+    <img src="../img/login-css.png" width="400">
+
+  ```css
+  /* 로그인 폼 */
+  .login {
+    background: radial-gradient(circle at right top, #e8882e, #e85b2c);
+    border-radius: 5px;
+    box-shadow: 5px 5px 0 0 #ccc;
+    padding: 10px;
+  }
+  .login-heading {
+    margin: 0 0 10px 10px;
+    font-size: 1rem;
+    color: yellow;
+  }
+  .login fieldset {
+    padding: 0 0 10px 0;
+    border: 0;
+    /* 로그인 버튼의 부모 */
+    position: relative;
+    border-bottom: 1px solid #ccc;
+  }
+  .login-form {
+    background-color: white;
+    padding: 10px 10px 0 10px;
+    border-radius: 5px 5px 0 0;
+  }
+  /* 일괄적으로 마진을 처리함 */
+  .user-email ~ div {
+    margin-top: 5px;
+  }
+  .login-form label {
+    font-size: 0.8125rem;
+    /* 가로폭을 주기위해 인라인 블록으로 설정 */
+    display: inline-block;
+    width: 4em;
+  }
+  .login-form input {
+    width: 100px;
+    height: 22px;
+    border: 1px solid #ccc;
+    padding-left: 0.5em;
+  }
+  .button-login {
+    position: absolute;
+    top: 0;
+    right: 0;
+    border: 1px solid #e8882e;
+    border-radius: 5px;
+    color: white;
+    height: 50px;
+    width: 50px;
+    background-color: rgb(255, 77, 0);
+  }
+  .sign {
+    margin: 0;
+    padding-left: 0;
+    padding: 10px 10px 10px 10px;
+    list-style-type: none;
+    background-color: white;
+    border-radius: 0 0 5px 5px;
+    font-size: 0.8125rem;
+    display: flow-root;
+  }
+  .sign::after {
+    content: "";
+    display: block;
+    clear: both;
+  }
+  .sign a::before {
+    content: "\e803";
+    font-family: "fontello";
+    font-weight: normal;
+    display: inline-block;
+    text-decoration: inherit;
+    width: 1em;
+    margin-right: 0.2em;
+    text-align: center;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1em;
+    margin-left: 0.2em;
+    color: rgb(255, 77, 0);
+  }
+  .signup {
+    float: left;
+  }
+  .find {
+    float: right;
+  }
+  ```
+
+  - `currentColor` : 현재 글자 색깔을 가져다가 쓸 수 있음
+
+<br><br>
+
+### 4-4. 유효성 검사
+
+- group1 컨텐츠 레이아웃
+
+  <img src="../img/group1-lay.png" width="400">
+
+  - 이전에 사용하던 암묵적인 아웃라인... h2로 제목, ul로 묶기!
+
+  - 이렇게 해도 됨
+
+- group1 컨텐츠 HTML
+
+  ```html
+  <h2 class="a11y-hidden">유효성 검사 배너</h2>
+  <ul class="validation-list">
+    <li>
+      <a
+        href="https://validator.w3.org/"
+        target="_blank"
+        title="마크업 유효성 검사 사이트로 이동"
+        noopener
+        noreferrer
+        >W3C Markup Validation</a
+      >
+    </li>
+    <li>
+      <a
+        href="https://jigsaw.w3.org/css-validator/"
+        target="_blank"
+        title="CSS 유효성 검사 사이트로 이동"
+        noopener
+        noreferrer
+        >CSS Validation Service</a
+      >
+    </li>
+  </ul>
+  ```
+
+  - a태그의 title은 hover하면 보충 설명이 나타남. (이는 공통속성임...id, class, lang)
+
+  - target="\_black" : 새로운 탭 열림
+
+  - 새창 열 때 보완 : [noopener, noefererr MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Link_types/noopener)
+
+<br>
+
+- group1 컨텐츠 css
+
+  ```css
+  /* 유효성 검사 배너 */
+  .validation-list {
+    list-style-type: none;
+    padding-left: 0;
+    margin: 25px 0 0 0;
+  }
+  /* 글씨 이외의 공간에 커서를 올려도 이동할 수 있게 함! */
+  .validation-list a {
+    display: block;
+    background: url(images/validation_icon.png) no-repeat 20px 50%, linear-gradient(
+        to bottom,
+        #ccc,
+        #eee
+      );
+    /* 마진 병합 */
+    margin-top: 10px;
+    border: 1px solid #aaa;
+    border-radius: 20px;
+    padding: 10px 10px 10px 45px;
+  }
+  .validation-list a:hover,
+  .validation-list a:focus {
+    color: #f00;
+  }
+  ```
+
+  - flex 박스에서 마진은 겹치지 않음...
+
+  - 한쪽 방향으로 마진을 주는걸 연습해야해 (마진 병합도 생각해보자)
+
+  - [NHN 코딩컨벤션](https://nuli.navercorp.com/data/convention/NHN_Coding_Conventions_for_Markup_Languages.pdf)
+
+<br>
+<br>
+
+### 4-4. 웹 관련 용어
+
+- 웹 관련 용어 레이아웃
+
+  <img src="../img/web-lay.png" width="400">
+
+  - img: 배경으로 처리하지 말고, dd로 처리하면 나중에 유동적으로 수정할 수 있다...
+
+    > 대체 텍스트가 있으면, SEO(검색)관점에서 좋음!
+
+  - dl: 너무 많이 사용하면 문제가 될 수 있음. 오용 주의!!
+
+  - dl: HTML5.2에서 dl의 자식으로 div 사용가능해졌음! 하지만 dl 안에 dt와 dd가 들어가있어야함!
+
+    > 아래 이미지는 잘못된 예시.. dl을 div안에 넣어주어야함.
+
+    > <img src="../img/dl.png" width="400">
+
+    > [HTML5.2 변경점 링크](https://mulder21c.github.io/2017/12/26/understanding-html-52-changes/)
