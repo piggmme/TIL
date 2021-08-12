@@ -753,6 +753,7 @@ a {
   position: absolute;
   display: none;
   top: 50px;
+  /* inline 자식들이 여러줄로 되지 않고 한줄로 출력되게함. */
   white-space: nowrap;
   padding-left: 0;
 }
@@ -1381,3 +1382,22 @@ body {
     > <img src="../img/dl.png" width="400">
 
     > [HTML5.2 변경점 링크](https://mulder21c.github.io/2017/12/26/understanding-html-52-changes/)
+
+<br>
+
+- HTML
+
+```html
+<section class="term">
+  <h2 class="term-heading">웹 관련 용어</h2>
+  <dl class="term-list">
+    <dt class="term-list-subject"><a href="#">웹 표준이란?</a></dt>
+    <dd class="term-list-thumbnail">
+      <img src="./assets/web_standards.gif" alt="W3C 로고" />
+    </dd>
+    <dd class="term-list-brief">
+      W3C 단체에서 규정한 웹 기술 사양에 대한 규칙을 말하며 표준 규격은...
+    </dd>
+  </dl>
+</section>
+```
