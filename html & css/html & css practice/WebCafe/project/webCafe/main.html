@@ -8,6 +8,9 @@
     <link rel="stylesheet" href="./css/main.css" />
   </head>
   <body>
+    <div class="skip-navigation">
+      <a href="#userEmail">본문 바로가기</a>
+    </div>
     <div class="container">
       <header class="header">
         <h1 class="logo">
@@ -209,18 +212,44 @@
           <section class="term">
             <h2 class="term-heading">웹 관련 용어</h2>
             <dl class="term-list">
-              <dt class="term-list-subject"><a href="#">웹 표준이란?</a></dt>
-              <dd class="term-list-thumbnail">
-                <img src="./assets/web_standards.gif" alt="W3C 로고" />
-              </dd>
-              <dd class="term-list-brief">
-                W3C 단체에서 규정한 웹 기술 사양에 대한 규칙을 말하며 표준
-                규격은...
-              </dd>
+              <div class="odd">
+                <dt class="term-list-subject"><a href="#">웹 표준이란?</a></dt>
+                <dd class="term-list-thumbnail">
+                  <img src="./assets/web_standards.gif" alt="W3C 로고" />
+                </dd>
+                <dd class="term-list-brief">
+                  W3C 단체에서 규정한 웹 기술 사양에 대한 규칙을 말하며 표준
+                  규격은...
+                </dd>
+              </div>
+              <!-- <div class="even">
+                <dt class="term-list-subject"><a href="#">웹 표준이란?</a></dt>
+                <dd class="term-list-thumbnail">
+                  <img src="./assets/web_standards.gif" alt="W3C 로고" />
+                </dd>
+                <dd class="term-list-brief">
+                  W3C 단체에서 규정한 웹 기술 사양에 대한 규칙을 말하며 표준
+                  규격은...
+                </dd>
+              </div> -->
             </dl>
           </section>
         </div>
-        <div class="group group2">group2</div>
+        <div class="group group2">
+          <h2 class="a11y-hidden">검색</h2>
+          <form
+            action="#"
+            class="search-form"
+            method="POST"
+            action="https://formspree.io/seulbinim@gmail.com"
+            aria-label="검색"
+          >
+          <fieldset>
+            <legend class="a11y-hidden">검색 폼</legend>
+            <label for="search"><span class="icon-search" aria-hidden="true"></span>자료검색</label><input type="search" id="search" name="search" required placeholder="검색어를 입력하세요.">
+            <button class="button-search" type="submit">검색</button>
+          </fieldset>
+        </div>
         <div class="group group3">group3</div>
       </main>
 

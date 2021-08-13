@@ -1,4 +1,5 @@
 @import url("./fonts.css");
+@import url("./fontello.css");
 
 *,
 *::before,
@@ -13,7 +14,6 @@ a {
 }
 /* 숨김 컨텐츠 */
 .a11y-hidden {
-  background-color: red;
   /* 1. display: none */
   /* 접근성에서 치명적임 */
   /* 검색엔진이 접근하지 못함... */
@@ -43,6 +43,46 @@ body {
   font-weight: 400;
   /* 배경 이미지 두 곳에서 나누어서 처리하면...*/
   /* background: linear-gradient(#ccc 0%, #eee 35%, #eee 50%, #fff 100%); */
+}
+
+/* 건너뛰기 링크 */
+.skip-navigation {
+  position: fixed;
+  /* 왼쪽 오른쪽 정렬하면 전체에 걸쳐서 나옴. */
+  left: 0;
+  right: 0;
+  width: 100%;
+  background-color: #000;
+  text-align: center;
+  /* z-index가 낮아서 설정 ... */
+  z-index: 10;
+}
+.skip-navigation a {
+  font-size: 0.875rem;
+  color: white;
+  /* 숨김 처리 */
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  margin: -1px;
+  clip-path: inset(50%);
+  /* clip은 absolute일 때 동작함 */
+  clip: rect(0 0 0 0);
+  clip: rect(0, 0, 0, 0);
+  padding: 10px 0;
+}
+.skip-navigation a:focus {
+  position: static;
+  padding: 15px;
+  width: auto;
+  height: auto;
+  clip: initial;
+  clip-path: initial;
+  height: auto;
+  margin: initial;
+  display: inline-block;
+  outline-offset: -5px;
 }
 .container {
   /* background: url(./images/bg_flower.png) no-repeat 50% 0 fixed; */
@@ -306,7 +346,8 @@ body {
   margin: 0;
 }
 .main {
-  background-color: rgb(255, 243, 194);
+  background-color: #fff;
+  border-radius: 15px 15px 0 0;
   display: flow-root;
   padding: 30px 15px;
   min-height: 450px;
@@ -321,7 +362,6 @@ body {
 }
 
 .group2 {
-  background-color: #ffc8dd;
   float: left;
   width: 380px;
 }
@@ -518,6 +558,185 @@ body {
   color: rgb(255, 77, 0);
   cursor: pointer;
 } */
+
+/* 웹 관련 용어 */
+.term {
+  background: #ccc linear-gradient(to bottom, #ccc, #eee);
+  border: 1px solid #aaa;
+  margin-top: 20px;
+  padding: 10px 15px;
+  border-radius: 5px;
+}
+.term-heading {
+  margin: 0;
+  font-size: 1rem;
+}
+.term-list {
+  /* cross browsing 안됨 ..*/
+  /* display: flow-root; */
+  margin: 10px 0 0 0;
+}
+/* cross browsing 할 때, : 하나 써야해 ... */
+.term-list > div::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+.term-list dd {
+  margin-left: 0;
+}
+.term-list-subject {
+  /* 이미지와 제목과 그리드가 맞지 않은 이유...
+    줄 간격이 있었기 때문.
+  */
+  /* line-height: 1; */
+
+  /* 또는 위로 이동. */
+  margin-top: -2px;
+  color: #296897;
+  margin-bottom: 5px;
+}
+.term-list-subject,
+.term-list-brief {
+  /* float할 때 width가 지정되지 않았으면, 부모크기를 상속받음 ...*/
+  float: right;
+  width: 145px;
+  line-height: 1.2;
+  font-size: 14px;
+}
+.term-list-thumbnail {
+  float: left;
+}
+.term-list-thumbnail img {
+  /* inline 요소는 상당히 까다로움... 
+  base라인에 맞춰지지 않아도 됨.
+  line-height: 0%;
+  vertical-align: top;
+  */
+  background-color: blue;
+}
+
+/* div가 없다면? first-child last-child로 ... */
+.even .term-list-subject,
+.even .term-list-brief {
+  float: left;
+}
+.even .term-list-thumbnail {
+  float: right;
+}
+.odd ~ .even,
+.odd ~ .odd {
+  margin-top: 10px;
+}
+
+/* 첫번째 try */
+/*
+.term {
+  background: linear-gradient(to bottom, #ccc, #eee);
+  margin-top: 20px;
+  padding: 15px;
+  padding-bottom: 10px;
+  border-radius: 10px;
+  border: 1px solid #aaa;
+}
+.term-heading {
+  margin: 0;
+  font-size: 1rem;
+}
+dd,
+dt {
+  margin: 0;
+  font-size: 14px;
+}
+.term-list {
+  margin: 10px 0 0 0;
+  display: flow-root;
+  position: relative;
+}
+.term-list-subject {
+  float: right;
+  color: #296897;
+  padding-right: 74px;
+  padding-bottom: 5px;
+}
+.term-list-thumbnail img {
+  float: left;
+}
+.term-list-brief {
+  padding-left: 70px;
+  line-height: 1.5;
+} */
+
+/* 2번째 try */
+/* .term-list {
+  margin: 10px 0 0 0;
+  display: flow-root;
+}
+.term-list-thumbnail {
+  float: left;
+  margin-right: 10px;
+}
+dd,
+dt {
+  margin: 0;
+  font-size: 14px;
+  display: inline;
+}
+.term-list-subject {
+  margin-bottom: 5px;
+  color: #296897;
+}
+.term-list-brief {
+  white-space: pre-line;
+} */
+
+/* 자료 검색 */
+.search-form {
+  background: #ccc linear-gradient(#ccc, #eee);
+  padding: 15px 25px 10px 15px;
+  border: 1px solid #aaa;
+  border-bottom-color: #fff;
+  border-radius: 15px 15px 0 0;
+}
+.search-form * {
+  /* 글씨와 입력창의 높낮이 맞춤 */
+  vertical-align: middle;
+
+  /* 14px */
+  font-size: 0.875rem;
+}
+.search-form fieldset {
+  /*화면에 없는것 처럼 설정*/
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+.search-form labe {
+  line-height: 1;
+}
+.search-form input {
+  appearance: none;
+  -webkit-appearance: none;
+  border: 1px solid #aaa;
+  height: 22px;
+  border-radius: 2px;
+  padding: 1px 1px 1px 5px;
+  margin: 0 10px;
+  width: 202px;
+}
+.button-search {
+  border: 0;
+  padding: 0 10px;
+  background: #000;
+  color: #fff;
+  height: 22px;
+  font-size: 0.75rem;
+  border-radius: 2px;
+}
+/* 브라우저마다 폼 모양이 다름... 초기화 하기위해서?! */
+.search-form input::-ms-clear {
+  display: none;
+}
 
 .slogan {
   background-color: purple;

@@ -202,6 +202,8 @@
 
 - [NHN 코딩컨벤션](https://nuli.navercorp.com/data/convention/NHN_Coding_Conventions_for_Markup_Languages.pdf)
 
+- [한국형 웹 컨텐츠 접근성](<https://www.wah.or.kr:444/_Upload/pds/%ED%95%9C%EA%B5%AD%ED%98%95%EC%9B%B9%EC%BD%98%ED%85%90%EC%B8%A0%EC%A0%91%EA%B7%BC%EC%84%B1%EC%A7%80%EC%B9%A82.1(5).pdf>)
+
 <br><br>
 
 ### 1-1. 디자인을 위해서, html을 수정하지 말자!
@@ -309,6 +311,8 @@
 
 <br><br>
 
+---
+
 ## 2. Header CSS
 
 - validate local
@@ -346,7 +350,7 @@
 
 <br>
 
-- logo 배치 : `positon: relative;`
+- logo 배치 : `positon: absolute;`
   - header를 기준으로 위치가 이동됨.
 
 ```css
@@ -407,7 +411,7 @@
   transform: translateX(200px);
 }
 .logo {
-  /* 헤더(컨테이너)를 기준으로 */
+  /* transform이 none이 아닌 box를 기준으로... */
   margin-top: 0;
   margin-bottom: 0;
   background-color: blue;
@@ -469,15 +473,7 @@ a {
 
 - 다음과 같이 괴랄한 마크업을 옛날엔 사용했음
 
-```html
-<ul class="member-service">
-  <li><a href="#">홈</a></li>
-  <li><a href="#">로그인</a></li>
-  <li><a href="#">회원가입</a></li>
-  <li><a href="#">사이트맵</a></li>
-  <li><a href="#">english</a></li>
-</ul>
-```
+<img src="../img/membership.png" width=400/>
 
 ```css
 /* 안내 링크 */
@@ -490,7 +486,7 @@ a {
   padding-left: 0;
 }
 .member-service li {
-  /* 공백 문자 때문에 li간의 공백이 생김 => inline */
+  /* 공백 문자 때문에 li간의 공백이 생김 => html마크업을 위와 같이 하는걸로 해결. */
   display: inline;
 }
 ```
@@ -513,7 +509,7 @@ a {
   text-align: right;
 }
 .member-service li {
-  /* 공백 문자 때문에 li간의 공백이 생김 => inline */
+  /* 공백 문자 때문에 li간의 공백이 생김 => inline-block + 부모 fontsize = 0 */
   display: inline-block;
   font-size: 0.875rem;
   line-height: 1.15;
@@ -535,6 +531,7 @@ a {
 <br>
 
 - HTML 에서 삽입 : [YouTube 영상](https://www.youtube.com/playlist?list=PLtaz5vK7MbK3EAPhmB2gFnCU9qU72YMq3)
+  - `aria-hidden = "true"`
   - 스크린리더에서 읽지 않음!
   - [aria 설명](https://developer.mozilla.org/ko/docs/Web/Accessibility/ARIA)
 
@@ -561,7 +558,7 @@ a {
 
 - negative margin 공부하기
 
-  > [negative margin 정리](./negative_margin.md)
+  > [negative margin 정리](./negative-margin.md)
 
 ```css
 /* 숨김 컨텐츠 */
@@ -813,6 +810,8 @@ a {
 
 <br><br>
 
+---
+
 ## 3. 비주얼영역 설정
 
 ### 배경에 이미지 레이아웃할 때...
@@ -924,6 +923,8 @@ body {
   <img src="../img/visual-ani.png" width=400/>
 
 <br><br>
+
+---
 
 ## 4. main
 
@@ -1387,7 +1388,7 @@ body {
 
     > 아래 이미지는 잘못된 예시.. dl을 div안에 넣어주어야함.
 
-    > <img src="../img/dl.png" width="400">
+    > <img src="../img/dl.png" width="100">
 
     > [HTML5.2 변경점 링크](https://mulder21c.github.io/2017/12/26/understanding-html-52-changes/)
 
@@ -1409,3 +1410,254 @@ body {
   </dl>
 </section>
 ```
+
+- CSS
+
+```css
+/* 웹 관련 용어 */
+.term {
+  background: #ccc linear-gradient(to bottom, #ccc, #eee);
+  border: 1px solid #aaa;
+  margin-top: 20px;
+  padding: 10px 15px;
+  border-radius: 5px;
+}
+.term-heading {
+  margin: 0;
+  font-size: 1rem;
+}
+.term-list {
+  /* cross browsing 안됨 ..*/
+  /* display: flow-root; */
+  margin: 10px 0 0 0;
+}
+/* cross browsing 할 때, : 하나 써야해 ... */
+.term-list > div::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+.term-list dd {
+  margin-left: 0;
+}
+.term-list-subject {
+  /* 이미지와 제목과 그리드가 맞지 않은 이유...
+    줄 간격이 있었기 때문.
+  */
+  /* line-height: 1; */
+
+  /* 또는 위로 이동. */
+  margin-top: -2px;
+  color: #296897;
+  margin-bottom: 5px;
+}
+.term-list-subject,
+.term-list-brief {
+  /* float할 때 width가 지정되지 않았으면, 부모크기를 상속받음 ...*/
+  float: right;
+  width: 145px;
+  line-height: 1.2;
+  font-size: 14px;
+}
+.term-list-thumbnail {
+  float: left;
+}
+.term-list-thumbnail img {
+  /* inline 요소는 상당히 까다로움... 
+  base라인에 맞춰지지 않아도 됨.
+  line-height: 0%;
+  vertical-align: top;
+  */
+  background-color: blue;
+}
+
+/* div가 없다면? first-child last-child로 ... */
+.even .term-list-subject,
+.even .term-list-brief {
+  float: left;
+}
+.even .term-list-thumbnail {
+  float: right;
+}
+.odd ~ .even,
+.odd ~ .odd {
+  margin-top: 10px;
+}
+```
+
+<br>
+
+---
+
+### 단편적인 지식
+
+#### [한국형 웹 컨텐츠 접근성](<https://www.wah.or.kr:444/_Upload/pds/%ED%95%9C%EA%B5%AD%ED%98%95%EC%9B%B9%EC%BD%98%ED%85%90%EC%B8%A0%EC%A0%91%EA%B7%BC%EC%84%B1%EC%A7%80%EC%B9%A82.1(5).pdf>)
+
+<img src="../img/perceivable.png" width="400" />
+
+<br>
+
+#### Zoom
+
+- 웹엑스에 비해서 접근성이 상당히 좋다.
+- 다양한 스크린 리더 사용자들도 소리를 통해 보조적인 정보 제공을 받을 수 있다.
+- 개발단계에서 접근성을 깊게 고민해야한다.
+- 클론 코딩을 할 때에도, 그대로 똑같이 만들지 말고, 접근성을 고려해서 추가할 부분을 추가해보자.
+
+#### [skyscanner](https://www.skyscanner.co.kr/?)
+
+- UI, UX, 접근성 관점에서 차별을 두자.
+
+---
+
+### 4-5. 건너뛰기 링크
+
+- HTML 레이아웃
+
+  <img src="../img/skip.png" width="400">
+
+```html
+<div class="skip-navigation">
+  <a href="#userEmail">본문 바로가기</a>
+</div>
+```
+
+- CSS
+
+  > z-index, outline-offset, text-align, z-index
+
+```css
+/* 건너뛰기 링크 */
+.skip-navigation {
+  position: fixed;
+  /* 왼쪽 오른쪽 정렬하면 전체에 걸쳐서 나옴. */
+  left: 0;
+  right: 0;
+  width: 100%;
+  background-color: #000;
+  text-align: center;
+  /* z-index가 낮아서 설정 ... */
+  z-index: 10;
+}
+.skip-navigation a {
+  font-size: 0.875rem;
+  color: white;
+  /* 숨김 처리 */
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  margin: -1px;
+  clip-path: polygon(0 0, 0 0, 0 0);
+  padding: 10px 0;
+}
+.skip-navigation a:focus {
+  position: static;
+  padding: 15px;
+  width: auto;
+  height: auto;
+  clip: initial;
+  clip-path: initial;
+  height: auto;
+  margin: initial;
+  display: inline-block;
+  outline-offset: -5px;
+}
+```
+
+<br>
+
+### 4-6. 자료검색
+
+> flex에서 form 버그가 발생함!! 확인해보기...
+
+- 자료검색 레이아웃
+
+  [web forms 정보](https://www.miketaylr.com/pres/html5/forms2.html)
+
+  [html5 shiv polyfill](https://webdir.tistory.com/81)
+
+  [placehorder CSS tricks](https://css-tricks.com/almanac/selectors/p/placeholder/)
+
+```html
+<h2 class="a11y-hidden">검색</h2>
+<form
+  action="#"
+  class="search-form"
+  method="POST"
+  action="https://formspree.io/seulbinim@gmail.com"
+  aria-label="검색"
+>
+  <fieldset>
+    <legend class="a11y-hidden">검색 폼</legend>
+    <label for="search"
+      ><span class="icon-search" aria-hidden="true"></span>자료검색</label
+    ><input
+      type="search"
+      id="search"
+      name="search"
+      required
+      placeholder="검색어를 입력하세요."
+    />
+    <button class="button-search" type="submit">검색</button>
+  </fieldset>
+</form>
+```
+
+#### form안에서 h2를 쓸 수 없다면..?
+
+> 스크린 리더와 엔진이 접근할 수 있게 `aria-label="검색"` 을 사용한다!
+
+- CSS
+
+```css
+/* 자료 검색 */
+.search-form {
+  background: #ccc linear-gradient(#ccc, #eee);
+  padding: 15px 25px 10px 15px;
+  border: 1px solid #aaa;
+  border-bottom-color: #fff;
+  border-radius: 15px 15px 0 0;
+}
+.search-form * {
+  /* 글씨와 입력창의 높낮이 맞춤 */
+  vertical-align: middle;
+
+  /* 14px */
+  font-size: 0.875rem;
+}
+.search-form fieldset {
+  /*화면에 없는것 처럼 설정*/
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+.search-form labe {
+  line-height: 1;
+}
+.search-form input {
+  appearance: none;
+  -webkit-appearance: none;
+  border: 1px solid #aaa;
+  height: 22px;
+  border-radius: 2px;
+  padding: 1px 1px 1px 5px;
+  margin: 0 10px;
+  width: 202px;
+}
+.button-search {
+  border: 0;
+  padding: 0 10px;
+  background: #000;
+  color: #fff;
+  height: 22px;
+  font-size: 0.75rem;
+  border-radius: 2px;
+}
+/* 브라우저마다 폼 모양이 다름... 초기화 하기위해서?! */
+.search-form input::-ms-clear {
+  display: none;
+}
+```
+
+- `appearence: none`, `-webkit-appearance: none;`
