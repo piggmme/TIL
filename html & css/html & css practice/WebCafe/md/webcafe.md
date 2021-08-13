@@ -561,6 +561,8 @@ a {
 
 - negative margin 공부하기
 
+  > [negative margin 정리](./negative_margin.md)
+
 ```css
 /* 숨김 컨텐츠 */
 .a11y-hidden {
@@ -1319,9 +1321,15 @@ body {
 
   - a태그의 title은 hover하면 보충 설명이 나타남. (이는 공통속성임...id, class, lang)
 
-  - target="\_black" : 새로운 탭 열림
+  - `target="_blank"` : 새로운 탭 열림
 
-  - 새창 열 때 보완 : [noopener, noefererr MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Link_types/noopener)
+  - 새창 열 때 보완 : [noopener, noreferrer MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Link_types/noopener)
+
+    > noopener : `target="_blank"` 로 새로운 탭을 열 때, 새로 열린 페이지에서 window.opener이 존재하지 않게하여, window.opener객체로 접근해 악의적으로 정보를 빼가는 일이 없게한다.
+
+    > noreferrer : `target="_blank"` 로 새로운 탭을 열 때, 새로 열린 페이지에서 window.opener 객체를 조작하지 못하게 한다.
+
+    > [noopener, noreferrer](https://webruden.tistory.com/262)
 
 <br>
 
