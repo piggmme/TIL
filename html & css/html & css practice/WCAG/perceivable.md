@@ -96,8 +96,10 @@
 
 ![](./img/netflix-aria-label.png)
 
-- bad) 스크린리더(보이스오버)사용시 사용자정보에서, &#xAC15;&#xD76C; 을 직접 읽어줌
+- bad) 스크린리더(보이스오버)사용시 사용자정보에서, `&#xAC15;&#xD76C;`(강희) 을 직접 읽어줌
 
 ![](./img/netflix-screen1.png)
+
 ![](./img/netflix-screen2.png)
+
 ![](./img/netflix-screen3.png)
