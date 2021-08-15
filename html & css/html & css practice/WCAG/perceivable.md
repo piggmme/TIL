@@ -48,16 +48,56 @@
 
 1. [야놀자](https://www.yanolja.com/)
 
-- tab키로 접근하였는데, 아이콘이 포커싱되는 효과가 없음...
+- bad)tab키로 접근하였는데, 아이콘이 포커싱되는 효과가 없음...
 
-- 색상 대비가 너무 미미함
+- bad)색상 대비가 너무 미미함
 
 ![](./img/yanolja-color.png)
 
 ![](./img/yanolja-color2.png)
 
+- bad)a link의 텍스트가 없음
+
+![](./img/yanolja-link-text.png)
+
+- bad)기본 언어가 표시되어있지 않음.
+
+![](./img/yanolja-lang.png)
+
+---
+
 2. [엽떡](https://www.yupdduk.com/)
 
-- 처음에 뜬 광고창 때문에 키보드로 접근이 불가능. 광고창 닫는 칸에 키보드 접근이 안된다.
+- bad)처음에 뜬 광고창 때문에 키보드로 접근이 불가능. 광고창 닫는 칸에 키보드 접근이 안된다.
 
 ![](./img/yup.png)
+
+- bad)`target="_blank"`로 여는데, opnener 이나 openreferr이 사용되지 않음
+
+![](./img/yup-blank.png)
+
+- bad)input 아이디에서 label이 제공되지 않음. 비밀번호도 마찬가지
+
+![](./img/yup-label.png)
+
+- bad)네이버 아이디 로그인 텍스트와 네이버 이미지의 대체텍스트가 똑같음. 이미지 대체텍스트는 생략해야함.
+
+![](./img/yup-alt.png)
+
+- bad)색상 명암비가 확대시 3:1을 지키지 못한 2.7:1임.
+
+![](./img/yup-contra.png)
+
+---
+
+3. [넷플릭스](https://www.netflix.com/browse)
+
+- good)aria-label을 사용하였음, 그리고 이미지 alt는 생략하였다.
+
+![](./img/netflix-aria-label.png)
+
+- bad) 스크린리더(보이스오버)사용시 사용자정보에서, &#xAC15;&#xD76C; 을 직접 읽어줌
+
+![](./img/netflix-screen1.png)
+![](./img/netflix-screen2.png)
+![](./img/netflix-screen3.png)
