@@ -204,6 +204,14 @@
 
 - [한국형 웹 컨텐츠 접근성](<https://www.wah.or.kr:444/_Upload/pds/%ED%95%9C%EA%B5%AD%ED%98%95%EC%9B%B9%EC%BD%98%ED%85%90%EC%B8%A0%EC%A0%91%EA%B7%BC%EC%84%B1%EC%A7%80%EC%B9%A82.1(5).pdf>)
 
+- [wai-aria 속성, 상태, 역할](https://velog.io/@kym123123/ARIA%EC%9D%98%EC%86%8D%EC%84%B1%EC%83%81%ED%83%9C%EC%97%AD%ED%95%A0%EB%B0%8F%EC%82%AC%EC%9A%A9-%EC%98%88%EC%8B%9C%EC%A3%BC%EC%9D%98%EC%82%AC%ED%95%AD)
+
+- [웹 접근성 연구소 - 정보접근성 향상을 위한 W3C 국제표준 WAI-ARIA 사례집](https://www.wah.or.kr:444/board/boardView.asp?page=1&brd_sn=5&brd_idx=1019)
+
+- [NIAWA](https://github.com/niawa/ARIA)
+
+- [tab-interaction : 키보드 인터렉션](https://www.w3.org/TR/wai-aria-practices-1.1/#tabpanel)
+
 <br><br>
 
 ### 1-1. 디자인을 위해서, html을 수정하지 말자!
@@ -1386,7 +1394,7 @@ body {
 
   - dl: HTML5.2에서 dl의 자식으로 div 사용가능해졌음! 하지만 dl 안에 dt와 dd가 들어가있어야함!
 
-    > 아래 이미지는 잘못된 예시.. dl을 div안에 넣어주어야함.
+    > 아래 이미지는 잘못된 예시.. dd을 div안에 넣어주어야함.
 
     > <img src="../img/dl.png" width="100">
 
@@ -1661,3 +1669,163 @@ body {
 ```
 
 - `appearence: none`, `-webkit-appearance: none;`
+
+- native tag? (?? 찾아보기)
+
+  > a태그가 h를 가진경우, button을 가진 form요소...
+
+  > tabindex = "0" 으로 포커싱을 가져옴
+
+### 4-7. 공지사항-자료실
+
+- 공지사항-자료실 마크업 순서
+
+<img src="../img/notice-lay.png" width="400" />
+
+- 공지사항-자료실 구조
+
+  <img src="../img/notice-lay2.png" width="400" />
+
+  > tabindex="0" 해주어도, javascript로 클릭이벤트를 따로 설정해줘야함 ...
+
+  > h2 : 헤딩 + button => 이미 기능이 있는 태그에 버튼을 role로 주는건 좋지않음...
+
+  > 부모에게 이벤틀 주어서, 자식에게 위임되는 방식을 많이 사용함. 따라서 부모 section이 is-active속성을 가져서, 자식에게 위임하도록...
+
+  > is-active는 동적인 상태 클래스
+
+  > 날짜 정보는 time 태그. => datetime="YYYY-MM-DDTHH:MM:SS" : 기계가 인식할 수 있는 날짜형식
+
+  > 더보기는 링크 a로... aria-describedby = "id값"
+
+- HTML
+
+  > aria-labelledby="pdsHeading" 으로 링크에 연결되어있는 것이 무언인지 나타냄...
+
+```html
+<div class="board">
+  <section class="notice">
+    <h2 class="a11y-hidden" id="noticeHeading">공지사항</h2>
+    <button type="button" class="tab">공지사항</button>
+    <ul class="notice-list">
+      <li>
+        <a href="#">HTML의 모든것을 알려주마 샘플 활용법</a>
+        <time datetime="2021-08-16T15:45:30">2021.08.16</time>
+      </li>
+    </ul>
+    <a class="more" href="#" aria-labelledby="noticeHeading"
+      ><span class="icon icon-plus" aria-hidden="true"></span>더보기</a
+    >
+  </section>
+  <section class="notice">
+    <h2 class="a11y-hidden" id="pdsHeading">자료실</h2>
+    <button type="button" class="tab">자료실</button>
+    <ul class="notice-list">
+      <li>
+        <a href="#">HTML의 모든것을 알려주마 샘플 활용법</a>
+        <time datetime="2021-09-30T15:45:30">2021.09.30</time>
+      </li>
+    </ul>
+    <a class="more" href="#" aria-labelledby="pdsHeading"
+      ><span class="icon icon-plus" aria-hidden="true"></span>더보기</a
+    >
+  </section>
+</div>
+```
+
+- CSS
+
+```css
+/* 공지사항-자료실 */
+.board {
+  margin-top: 20px;
+  position: relative;
+  height: 200px;
+}
+.board ul,
+.board .more {
+  display: none;
+}
+.is-active ul,
+.is-active .more {
+  /* 어떤 상황이든 is-active이면 강제적으로 보여줄거야. */
+  /* 평소에 난발하는건 좋지 않음 ... */
+  display: block !important;
+}
+.board .tab {
+  position: absolute;
+  top: 0;
+  background: #ccc linear-gradient(to bottom, #ccc, #eee);
+  color: #666;
+  border: 1px solid #aaa;
+  padding: 5px 10px;
+  border-radius: 5px 5px 0 0;
+  font-size: 0.875rem;
+}
+.is-active .tab {
+  background: #fff !important;
+  color: #e85b2c !important;
+  border-color: #e85b2c #e85b2c #fff #e85b2c;
+}
+.notice .tab {
+  left: 0;
+}
+.pds .tab {
+  left: 69px;
+}
+.board ul {
+  padding: 35px 0 0 0;
+  list-style: none;
+  margin: 0;
+}
+.board li {
+  display: flex;
+  margin-top: 10px;
+  /* 14px */
+  font-size: 0.875rem;
+}
+.board ul a {
+  flex-grow: 1;
+  /* 줄바꿈 방지 */
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.board time {
+}
+.board .more {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  /* 링크에 포커스할 때 잘 됨. 사용자 관점 */
+  padding: 8px;
+}
+.more .icon-plus {
+  color: hsla(110, 70%, 30%, 1);
+}
+```
+
+- text-overflow
+
+  > 줄바꿈 방지! 말 줄임표를 사용해아할 때...
+
+  <img src="../img/notice-a.png" width="400" />
+
+  ```css
+  .board ul a {
+    ...
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+  ```
+
+- [웹 접근성 연구소 - 정보접근성 향상을 위한 W3C 국제표준 WAI-ARIA 사례집](<https://www.wah.or.kr:444/_Upload/pds2/WAI-ARIA%20%EC%82%AC%EB%A1%80%EC%A7%91(%EC%98%A8%EB%9D%BC%EC%9D%B8%ED%8C%90).pdf>)
+
+- [NIAWA](https://github.com/niawa/ARIA)
+
+  > 접근성과 사용성 높은 탭 UI를 위해 WAI-ARIA 속성들을 사용하여 구현한 코드는 아래와 같다...
+
+   <img src="../img/tab.png" width="400" />
+
+- [tab-interaction : 키보드 인터렉션](https://www.w3.org/TR/wai-aria-practices-1.1/#tabpanel)
