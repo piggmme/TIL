@@ -793,8 +793,6 @@ dt {
   white-space: nowrap;
   overflow: hidden;
 }
-.board time {
-}
 .board .more {
   position: absolute;
   top: -8px;
@@ -802,56 +800,295 @@ dt {
   /* 링크에 포커스할 때 잘 됨. 사용자 관점 */
   padding: 8px;
 }
+.more {
+  font-size: 0.875rem;
+}
 .more .icon-plus {
   color: hsla(110, 70%, 30%, 1);
 }
 
 /* 내 코드 */
-/* .board {
-  background-color: yellow;
+/*
+.board {
   margin-top: 20px;
   position: relative;
 }
 .notice-list,
 .pds-list {
+  display: none;
   list-style: none;
   margin: 0;
   padding: 0;
+  padding-top: 10px;
+}
+.is-active .notice-list,
+.is-active .pds-list {
+  display: block;
+}
+.is-active .notice-list li,
+.is-active .pds-list li {
+  margin: 5px 0;
+  display: flex;
+}
+.is-active .notice-list a,
+.is-active .pds-list a {
+  flex-grow: 1;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.tab {
+  display: block;
+  padding: 5px 10px;
+  border: 1px solid #aaa;
+  border-radius: 5px 5px 0 0;
+  background: linear-gradient(to bottom, #ccc, #eee);
 }
 .pds .tab {
-  position: relative;
-  left: 62px;
-}
-.pds {
   position: absolute;
-  top: 0px;
+  top: 0;
+  left: 68px;
 }
-.more {
+.is-active .tab {
+  border-bottom: none;
+  background: white;
+  color: #e85b2c;
+  border-color: #e85b2c;
+}
+.board .more {
+  display: none;
+}
+.board .is-active .more {
+  display: block;
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  padding: 10px;
+}
+*/
+
+/* 새소식 */
+.news {
+  margin-top: 20px;
+  position: relative;
+}
+.news::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 35px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(to right, #aaa, #fff);
+}
+.news-heading {
+  margin: 0 0 35px;
+  font-weight: 700;
+  font-size: 0.9375rem;
+  color: #e85b2c;
+}
+.news-article {
+  font-size: 0.875rem;
+  padding-left: 130px;
+  position: relative;
+}
+.news-article-subject {
+  margin: 0 0 3px;
+  font-weight: 700;
+
+  /* 부모 폰트 크기를 상속받는다고 명시해주면 
+  적용될 수 있움..*/
+  font-size: inherit;
+}
+.news-article-date {
+}
+.news-article-thumbnail {
+  margin: 0;
+  position: absolute;
+  text-align: center;
+  top: 1px;
+  left: 0;
+}
+.news-article-thumbnail img {
+  box-shadow: 0 15px 10px 5px rgba(0, 0, 0, 0.3);
+}
+.news-article-thumbnail figcaption {
+  margin-top: 15px;
+}
+.news-article-brief {
+  margin: 10px 0 0 0;
+  line-height: 1.5;
+}
+.news .more {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  padding: 8px;
+}
+
+/* 내코드 */
+/*
+.news {
+  margin-top: 20px;
+  position: relative;
+}
+.news-heading {
+  margin: 0;
+  font-weight: 700;
+  font-size: 0.9375rem;
+  color: #e85b2c;
+  line-height: 3;
+  
+}
+.news-heading::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(to right, #aaa, #fff);
+}
+.news-article {
+  font-size: 0.875rem;
+  display: flow-root;
+  position: relative;
+  padding: 20px 0;
+}
+.news-article-subject {
+  margin: 0;
+  font-weight: 700;
+  float: right;
+  width: 240px;
+
+  font-size: inherit;
+}
+.news-article-date {
+  float: right;
+  width: 240px;
+  padding-bottom: 10px;
+}
+.news-article-thumbnail {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.news-article-thumbnail img {
+  box-shadow: 1px 13px 15px #aaa;
+  padding: 0;
+  margin-bottom: 20px;
+}
+.news-article-brief {
+  margin: 0;
+  float: right;
+  width: 240px;
+}
+.news .more {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  padding: 10px;
+}
+*/
+
+/* 신규 이벤트 및 관련 사이트 */
+.gradient-box {
+  border: 1px solid #aaa;
+  border-radius: 5px;
+  background: #ccc linear-gradient(#ccc, #eee);
+  padding: 10px;
+}
+.event {
+  padding-bottom: 10px;
+  position: relative;
+}
+.event-heading {
+  margin: 0 0 10px;
+  font-weight: 700;
+  font-size: 0.9375rem;
+}
+
+.accent-color {
+  color: rgb(255, 77, 0);
+}
+.event-brief {
+  font-size: 14px;
+}
+.event-brief em {
+  font-style: normal;
+}
+.event-button-group {
+  height: 18px;
   position: absolute;
   top: 0;
   right: 0;
 }
-.notice-list li,
-.pds li {
-  display: flex;
-  justify-content: space-between;
-  margin: 5px 0;
+.event-button-group button {
+  width: 19px;
+  /* 높이를 버튼에 주면 안돼.... form은 그래서 까다로와
+   height: 18px; */
+  height: 0px;
+  padding: 18px 0 0 0;
+  /* 넘어가는 텍스트는 삭제해보림! */
+  overflow: hidden;
+  border: 0;
+  /* 잘 안되면 개별속성별로 써보기! 대표속성을 사용하면 잘 인식하지 못하는 경우가있음. */
+  background-image: url(./images/back_forward.png);
+  background-repeat: no-repeat;
 }
-.tab {
-  background: #ccc linear-gradient(#ccc, #eee);
-  border-radius: 5px 5px 0 0;
+.event-button-group .event-button-next {
+  background-position: -35px 0;
+}
+.event-thumbnail {
+  margin: 0 0 10px;
+}
+.event-thumbnail img {
   border: 1px solid #aaa;
-  color: #aaa;
-  padding: 5px 7px;
+  box-shadow: 5px 5px 0 0 #aaa;
 }
-.is-active .tab {
-  background: white;
-  color: rgb(255, 123, 0);
-  border-radius: 5px 5px 0 0;
-  border: 1px solid rgb(255, 123, 0);
-  border-bottom: 0;
-} */
-
+.event-brief {
+  margin: 10px 0 0 0;
+}
+.event-brief em {
+  margin: 0 0 10px;
+}
+.related {
+  font-size: 0.875rem;
+  border-top: 1px solid #aaa;
+}
+.related-heading {
+  margin: 10px 0;
+  font-weight: 700;
+  font-size: 0.9375rem;
+}
+.related-list {
+  padding-left: 0;
+  margin: 0;
+  list-style-type: none;
+  background-color: white;
+  border: 1px solid #aaa;
+  border-radius: 5px;
+  height: 27px;
+  overflow: hidden;
+  /* 효과 넣어주기. */
+  transition: all ease 0.4s;
+}
+.related-list a {
+  display: block;
+  line-height: 25px;
+  /* 첫줄 들여쓰기 - 단락을 시작할 때... */
+  text-indent: 1.5em;
+}
+.related-list a:focus {
+  outline-offset: -3px;
+}
+.related-list:hover {
+  /* auto 하면 transition 안들어감...ㅋ 
+  height: auto; */
+  height: 147px;
+  padding: 10px 0;
+}
 /* 슬로건 */
 .slogan {
   background-color: purple;

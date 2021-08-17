@@ -212,6 +212,10 @@
 
 - [tab-interaction : 키보드 인터렉션](https://www.w3.org/TR/wai-aria-practices-1.1/#tabpanel)
 
+- [gitbook skymimo](https://aoa.gitbook.io/skymimo/)
+
+- [csslayout](https://csslayout.io/patterns/)
+
 <br><br>
 
 ### 1-1. 디자인을 위해서, html을 수정하지 말자!
@@ -1702,6 +1706,8 @@ body {
 
   > aria-labelledby="pdsHeading" 으로 링크에 연결되어있는 것이 무언인지 나타냄...
 
+- [aria-label과 aria-labelledby 정리](./aria-label.md)
+
 ```html
 <div class="board">
   <section class="notice">
@@ -1829,3 +1835,310 @@ body {
    <img src="../img/tab.png" width="400" />
 
 - [tab-interaction : 키보드 인터렉션](https://www.w3.org/TR/wai-aria-practices-1.1/#tabpanel)
+
+---
+
+### title속성 말고! label 사용하는게 좋다.
+
+> title은 너무 오래된 가이드라인 기준...
+
+### Acodian pannel, Acodian header
+
+> 사용자가 선택하면 펼쳐지는 UI, 기존것은 닫혀야함...
+
+- aria-expanded
+- aria-controls
+- aria-disabled
+
+### [gitbook skymimo](https://aoa.gitbook.io/skymimo/)
+
+---
+
+### 4-8. 새소식
+
+#### 새소식 구조
+
+<img src="../img/new-lay.png" width="400" />
+
+- 가급적 전체적 레벨에 맞는 헤딩을 부여해라. h1~h6 순서...
+- figure: 안에 img, caption을 포함
+
+#### HTML
+
+```html
+<section class="news">
+  <h2 class="news-heading" id="news">새소식</h2>
+  <a href="" class="news-link">
+    <article class="news-article">
+      <h3 class="news-article-subject">
+        W3C 사이트가 리뉴얼 되었습니다.
+        <time class="news-article-date" datetime="2021-08-17">2021-08-17</time>
+      </h3>
+      <p class="news-article-brief">
+        디자인 및 다양한 view 환경을 고려하여 구성되어 있으며, 기존보다 최신
+        정보 및 개발자를 위한 기술 가이드도 찾기 쉽도록 구성되어 있습니다.
+      </p>
+      <figure class="news-article-thumbnail">
+        <img
+          src="./assets/news.gif"
+          alt=""
+          aria-labelledby="thumbnail-caption"
+        />
+        <figcaption id="thumbnail-caption">W3C 리뉴얼</figcaption>
+      </figure>
+    </article>
+  </a>
+  <a href="#" class="more" aria-labelledby="news"
+    ><span class="icon icon-plus"></span>더보기</a
+  >
+</section>
+```
+
+- a : html5에서 배경이 transparent라서, 안에 여러 block을 포함할 수 있음.
+  > 문법도 간편하고, 접근도 잘 되지만, 사용자 입장에서는 사용이 불편할 수 있음.
+
+#### CSS
+
+```css
+/* 새소식 */
+.news {
+  margin-top: 20px;
+  position: relative;
+}
+.news::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 35px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(to right, #aaa, #fff);
+}
+.news-heading {
+  margin: 0 0 35px;
+  font-weight: 700;
+  font-size: 0.9375rem;
+  color: #e85b2c;
+}
+.news-article {
+  font-size: 0.875rem;
+  background: violet;
+  padding-left: 130px;
+  position: relative;
+}
+.news-article-subject {
+  margin: 0 0 3px;
+  font-weight: 700;
+
+  /* 부모 폰트 크기를 상속받는다고 명시해주면 
+  적용될 수 있움..*/
+  font-size: inherit;
+}
+.news-article-date {
+}
+.news-article-thumbnail {
+  margin: 0;
+  position: absolute;
+  background: lime;
+  text-align: center;
+  top: 1px;
+  left: 0;
+}
+.news-article-thumbnail img {
+  box-shadow: 0 15px 10px 5px rgba(0, 0, 0, 0.3);
+}
+.news-article-thumbnail figcaption {
+  margin-top: 15px;
+}
+.news-article-brief {
+  margin: 10px 0 0 0;
+  line-height: 1.5;
+}
+.news .more {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  padding: 8px;
+}
+```
+
+- flex로도 구현해보기!
+- [이듬 브런치 - 1px보다 얇은 선](https://brunch.co.kr/@euid)
+- [csslayout](https://csslayout.io/patterns/)
+
+- news 레이아웃을 flex로 꾸며보기
+
+<img src="../img/new-flex.png" width="400" />
+
+> 좀 까다롭네;;... height도 줘야함..
+
+<br><br>
+
+### 4-9. 신규이벤트
+
+#### 신규이벤트 구조
+
+<img src="../img/event-lay.png" width="400" />
+
+#### HTML
+
+```html
+<section class="event">
+  <h2 class="event-heading">신규 <span class="accent-color">이벤트</span></h2>
+  <div id="eventDetail">
+    <p class="event-thumbnail">
+      <img
+        src="./assets/free_gift.gif"
+        alt="이벤트 경품 : 웹표준 핵심 가이드북 2 HTML5+CSS3 도서 증정"
+      />
+    </p>
+    <p class="event-brief">
+      <em> 웹표준 핵심 가이드북 2 출시! </em> 선착순 500명 한정으로증정.
+    </p>
+  </div>
+
+  <div class="event-button-group">
+    <button class="event-button-pre">이전 이벤트 보기</button>
+    <button class="event-button-next">다음 이벤트 보기</button>
+  </div>
+</section>
+<section class="related">
+  <h2 class="related-heading">관련 <span class="accent-color">사이트</span></h2>
+  <ul class="related-list">
+    <li><a href="#">패스트 캠퍼스</a></li>
+    <li><a href="#">웹접근성 연구소</a></li>
+    <li><a href="#">W3C</a></li>
+    <li><a href="#">CSS ZenGarden</a></li>
+    <li><a href="#">웹접근성 연구소</a></li>
+  </ul>
+</section>
+```
+
+- img 한번에 묶은다음, 배경에서 보이는 정도를 설정해서 해결하면됨, 이는 서버 성능의 문제임...
+- splice 이미지! 현업에서 많이씀.!
+
+#### CSS1
+
+```css
+.gradient-box {
+  border: 1px solid #aaa;
+  border-radius: 5px;
+  background: #ccc linear-gradient(#ccc, #eee);
+  padding: 10px;
+}
+.event {
+  padding-bottom: 10px;
+  position: relative;
+}
+.event::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 1px;
+  background: #aaa;
+}
+.event-heading {
+  margin: 0 0 10px;
+  font-weight: 700;
+  font-size: 0.9375rem;
+}
+
+.accent-color {
+  color: rgb(255, 77, 0);
+}
+.event-brief {
+  font-size: 14px;
+}
+.event-brief em {
+  font-style: normal;
+}
+.event-button-group {
+  height: 18px;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.event-button-group button {
+  width: 19px;
+  /* 높이를 버튼에 주면 안돼.... form은 그래서 까다로와
+   height: 18px; */
+  height: 0px;
+  padding: 18px 0 0 0;
+  /* 넘어가는 텍스트는 삭제해보림! */
+  overflow: hidden;
+  border: 0;
+  /* 잘 안되면 개별속성별로 써보기! 대표속성을 사용하면 잘 인식하지 못하는 경우가있음. */
+  background-image: url(./images/back_forward.png);
+  background-repeat: no-repeat;
+}
+.event-button-group .event-button-next {
+  background-position: -35px 0;
+}
+.event-thumbnail {
+  margin: 10px 0 0 0;
+}
+.event-thumbnail img {
+  border: 1px solid #aaa;
+  box-shadow: 5px 5px 0 0 #aaa;
+}
+.event-brief {
+  margin: 10px 0 0 0;
+}
+.event-brief em {
+  margin: 0;
+}
+```
+
+- button overflow말고 다른방법으로 만들어보기!
+
+> 텍스트 위에 배경을 올려놔서, 만약에 배경이 렌더링 되지 않는다면, 텍스트가 보이게 한다.
+
+<img src="../img/button-noflow.png" width="400" />
+
+- 사실 aria-label="이전페이지보기"가 제일 좋은방안이긴 하다.. 글씨 없애기 위해서 쌩쑈 안해도 됨.
+
+#### CSS2
+
+```css
+.related {
+  font-size: 0.875rem;
+  border-top: 1px solid #aaa;
+}
+.related-heading {
+  margin: 10px 0;
+  font-weight: 700;
+  font-size: 0.9375rem;
+}
+.related-list {
+  padding-left: 0;
+  margin: 0;
+  list-style-type: none;
+  background-color: white;
+  border: 1px solid #aaa;
+  border-radius: 5px;
+  height: 27px;
+  overflow: hidden;
+  /* 효과 넣어주기. */
+  transition: all ease 0.4s;
+}
+.related-list a {
+  display: block;
+  line-height: 25px;
+  /* 첫줄 들여쓰기 - 단락을 시작할 때... */
+  text-indent: 1.5em;
+}
+.related-list a:focus {
+  outline-offset: -3px;
+}
+.related-list:hover {
+  /* auto 하면 transition 안들어감...ㅋ 
+  height: auto; */
+  height: 147px;
+  padding: 10px 0;
+}
+```
+
+- height auto 하면 transition 안들어감!!
+
+  > height를 명확하게 정해놔야함...
