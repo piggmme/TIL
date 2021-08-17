@@ -106,9 +106,9 @@
   //   console.log(solution("abcabcdede")); // 8
   //  console.log(solution("abcabcabcabcdededededede")); // 14
   // console.log(solution("xababcdcdababcdcd")); // 17
-  console.log(solution("a")); //1
-  console.log(solution("aaaaa")); //2
-  console.log(solution("aaaaaaaaaa")); //3
+  //   console.log(solution("a")); //1
+  //   console.log(solution("aaaaa")); //2
+  //   console.log(solution("aaaaaaaaaa")); //3
 }
 
 // 이건 답 아님
