@@ -46,27 +46,118 @@
 // 따라서 주어진 문자열을 x / ababcdcd / ababcdcd 로 자르는 것은 불가능 합니다.
 // 이 경우 어떻게 문자열을 잘라도 압축되지 않으므로 가장 짧은 길이는 17이 됩니다.
 
+// 앞에서부터 자르기! 배열에...
+// 제출한 답!
+{
+  function slice_n(str, n) {
+    let result = [];
+    let i = 0;
+    for (; i <= str.length - n; i += n) {
+      result.push(str.slice(i, i + n));
+    }
+    if (i < str.length) result.push(str.slice(i));
+    return result;
+  }
+  function solution(s) {
+    let answer = 0;
+    let n = s.length;
+    let part = [];
+    let set = [];
+
+    // 문자열 1개인 경우, 따로 처리...
+    if (s.length === 1) return 1;
+
+    // 자를 수 있는가?
+    for (let i = 1; i <= parseInt(n / 2); i++) {
+      let tp = slice_n(s, i);
+      let lt = 0,
+        rt = 1,
+        cnt = 1;
+      for (; rt < tp.length; rt++) {
+        if (tp[lt] === tp[rt]) {
+          cnt += 1;
+        } else {
+          if (cnt > 1) {
+            part.push(cnt, tp[lt]);
+            lt = rt;
+          } else {
+            part.push(tp[lt]);
+            lt = rt;
+          }
+          cnt = 1;
+        }
+      }
+      if (cnt > 1) {
+        part.push(cnt, tp[lt]);
+        lt = rt;
+      } else {
+        part.push(tp[lt]);
+        lt = rt;
+      }
+      //  console.log(part, String(part.join("")).length);
+      set.push(String(part.join("")).length);
+      part = [];
+    }
+
+    return Math.min(...set);
+  }
+  //   console.log(solution("aabbaccc")); // 7
+  //   console.log(solution("ababcdcdababcdcd")); // 9
+  //   console.log(solution("abcabcdede")); // 8
+  //  console.log(solution("abcabcabcabcdededededede")); // 14
+  // console.log(solution("xababcdcdababcdcd")); // 17
+  console.log(solution("a")); //1
+  console.log(solution("aaaaa")); //2
+  console.log(solution("aaaaaaaaaa")); //3
+}
+
+// 이건 답 아님
+// 문자열 앞에서부터 잘라야하는지 몰랐지 ..ㅋㅋㅋ 휴 이거는 중간부터 잘라도 되는 풀이..
 {
   function solution(s) {
     let answer = 0;
     let n = s.length;
+    let part = "";
+    let set = [];
 
-    // 자를 문자 갯수 2~n/2개
-    for (let i = 2; i <= parseInt(n / 2); i++) {
+    // 자를 문자 갯수 1~n/2개
+    let i = 1;
+    for (let i = 1; i <= parseInt(n / 2); i++) {
       // 기준 문자열을 찾는다.
+      //  console.log("i=", i);
+      let total_cnt = 0;
       for (let j = 0; j <= n - 2 * i; j++) {
         let str = s.slice(j, j + i);
-        console.log(j, j + i, str);
+        let cnt = 1;
+        // console.log(j, j + i, str);
         // 기준 문자열과 동일한 문자열이 존재하는가?
-        for (let k = j + i; k <= n - j; k++) {}
+        for (let k = j + i; k <= n - i; k += i) {
+          let tp = s.slice(k, k + i);
+          //    console.log(">", tp);
+          if (tp === str) {
+            cnt += 1;
+          } else {
+            break;
+          }
+        }
+        if (cnt > 1) {
+          part += String(cnt);
+          part += str;
+          j += cnt * i - 1;
+          total_cnt += cnt * i;
+        }
       }
+      // 전체 문자열 수에서 반복한 횟수만 빼면, 남은 붙여할 문자열 수!
+      console.log("part=", part, total_cnt);
+      set.push(part.length + (n - total_cnt));
+      part = [];
     }
-
-    return answer;
+    // console.log(set);
+    return Math.min(...set);
   }
-  console.log(solution("aabbaccc")); // 7
-  console.log(solution("ababcdcdababcdcd")); // 9
-  console.log(solution("abcabcdede")); // 8
-  console.log(solution("abcabcabcabcdededededede")); // 14
-  console.log(solution("xababcdcdababcdcd")); // 17
+  //   console.log(solution("aabbaccc")); // 7
+  //   console.log(solution("ababcdcdababcdcd")); // 9
+  //   console.log(solution("abcabcdede")); // 8
+  //   console.log(solution("abcabcabcabcdededededede")); // 14
+  // console.log(solution("xababcdcdababcdcd")); // 17
 }

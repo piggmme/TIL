@@ -27,7 +27,7 @@
     let answer = 0;
     let part = [];
 
-    // 더할 것 부분집합으로 뽑기
+    // 뺄 것 부분집합으로 뽑기
     // 전체 합에서, 뺄 부분은 2번 빼주어야함.
     function DFS(L, sum) {
       if (L === n) {

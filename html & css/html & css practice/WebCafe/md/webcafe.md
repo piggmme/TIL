@@ -1310,8 +1310,7 @@ body {
         href="https://validator.w3.org/"
         target="_blank"
         title="마크업 유효성 검사 사이트로 이동"
-        noopener
-        noreferrer
+        rel="noopener noreferrer"
         >W3C Markup Validation</a
       >
     </li>
@@ -1320,8 +1319,7 @@ body {
         href="https://jigsaw.w3.org/css-validator/"
         target="_blank"
         title="CSS 유효성 검사 사이트로 이동"
-        noopener
-        noreferrer
+        rel="noopener noreferrer"
         >CSS Validation Service</a
       >
     </li>
@@ -1611,6 +1609,8 @@ body {
   </fieldset>
 </form>
 ```
+
+- aria-labelledby가 aria-label 보다 더 쎄다!! 두개 같이 나오면 aria-labelledby가 살아남음.
 
 #### form안에서 h2를 쓸 수 없다면..?
 
