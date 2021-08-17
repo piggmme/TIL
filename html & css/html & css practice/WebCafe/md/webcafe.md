@@ -1842,13 +1842,24 @@ body {
 
 > title은 너무 오래된 가이드라인 기준...
 
-### Acodian pannel, Acodian header
+### [Accordion pannel, Accordion header](https://www.w3.org/TR/wai-aria-practices-1.1/examples/accordion/accordion.html)
 
 > 사용자가 선택하면 펼쳐지는 UI, 기존것은 닫혀야함...
 
-- aria-expanded
-- aria-controls
-- aria-disabled
+- `aria-expanded = "true"`
+
+  > accordion pannel이 펼쳐지면 참
+  > `button`에 주는 속성값
+
+- `aria-controls = "id"`
+
+  > 헤더가 컨트롤 하는 panel의 id를 가리킴.
+  > `button`에 주는 속성값
+
+- `aria-disabled = "true"`
+
+  > accordion pannel이 펼쳐졌을 때... (이건 잘 모르겠네)
+  > `button`에 주는 속성값
 
 ### [gitbook skymimo](https://aoa.gitbook.io/skymimo/)
 
@@ -1969,7 +1980,7 @@ body {
 
 - news 레이아웃을 flex로 꾸며보기
 
-<img src="../img/new-flex.png" width="400" />
+<img src="../img/news-flex.png" width="400" />
 
 > 좀 까다롭네;;... height도 줘야함..
 
@@ -2016,7 +2027,9 @@ body {
 ```
 
 - img 한번에 묶은다음, 배경에서 보이는 정도를 설정해서 해결하면됨, 이는 서버 성능의 문제임...
-- splice 이미지! 현업에서 많이씀.!
+- splite 이미지! 현업에서 많이씀.!
+
+> [TCP - 이미지 스프라이트](http://tcpschool.com/css/css_basic_imageSprites)
 
 #### CSS1
 
@@ -2061,9 +2074,13 @@ body {
 }
 .event-button-group button {
   width: 19px;
-  /* 높이를 버튼에 주면 안돼.... form은 그래서 까다로와
+  /* 높이를 버튼에 주면 안돼....
+   파이어폭스나 사파리에서 form요소마다 렌더링 하는 방법이 달라서 
+   내가 원하는 레이아웃이 안나올 수 있음
+   form은 그래서 까다로와!
    height: 18px; */
   height: 0px;
+  /* padding으로 글씨 밀어냄 */
   padding: 18px 0 0 0;
   /* 넘어가는 텍스트는 삭제해보림! */
   overflow: hidden;
@@ -2117,22 +2134,27 @@ body {
   background-color: white;
   border: 1px solid #aaa;
   border-radius: 5px;
+  /* line-height 25px + border 2px */
   height: 27px;
+  /* 넘치는건 짤라냄 */
   overflow: hidden;
   /* 효과 넣어주기. */
   transition: all ease 0.4s;
 }
 .related-list a {
+  /* a가 블럭요소가 되면, 부모 크기만큼 가로가 길어지고 따라서 글씨말고 빈공간 또한 hover됨. */
   display: block;
   line-height: 25px;
   /* 첫줄 들여쓰기 - 단락을 시작할 때... */
   text-indent: 1.5em;
 }
 .related-list a:focus {
+  /* 포커스 되는 효과가 약간 안쪽으로 3px들어와 경계 효과가 생성되게 함 */
   outline-offset: -3px;
 }
 .related-list:hover {
   /* auto 하면 transition 안들어감...ㅋ 
+  높이가 구체적으로 정해져 있지 않으면 애니메이션 효과를 넣어줄 수 없더라 ㅠㅠ
   height: auto; */
   height: 147px;
   padding: 10px 0;

@@ -1019,6 +1019,7 @@ dt {
   font-style: normal;
 }
 .event-button-group {
+  /* 그룹에 높이를 조야함~ */
   height: 18px;
   position: absolute;
   top: 0;
