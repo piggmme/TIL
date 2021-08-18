@@ -1648,6 +1648,7 @@ body {
   line-height: 1;
 }
 .search-form input {
+  /*크로스브라우징을 위해 폼요소의 스타일을 없앰.*/
   appearance: none;
   -webkit-appearance: none;
   border: 1px solid #aaa;
@@ -1673,6 +1674,8 @@ body {
 ```
 
 - `appearence: none`, `-webkit-appearance: none;`
+
+  > 크로스브라우징을 위해 폼요소의 스타일을 없앰.
 
 - native tag? (?? 찾아보기)
 
@@ -1843,6 +1846,8 @@ body {
 > title은 너무 오래된 가이드라인 기준...
 
 ### [Accordion pannel, Accordion header](https://www.w3.org/TR/wai-aria-practices-1.1/examples/accordion/accordion.html)
+
+- [accodiaon 정리](<https://www.wah.or.kr:444/_Upload/pds2/WAI-ARIA%20%EC%82%AC%EB%A1%80%EC%A7%91(%EC%98%A8%EB%9D%BC%EC%9D%B8%ED%8C%90).pdf>)
 
 > 사용자가 선택하면 펼쳐지는 UI, 기존것은 닫혀야함...
 
@@ -2164,3 +2169,342 @@ body {
 - height auto 하면 transition 안들어감!!
 
   > height를 명확하게 정해놔야함...
+
+<br>
+
+## 4-10. 인기 사이트
+
+### 인기사이트 구조
+
+<img src="../img/favorite-lay.png" width="400" />
+
+- section.favoirte 컨테이너 안에
+- 인기사이트 : h2
+- 더보기 : a
+- ol : li에 class no1~4 부여
+  - li안에 a로 사이트 연결
+  - 스프라이트 이미지
+    - 배경은 대체텍스트를 줄 수 없음.
+    - 의미가 있는 이미지는 인라인으로.
+    - 지금은 배경으로 이미지 처리할거임
+  - strong: 강한 강조, em: 일반적인 강조.
+    - 상승, 하락, 변동 없음(멈춤)
+  - ::before : 순위를 결정할거임.
+
+### HTML
+
+```html
+<section class="favorite">
+  <div class="gradient-box">
+    <h2 class="favorite-heading" id="favorite">
+      인기 <span class="accent-color">사이트</span>
+    </h2>
+    <ol class="favorite-list">
+      <li class="no1">
+        <a href="#">W3C</a>
+        <em class="up">상승</em>
+      </li>
+      <li class="no2">
+        <a href="#">Web Standards</a>
+        <em class="down">하락</em>
+      </li>
+      <li class="no3">
+        <a href="#">CSS ZenGarden</a>
+        <em class="stop">멈춤</em>
+      </li>
+      <li class="no4">
+        <a href="#">Zero Base</a>
+        <em class="up">상승</em>
+      </li>
+    </ol>
+    <a href="#" class="more" aria-labelledby="favorite"
+      ><span class="icon icon-plus"></span>더보기</a
+    >
+  </div>
+</section>
+```
+
+### CSS
+
+```css
+/* 인기 사이트 */
+.favorite {
+  margin-top: 20px;
+  position: relative;
+}
+.favorite-heading {
+  margin: 0 0 10px;
+  font-size: 0.9375rem;
+  font-weight: 700;
+}
+.favorite-list {
+  font-size: 0.9375rem;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  /*찾아보기*/
+  counter-reset: none;
+}
+.favorite-list li {
+  counter-increment: number;
+  margin-top: 5px;
+  position: relative;
+}
+.favorite-list li::before {
+  content: counter(number);
+  display: inline-block;
+  padding: 2px 5px;
+  margin-right: 5px;
+  background-color: #aaa;
+  color: white;
+  font-size: 0.75rem;
+  border-radius: 4px;
+  text-align: center;
+}
+.favorite .up,
+.favorite .down,
+.favorite .stop {
+  font-style: normal;
+  /* li를 기준으로 배치! */
+  position: absolute;
+  top: 50%;
+  right: 0;
+  margin-top: -5px;
+  background-image: url(./images/rank.png);
+  /* 이게 뭐지 */
+  text-indent: 9px;
+  /*줄바꿈 허용안함*/
+  white-space: nowrap;
+  overflow: hidden;
+  width: 9px;
+  height: 11px;
+}
+.favorite .stop {
+  background-position: 0 50%;
+}
+.favorite .down {
+  background-position: 0 100%;
+}
+.favorite .more {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+```
+
+- `conter-increment: number;` 찾아보기
+
+<br>
+
+## 5. 슬로건
+
+### 슬로건 구조
+
+<img src="../img/slogan-lay.png" width="400" />
+
+- article 클래스 slogan
+- h2.slogan-heading
+  - IR (image replacement) : 텍스트를 이미지로 바꿔 보여줌
+  - title: 웹카페에서 웹표준을
+  - 제목은 슬로건.
+- p.slogan-content
+  - 인용문 삽입. => `q[cite="url(출처)"]`
+- footer.a11y-hidden
+
+  - article의 footer임
+  - main은 본문에서 한번. header & footer은 섹션마다 여러번 작성가능
+
+- 가상 요소나 배경은 `cmd+a`로 잡히지 않음
+  > `q`로 들어간 ""도 안잡힘
+
+### HTML
+
+```html
+<article class="slogan">
+  <h2 class="slogan-heading" title="웹카페에서 웹표준을...">슬로건</h2>
+  <p class="slogan-content">
+    <q cite="https://w3.org/WAI"
+      >The power of the Web is in its universality, Access by everyone
+      regardless of disability is an essential aspect.</q
+    >
+
+    <span
+      >Tim Berners - Lee , W3C Director and inventor of the World Wide Web</span
+    >
+  </p>
+  <footer class="a11y-hidden">출처 : W3C, https://w3.org/WAI/</footer>
+</article>
+```
+
+### CSS
+
+```css
+/* 슬로건 */
+.slogan {
+  display: flex;
+  position: relative;
+  padding: 15px 100px 15px 180px;
+  font-size: 0.875rem;
+}
+.slogan-heading {
+  width: 110px;
+  height: 83px;
+  font-size: 0.875rem;
+  padding: 0;
+  margin: 0;
+  /* 블록에서 가운데 정렬 하기 위한 꼼수 */
+  text-align: center;
+  line-height: 83px;
+  position: absolute;
+  bottom: -25px;
+  left: 35px;
+}
+.slogan-heading:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url(./images/coffee.png);
+  background-repeat: no-repeat;
+}
+.slogan-content {
+  margin: 0;
+  padding: 0;
+  line-height: 1.5;
+  color: #988574;
+}
+.slogan-content q::after {
+  content: "";
+}
+.slogan-content q::before {
+  font-size: 3rem;
+  line-height: 1;
+  position: relative;
+  /* 3.5rem에서 절반정도만 내림. */
+  top: 0.5em;
+}
+```
+
+- h2 글씨 위에 그림을 올려버림. position: absolute 사용하면 됨.
+
+- 0.5em은 현재 글씨의 절반!
+
+<br>
+
+## 6. footer
+
+### 푸터 구조
+
+<img src="../img/footer-lay.png" width="400" />
+
+- footer
+- div.footer-inner
+- address : footer에서 사용하는 태그
+- copyright : [small tag](https://developer.mozilla.org/ko/docs/Web/HTML/Element/small)
+  > 덧붙이는 글, 저작권, 법률 표기 등 작은 텍스트.
+  - &copy; : `&copy;`
+- div.badge
+  - `img`
+
+### HTML
+
+```html
+<div class="footer-bg">
+  <footer class="footer">
+    <a href="#" class="footer-logo">
+      <img src="./assets/footer_logo.png" alt="web cafe" />
+    </a>
+    <ul class="guide-list">
+      <li><a href="#">회사 소개</a></li>
+      <li><a href="#">개인정보 보호정책</a></li>
+      <li><a href="#">이메일주소 무단수집 거부</a></li>
+      <li><a href="#">contact us</a></li>
+      <li><a href="#">site map</a></li>
+    </ul>
+    <address class="address">
+      <span>서울시 강남구 역삼동 718-5</span>
+      <span>전화 : 02-3429-5114</span>
+      <span
+        >email :
+        <a href="mailto:seulbinim@gmail.com?subject='문의사항'"
+          >seulbinim@gmail.com</a
+        ></span
+      >
+      <small class="copyright">
+        Copyright since &copy; 2010 by Web Cafe CORPORATION ALL RIGHTS RESERVED.
+      </small>
+      <div class="badge">
+        <img
+          class="badge-html"
+          src="./assets/html5_logo.png"
+          alt="최신 표준인 HTML5를 사용하여 마크업 했습니다."
+        />
+        <img
+          class="badge-css"
+          src="./assets/css3_logo.png"
+          alt="최신 기술인 CSS3를 활용하여 디자인 했습니다."
+        />
+      </div>
+    </address>
+  </footer>
+</div>
+```
+
+- [워드스페이싱](https://developer.mozilla.org/ko/docs/Web/CSS/word-spacing)
+- a : subject='문의사항'
+  > 직접 전화나 메일이 가게 할 수 있음.
+  > `<a href="tel:02345678"></a>`
+- small
+
+### CSS
+
+```css
+.footer-bg {
+  background: linear-gradient(#ccc 0%, #eee 35%, #eee 50%, #fff 100%);
+}
+.footer {
+  padding: 10px 100px 15px 180px;
+  position: relative;
+  font-size: 0.875rem;
+}
+.footer-logo {
+  position: absolute;
+  top: 35px;
+  left: 35px;
+}
+.badge {
+  position: absolute;
+  top: 10px;
+  right: 0;
+}
+.guide-list {
+  display: flex;
+  justify-content: space-between;
+  border-radius: 20px;
+  background-color: #7b8385;
+  margin: 0;
+  padding: 0 20px;
+  list-style-type: none;
+  color: white;
+  text-transform: uppercase;
+}
+.guide-list li {
+  padding: 2px;
+}
+.guide-list a {
+  display: block;
+  padding: 7px 10px;
+}
+.address {
+  font-style: normal;
+  margin: 15px 0 5px;
+}
+.copyright {
+  font-size: inherit;
+}
+```
+
+- `justify-content: space-evenly` 는 IE11에서 제공안함
+- `text-transform: uppercase;`
