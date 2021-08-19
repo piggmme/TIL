@@ -1,0 +1,52 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+.reset-box {
+  margin: 0;
+  padding: 0;
+}
+.reset-list {
+  margin: 0;
+  padding-left: 0;
+  list-style: none;
+}
+.a11y-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  clip: rect(0, 0, 0, 0);
+  clip-path: polygon(0 0, 0 0, 0 0);
+  overflow: hidden;
+}
+h1,
+h2,
+h3,
+h4 {
+  /* font-size: 100%;
+    font: inherit; */
+  font-size: 1em;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+a:focus {
+  outline-offset: -2px;
+}
+
+.fullsize-max {
+  max-width: 100%;
+  height: auto;
+}
+.fullsize {
+  width: 100%;
+  height: auto;
+}
+
+.button {
+  cursor: pointer;
+  border: 0;
+}

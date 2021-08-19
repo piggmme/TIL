@@ -1,0 +1,65 @@
+@import url(./base.css);
+
+/* 공통 */
+.container {
+  display: flex;
+  /* 행방향, 줄바꿈 허용 */
+  flex-flow: row wrap;
+  /* 여러줄의 경우엔 align-content/ 한줄일 경우엔 align-items */
+  align-content: flex-start;
+  /* 메인이 남는 영역 다 차지하게 하기위해서 */
+  min-height: 100vh;
+}
+.header,
+.navigation,
+.main,
+.footer {
+  min-height: 10vh;
+  /* 열 처럼 보임. */
+  width: 100%;
+}
+.header {
+  background-color: var(--yellow);
+}
+.navigation {
+  background-color: var(--pink);
+}
+.main {
+  background-color: var(--blue);
+}
+.content {
+  background-color: var(--coral);
+}
+.sidebar {
+  background-color: var(--violet);
+}
+.footer {
+  background-color: var(--tomato);
+}
+
+@media screen and (max-width: 767px) {
+  /* 여긴 모바일 영역 */
+}
+
+@media screen and (min-width: 768px) {
+  /* 여긴 데스크탑 영역 */
+  .container {
+    /* 최대로 커질수 잇는 너비 */
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .main {
+    display: flex;
+    /* 행방향, 줄바꿈 허용 */
+    flex-flow: row nowrap;
+    /* 메인이 남는 영역 다 차지하게 하기위해서 */
+    flex-grow: 1;
+    justify-content: space-between;
+  }
+  .content {
+    width: 78.125%;
+  }
+  .sidebar {
+    width: 19.53125%;
+  }
+}

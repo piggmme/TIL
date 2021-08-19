@@ -1,0 +1,164 @@
+/* 폰트는 먼저! */
+@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css);
+/* normalize css cdn - reset css */
+@import url(https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css);
+@import url(./reset.css);
+
+:root {
+  --gray: #e0e0e0;
+  --tomato: #cd5c5c;
+  --coral: #ed8e7c;
+  --green: #cdf3a2;
+  --violet: #9b72aa;
+  --pink: #ffc0cb;
+  --yellow: #ffe194;
+  --blue: #2e437c;
+  --cyan: #4ca1a3;
+
+  /* 변수의 재할당 */
+  --primary: var(--blue);
+}
+
+.body {
+  font-family: "SpoqaHanSansNeo", "sans-serif";
+}
+.container {
+  /* background-color: var(--gray); */
+}
+.header-container {
+  /* border-bottom: 1px solid var(--gray); */
+}
+/* 헤더 */
+.header {
+  /* background-color: var(--pink); */
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  /* height: 50px; */
+
+  /* 계속 연장되게 만들고 싶다. */
+  /* border-bottom: 1px solid var(--gray); */
+}
+/* 브랜드 로고 */
+.brand {
+  /* 라인하이트 문제를 폰트사이즈 1em으로 설정함. */
+  font-size: 1em;
+  background-color: var(--yellow);
+  width: 46.93333333333333%;
+  max-width: 200px;
+}
+.brand a {
+  display: inline-block;
+  padding: 1.125rem;
+}
+
+/* 모바일 버전 */
+@media screen and (max-width: 767px) {
+  .header {
+    justify-content: space-between;
+  }
+  .header .button-open-menu {
+    /* 버튼 드래그 못하게 막음 */
+    user-select: none;
+    padding: 0;
+    background-color: #fff;
+  }
+  .header .button-open-menu .ir {
+    display: block;
+    width: 3.125rem;
+    height: 3.125rem;
+    background-image: url(./../images/button-navigation.svg);
+    background-repeat: no-repeat;
+    /* 사이즈에 딱 맞는 버튼 이미지를 가져와서 사용하지 않아도 되지만,
+    만약에 버튼크기를 조정해야 하는경우는 아래를 삽입해야함. */
+    /* background-position: 50% 50%;
+    background-size: cover; */
+
+    transition: all 300ms ease;
+  }
+  .header .button-open-menu:hover .ir {
+    background-color: #f5f5f5;
+    box-shadow: 0 0 1px 1px #eee;
+  }
+  .navigation.is-active {
+    transform: translateX(0);
+  }
+  .navigation {
+    /* display: none; */
+    background-color: hsla(225, 57%, 30%, 0.9);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    color: #fff;
+    padding-top: 3.5rem;
+    /* 버튼 정렬
+    display: flex;
+    flex-flow: column nowrap; */
+    transform: translateX(105vw);
+    transition: all 0.4s ease;
+  }
+  .navigation li {
+    border-bottom: 1px solid hsla(225, 57%, 30%, 0.5);
+  }
+  .navigation a {
+    padding: 1rem;
+    display: block;
+    transition: all 0.4s ease-in-out;
+  }
+  .navigation a:hover,
+  .navigation a:focus {
+    background-color: var(--primary);
+  }
+  .button-close-menu {
+    /* flex로 버튼 정렬
+    align-self: flex-end;
+    order: -1; */
+    position: absolute;
+    top: 0.625rem;
+    right: 0.625rem;
+    padding: 0.5rem;
+    background-color: transparent;
+    color: inherit;
+    transition: all 0.4s ease-in-out;
+  }
+  .button-close-menu:hover,
+  .button-close-menu:focus {
+    transform: scale(1.5);
+  }
+}
+
+/* 데스크 버전 */
+@media screen and (min-width: 768px) {
+  .header {
+    max-width: 75em;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .brand {
+    /*180/768*/
+    margin-right: auto;
+  }
+  .button-open-menu,
+  .button-close-menu {
+    display: none;
+  }
+  .navigation ul {
+    display: flex;
+    flex-flow: row nowrap;
+  }
+  .navigation li {
+    margin-left: 0.5rem;
+  }
+  .is-selected {
+    font-weight: 700;
+  }
+  .navigation a {
+    color: var(--primary);
+    /* 패딩처리 용이하게 블록처리 */
+    display: block;
+    padding: 0.875rem 0;
+    /* margin: ; */
+  }
+}

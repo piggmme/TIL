@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="./images/favicon.ico" />
+    <link rel="stylesheet" href="./css/main.css" />
+    <title>음료 소개 - 이디야 커피</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header-container">
+        <div class="header" role="banner">
+          <h1 class="brand reset-box">
+            <a href="#">
+              <img
+                class="fullsize-max"
+                srcset="
+                  ./images/ediya-logo.png    1x,
+                  ./images/ediya-logo@2x.png 2x,
+                  ./images/ediya-logo@3x.png 3x
+                "
+                src="./images/ediya-logo.png"
+                alt="EDIYA COFFEE"
+              />
+            </a>
+          </h1>
+          <button
+            type="button"
+            class="button button-open-menu"
+            aria-label="메뉴 열기"
+            title="메뉴 열기"
+          >
+            <span class="ir"></span>
+          </button>
+          <div class="navigation is-active" role="navigation">
+            <h2 class="a11y-hidden">메인 메뉴</h2>
+            <ul class="reset-list">
+              <li><a href="#">로그인</a></li>
+              <li><a href="#">회원가입</a></li>
+              <li><a href="#">이디야 디자인</a></li>
+              <li class="is-selected"><a href="#">이디야 음료</a></li>
+              <li><a href="#">이대야 뉴스</a></li>
+              <li><a href="#">매장찾기</a></li>
+            </ul>
+            <button
+              class="button button-close-menu"
+              type="button"
+              aria-label="메뉴 닫기"
+            >
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="main" role="main">메인 콘텐츠</div>
+      <div class="footer a11y-hidden" role="contentinfo"></div>
+    </div>
+  </body>
+</html>

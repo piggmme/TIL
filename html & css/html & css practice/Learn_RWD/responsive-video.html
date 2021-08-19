@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>반응형 미디어(video 요소)</title>
+    <link rel="stylesheet" href="./css/responsive.css" />
+  </head>
+  <body>
+    <h1>반응형 미디어(video 요소)</h1>
+    <figure>
+      <!-- 이미지하고 비디오의 css처리가 좀 다르다. -->
+      <!-- 비디오를 다룰 때 바깥에 클래스를 설정함. -->
+      <video class="fullsize" poster="./video/poster.jpg">
+        <!-- source 여러개해도 하나만 렌더링됨 -->
+        <source src="./video/Google Developer Stories.mov" type="video/mov" />
+        <source src="./video/Google Developer Stories.mp4" type="video/mov" />
+        <source src="./video/Google Developer Stories.ogg" type="video/mov" />
+        <source src="./video/google-developer-stories.webm" type="video/mov" />
+        <!-- 자막 -->
+        <track
+          src="./video/google-developer-stories-subtitles-en.vtt"
+          kind="captions"
+          srclang="en"
+          label="English Caption"
+        />
+      </video>
+    </figure>
+  </body>
+</html>

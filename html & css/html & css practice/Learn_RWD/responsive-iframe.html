@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>반응형 미디어(iframe 요소)</title>
+    <link rel="stylesheet" href="./css/responsive.css" />
+  </head>
+  <body>
+    <h1>반응형 미디어(iframe 요소)</h1>
+    <figure>
+      <!-- 아이프레임은 컨테이너가 필요하다. -->
+      <div class="iframe-container iframe16">
+        <!-- 비디오 비율 = 0.5625 = 560:315 = 16:9 -->
+        <!-- iframe16 = 16:9 비율입니다. -->
+        <iframe
+          class="fullsize"
+          src="https://www.youtube.com/embed/lInsaDkR9Nc"
+          aria-label="카야 생일 영상"
+          frameborder="0"
+          allowfullscreen
+        ></iframe>
+      </div>
+    </figure>
+  </body>
+</html>

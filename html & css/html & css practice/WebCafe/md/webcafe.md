@@ -2292,7 +2292,7 @@ body {
 }
 ```
 
-- `conter-increment: number;` 찾아보기
+- [`CSS conter`](https://developer.mozilla.org/ko/docs/Web/CSS/CSS_Lists_and_Counters/Using_CSS_counters) 찾아보기
 
 <br>
 
