@@ -6,6 +6,9 @@
 
 :root {
   --gray: #e0e0e0;
+  --silver: #f5f5f5;
+  --black: #0f0f0f;
+  --black2: #464646;
   --tomato: #cd5c5c;
   --coral: #ed8e7c;
   --green: #cdf3a2;
@@ -43,7 +46,7 @@
 .brand {
   /* 라인하이트 문제를 폰트사이즈 1em으로 설정함. */
   font-size: 1em;
-  background-color: var(--yellow);
+  /* background-color: var(--yellow); */
   width: 46.93333333333333%;
   max-width: 200px;
 }
@@ -52,8 +55,242 @@
   padding: 1.125rem;
 }
 
+/* 메뉴 */
+.ediya-menu {
+  /* background-color: yellow; */
+  /* 
+  너비 90.4%
+  양옆 공백 1.125rem 
+  */
+
+  display: flex;
+  /* 줄바꿈 허용, 가로로 */
+  flex-flow: row wrap;
+  /* gap을 flex에서 사용 */
+  gap: 1.125rem;
+}
+.ediya-menu__item {
+  flex: 1 1 20%;
+  /* 1. position: relative; */
+  position: relative;
+  /* 2. 그리드 
+  display: grid;*/
+  grid-template-columns: 1fr;
+  grid-template-rows: auto;
+}
+.ediya-menu__item a {
+  background-color: var(--silver);
+  display: block;
+  color: var(--black2);
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 1;
+  grid-row-end: 2;
+}
+.ediya-menu__item figure {
+  margin: 0;
+  padding-top: 1.25rem;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+}
+.ediya-menu__item img {
+  /* 그리드로 쓸 때 transform은 안됨...
+  transform: scale(0.86); */
+  transition: all 400ms ease;
+  /* 사용자 드래그 금지 */
+  user-select: none;
+  -webkit-user-select: none;
+}
+.ediya-menu__item figcaption {
+  margin-bottom: 2.8125rem;
+}
+.ediya-menu__item a:hover img {
+  transform: scale(1);
+}
+
+.ediya-menu__item--detail {
+  opacity: 0;
+  background-color: rgba(255, 255, 255, 0.5);
+  /* 1. position 
+  부모 li를 기준으로! */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  /* 2. 그리드로 */
+  /* grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 1;
+  grid-row-end: 2; */
+
+  border: 1px solid var(--gray);
+  padding: 1.875rem 1.25rem;
+
+  /* 그리드 배치 */
+  display: flex;
+  flex-flow: column nowrap;
+
+  /* 효과 */
+  transition: all 0.4s ease;
+}
+.ediya-menu__item--detail.is-active {
+  opacity: 1;
+}
+.ediya-menu__item--name {
+  color: #202022;
+  font-size: 1.125rem;
+  /* 현재 글씨 색 currentColor */
+  border-bottom: 2px solid currentColor;
+  padding-bottom: 1.125rem;
+}
+.ediya-menu__item--name [lang="en"] {
+  /* 속성으로 접근 */
+  display: block;
+  font-size: 0.875rem;
+  color: var(--gray);
+}
+.ediya-menu__item--detail p {
+  line-height: 1.5;
+  /* 영양성분 하단에 배치하기 위해 ... */
+  flex-grow: 1;
+}
+/* 영양 성분 파트 */
+.ediya-menu__item--multi-column {
+  background-color: var(--silver);
+  /* 단 나누기 */
+  column-count: 2;
+  column-rule: 1px solid var(--black2);
+
+  /* 1. 포지션으로 배치 */
+  /* position: absolute;
+  left: 0;
+  width: 100%;
+  bottom: 0; */
+
+  /* 2. 음수마진으로 배치 */
+  margin: 0 -1.25rem -1.875rem;
+}
+.ediya-menu__item--multi-column dl {
+  margin: 0;
+  overflow: hidden;
+}
+.ediya-menu__item--multi-column dt {
+  float: left;
+  width: 40%;
+  margin-left: 10%;
+  margin-top: 0.5rem;
+}
+.ediya-menu__item--multi-column dd {
+  margin-left: 0;
+  float: left;
+  width: 40%;
+  margin-right: 10%;
+  margin-top: 0.5rem;
+}
+.ediya-menu__item--detail .button-close-panel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0.5rem 1rem;
+  font-size: 1.5rem;
+  background-color: transparent;
+  color: var(--gray);
+}
+
+/* 애니메이션 */
+.brand {
+  opacity: 0;
+  transform: translateX(-50%);
+  animation-name: move;
+  animation-duration: 300ms;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-in-out;
+}
+/* 얘는 모바일영역인데.. 가독성으로 걍 여기다 작성했음. 원래는 모바일에 들어가야함 */
+.button-open-menu {
+  opacity: 0;
+  transform: translateX(50%);
+  animation-name: move;
+  animation-duration: 500ms;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-in-out;
+  animation-delay: 300ms;
+}
+/* 모바일 영역임... */
+.header-container {
+  opacity: 0;
+  transform: translateY(50%);
+  animation: move 600ms forwards;
+}
+.ediya-menu__item {
+  opacity: 0;
+  transform: translateY(50%);
+  animation: move;
+  animation-fill-mode: forwards;
+}
+.ediya-menu__item:nth-child(1) {
+  animation-duration: 800ms;
+}
+.ediya-menu__item:nth-child(2) {
+  animation-duration: 1200ms;
+}
+.ediya-menu__item:nth-child(3) {
+  animation-duration: 1400ms;
+}
+.ediya-menu__item:nth-child(4) {
+  animation-duration: 1600ms;
+}
+@keyframes move {
+  0% {
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* 내코드 */
+/* .brand {
+  opacity: 0;
+  transform: translateX(-50%);
+  animation: slide 0.7s ease forwards;
+}
+.button-open-menu {
+  opacity: 0;
+  transform: translateX(50%);
+  animation: slide 0.7s ease forwards;
+}
+.ediya-menu {
+  counter-reset: number;
+}
+.ediya-menu__item {
+  counter-increment: number;
+  opacity: 0;
+  transform: translateY(50%);
+  animation: slide 0.5s ease-in-out forwards;
+}
+@keyframes slide {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0%);
+  }
+} */
+
 /* 모바일 버전 */
 @media screen and (max-width: 767px) {
+  .header-container {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background-color: #fff;
+  }
   .header {
     justify-content: space-between;
   }
@@ -84,8 +321,14 @@
     transform: translateX(0);
   }
   .navigation {
-    /* display: none; */
-    background-color: hsla(225, 57%, 30%, 0.9);
+    display: none;
+    /* 
+    menu를 relative로, 이미지를 transform으로 작성해서
+    nav보다 메뉴가 더 위에 떠있는 버그가 발생!
+    이는 추후에 해결하자
+     */
+    z-index: 100;
+    background-color: hsla(225, 57%, 30%, 0.5);
     position: fixed;
     top: 0;
     left: 0;
@@ -98,6 +341,9 @@
     flex-flow: column nowrap; */
     transform: translateX(105vw);
     transition: all 0.4s ease;
+
+    /* 겹쳐지는 뒷배경이 흐릿해짐 */
+    backdrop-filter: blur(20px);
   }
   .navigation li {
     border-bottom: 1px solid hsla(225, 57%, 30%, 0.5);
@@ -127,6 +373,11 @@
   .button-close-menu:focus {
     transform: scale(1.5);
   }
+
+  /* 메뉴 */
+  .ediya-drink {
+    padding: 1.125rem;
+  }
 }
 
 /* 데스크 버전 */
@@ -144,6 +395,9 @@
   .button-close-menu {
     display: none;
   }
+  .navigation {
+    padding-right: 1.125rem;
+  }
   .navigation ul {
     display: flex;
     flex-flow: row nowrap;
@@ -160,5 +414,13 @@
     display: block;
     padding: 0.875rem 0;
     /* margin: ; */
+  }
+
+  /* 메뉴 */
+  .ediya-drink {
+    padding: 1.875rem 1.125rem;
+    max-width: 48rem;
+    margin-left: auto;
+    margin-right: auto;
   }
 }

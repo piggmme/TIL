@@ -1,5 +1,12 @@
 # 이디야
 
+## 유용한 사이트
+
+- [WHATWG](https://html.spec.whatwg.org/)
+- [W3 wai-aria best practices](https://www.w3.org/TR/wai-aria-practices-1.1/#dialog_modal)
+- [CSS 방법론 - bem smacss oocss](https://wit.nts-corp.com/2015/04/16/35389)
+- [backdrop fillter](https://css-tricks.com/almanac/properties/b/backdrop-filter/)
+
 ## 기본 HTML 틀 설정
 
 ### HTML head
@@ -370,3 +377,326 @@ a:focus {
 ```
 
 ---
+
+## main
+
+### 일반적으로 회사에서는 이렇게 구현
+
+<img src="./img/general.png" width="400">
+
+### 우리는 이렇게 구현할 것
+
+<img src="./img/figure.png" width="400">
+
+- `button`은 `figure`를 포함하지 못함.
+
+- `a`는 `transparent`모델이라 블록/인라인 모드 포함할 수 있음.
+
+  > `button`보다 사용범위가 넓다.
+  > `role="button"`을 설정하여, 구현할 수 있음!
+  > `figure`를 포함하여 설계
+
+  > 속성은 한번 주면 변하지 않는데, 상태는 변한다.
+  > `aria-pressed="false"` 아직 눌러지지 않은 상태!
+  > `aria-pressed="true"` 로 js로 바꿔줘야함.
+
+#### 모달은? - [aria-modal MDN](https://developer.mozilla.org/ko/docs/Web/Accessibility/ARIA/Roles/dialog_role)
+
+<img src="./img/modal.png" width="400">
+
+- `role="dialog"`
+- `aria-describedby = "dialog-heading"`
+
+```html
+<div
+  role="dialog"
+  aria-labelledby="dialog1Title"
+  aria-describedby="dialog1Desc"
+>
+  <h2 id="dialog1Title">귀하의 개인정보가 성공적으로 갱신되었습니다.</h2>
+  <p id="dialog1Desc">
+    <a href="/account">개인정보 관리</a> 페이지에서 언제든지 개인정보를 수정할
+    수 있습니다.
+  </p>
+  <button>닫기</button>
+</div>
+```
+
+### a를 감싸는 li
+
+<img src="./img/main-lay.png" width="400">
+
+<br>
+
+### HTML
+
+- [CSS 방법론 - bem smacss oocss](https://wit.nts-corp.com/2015/04/16/3538)
+
+- `ediya-menu__item--active`
+
+  > `__` : block과 요소를 분리
+  > `--` : 상태를 표시
+
+- `hidden`
+
+- `bold span`: span을 써야할 때, bold로 강조할 수 있음
+
+- `is-2`: colunm 관련 속성
+
+### CSS
+
+- webp 포멧
+  > 압축률이 높고 화질이 좋은 파일 포멧이 많이 등장하지만 그걸 지원하는 브라우저가 많이 없다면?!
+  > 그래도 해당 포멧을 지원하는 브라우저에서는 적은 용량으로 렌더링 할 수 있도록 제공하되, 낮은 브라우저한테도 대안 이미지를 제공하자
+
+#### 메뉴
+
+- 공통부분
+
+```css
+/* 메뉴 */
+.ediya-menu {
+  /* background-color: yellow; */
+  /* 
+  너비 90.4%
+  양옆 공백 1.125rem 
+  */
+
+  display: flex;
+  /* 줄바꿈 허용, 가로로 */
+  flex-flow: row wrap;
+  /* gap을 flex에서 사용 */
+  gap: 1.125rem;
+}
+.ediya-menu__item {
+  flex: 1 1 20%;
+  /* 1. position: relative; */
+  position: relative;
+  /* 2. 그리드 
+  display: grid;*/
+  grid-template-columns: 1fr;
+  grid-template-rows: auto;
+}
+.ediya-menu__item a {
+  background-color: var(--silver);
+  display: block;
+  color: var(--black2);
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 1;
+  grid-row-end: 2;
+}
+.ediya-menu__item figure {
+  margin: 0;
+  padding-top: 1.25rem;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+}
+.ediya-menu__item img {
+  /* 그리드로 쓸 때 transform은 안됨...
+  transform: scale(0.86); */
+  transition: all 400ms ease;
+  /* 사용자 드래그 금지 */
+  user-select: none;
+  -webkit-user-select: none;
+}
+.ediya-menu__item figcaption {
+  margin-bottom: 2.8125rem;
+}
+.ediya-menu__item a:hover img {
+  transform: scale(1);
+}
+
+.ediya-menu__item--detail {
+  opacity: 0;
+  background-color: rgba(255, 255, 255, 0.5);
+  /* 1. position 
+  부모 li를 기준으로! */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  /* 2. 그리드로 */
+  /* grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 1;
+  grid-row-end: 2; */
+
+  border: 1px solid var(--gray);
+  padding: 1.875rem 1.25rem;
+
+  /* 그리드 배치 */
+  display: flex;
+  flex-flow: column nowrap;
+
+  /* 효과 */
+  transition: all 0.4s ease;
+}
+.ediya-menu__item--detail.is-active {
+  opacity: 1;
+}
+.ediya-menu__item--name {
+  color: #202022;
+  font-size: 1.125rem;
+  /* 현재 글씨 색 currentColor */
+  border-bottom: 2px solid currentColor;
+  padding-bottom: 1.125rem;
+}
+.ediya-menu__item--name [lang="en"] {
+  /* 속성으로 접근 */
+  display: block;
+  font-size: 0.875rem;
+  color: var(--gray);
+}
+.ediya-menu__item--detail p {
+  line-height: 1.5;
+  /* 영양성분 하단에 배치하기 위해 ... */
+  flex-grow: 1;
+}
+/* 영양 성분 파트 */
+.ediya-menu__item--multi-column {
+  background-color: var(--silver);
+  /* 단 나누기 */
+  column-count: 2;
+  column-rule: 1px solid var(--black2);
+
+  /* 1. 포지션으로 배치 */
+  /* position: absolute;
+  left: 0;
+  width: 100%;
+  bottom: 0; */
+
+  /* 2. 음수마진으로 배치 */
+  margin: 0 -1.25rem -1.875rem;
+}
+.ediya-menu__item--multi-column dl {
+  margin: 0;
+  overflow: hidden;
+}
+.ediya-menu__item--multi-column dt {
+  float: left;
+  width: 40%;
+  margin-left: 10%;
+  margin-top: 0.5rem;
+}
+.ediya-menu__item--multi-column dd {
+  margin-left: 0;
+  float: left;
+  width: 40%;
+  margin-right: 10%;
+  margin-top: 0.5rem;
+}
+.ediya-menu__item--detail .button-close-panel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0.5rem 1rem;
+  font-size: 1.5rem;
+  background-color: transparent;
+  color: var(--gray);
+}
+```
+
+- 모바일버전
+
+```css
+@media screen and (max-width: 767px) {
+  .header-container {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background-color: #fff;
+  }
+  .navigation {
+    /* 
+    menu를 relative로, 이미지를 transform으로 작성해서
+    nav보다 메뉴가 더 위에 떠있는 버그가 발생!
+    이는 추후에 해결하자
+     */
+    z-index: 100;
+    /* 겹쳐지는 뒷배경이 흐릿해짐 */
+    backdrop-filter: blur(20px);
+  }
+  /* 메뉴 */
+  .ediya-drink {
+    padding: 1.125rem;
+  }
+}
+```
+
+- 데스크탑 버전
+
+```css
+@media screen and (min-width: 768px) {
+  .navigation {
+    padding-right: 1.125rem;
+  }
+  /* 메뉴 */
+  .ediya-drink {
+    padding: 1.875rem 1.125rem;
+    max-width: 48rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+```
+
+#### 애니메이션
+
+```css
+/* 애니메이션 */
+.brand {
+  opacity: 0;
+  transform: translateX(-50%);
+  animation-name: move;
+  animation-duration: 300ms;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-in-out;
+}
+/* 얘는 모바일영역인데.. 가독성으로 걍 여기다 작성했음. 원래는 모바일에 들어가야함 */
+.button-open-menu {
+  opacity: 0;
+  transform: translateX(50%);
+  animation-name: move;
+  animation-duration: 500ms;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-in-out;
+  animation-delay: 300ms;
+}
+/* 모바일 영역임... */
+.header-container {
+  opacity: 0;
+  transform: translateY(50%);
+  animation: move 600ms forwards;
+}
+.ediya-menu__item {
+  opacity: 0;
+  transform: translateY(50%);
+  animation: move;
+  animation-fill-mode: forwards;
+}
+.ediya-menu__item:nth-child(1) {
+  animation-duration: 800ms;
+}
+.ediya-menu__item:nth-child(2) {
+  animation-duration: 1200ms;
+}
+.ediya-menu__item:nth-child(3) {
+  animation-duration: 1400ms;
+}
+.ediya-menu__item:nth-child(4) {
+  animation-duration: 1600ms;
+}
+@keyframes move {
+  0% {
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+```
