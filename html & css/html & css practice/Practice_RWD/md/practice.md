@@ -2,6 +2,8 @@
 
 ## 기본 틀 설정
 
+<img src="./img/1.gif" width="500">
+
 ### HTML
 
 ```html
@@ -165,7 +167,7 @@
       <img class="fullsize-max" src="./images/lezhin-narrow.webp" alt="" />
     </figure> -->
 <img
-  src="./images/lezhin-wide.webp"
+  srcset="./images/lezhin-wide.webp"
   src="./images/medium-1024.jpg"
   alt=""
   class="fullsize-max"
