@@ -206,9 +206,8 @@ figure {
 ```html
 <figure>
   <picture>
-    /* source srcset으로, 브라우저에게 너의 배율에 맞는 이미지를 골라서
-    출력하라고 알려줌. 이는 크롬에서만 동작하므로 src로 이미지 경로를 추가로 또
-    삽입해야 다른 브라우저에서 이미지를 출력할 수 있다. */
+    <!-- source srcset으로, 브라우저에게 너의 배율에 맞는 이미지를 골라서 출력하라고 알려줌. 
+    이는 크롬에서만 동작하므로 src로 이미지 경로를 추가로 또 삽입해야 다른 브라우저에서 이미지를 출력할 수 있다. -->
     <source
       srcset="/images/banner-narrow.jpg 1x, /images/banner-narrow@2x.jpg 2x"
       media="(max-width:767px)"
@@ -242,9 +241,9 @@ figure {
   <video class="fullsize" poster="./video/poster.jpg">
     <!-- source 여러개해도 하나만 렌더링됨 -->
     <source src="./video/Google Developer Stories.mov" type="video/mov" />
-    <source src="./video/Google Developer Stories.mp4" type="video/mov" />
-    <source src="./video/Google Developer Stories.ogg" type="video/mov" />
-    <source src="./video/google-developer-stories.webm" type="video/mov" />
+    <source src="./video/Google Developer Stories.mp4" type="video/mp4" />
+    <source src="./video/Google Developer Stories.ogg" type="video/ogg" />
+    <source src="./video/google-developer-stories.webm" type="video/webm" />
     <!-- 자막 -->
     <track
       src="./video/google-developer-stories-subtitles-en.vtt"
@@ -261,6 +260,8 @@ figure {
 > source는 브라우저 뷰포트에 맞춰서 하나의 리소스만 렌더링하도록 함
 
 - `poster`속성은 썸네일!
+
+- `type` 은 비디오의 타입을 설정
 
 ## iframe
 
