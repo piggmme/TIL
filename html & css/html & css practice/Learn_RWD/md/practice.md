@@ -125,6 +125,7 @@
   height: 100vh;
 }
 .main {
+  /* 나머지 영역을 제외하고 차지한다. */
   flex-grow: 1;
 }
 ```
@@ -181,6 +182,7 @@ figure {
 }
 .fullsize {
   /* 반응형 아님 */
+  /* 부모 컨테이너의 너비를 상속받아 그 이상으로 커지지 않음. */
   width: 100%;
   height: auto;
 }
@@ -202,6 +204,9 @@ figure {
 ```html
 <figure>
   <picture>
+    /* source srcset으로, 브라우저에게 너의 배율에 맞는 이미지를 골라서
+    출력하라고 알려줌. 이는 크롬에서만 동작하므로 src로 이미지 경로를 추가로 또
+    삽입해야 다른 브라우저에서 이미지를 출력할 수 있다. */
     <source
       srcset="/images/banner-narrow.jpg 1x, /images/banner-narrow@2x.jpg 2x"
       media="(max-width:767px)"
@@ -214,6 +219,15 @@ figure {
   </picture>
 </figure>
 ```
+
+### [picture 태그](http://tcpschool.com/html-tags/picture)
+
+- `<img>`요소의 다중 이미지 리소스를 위한 컨테이너를 정의할 때 사용함.
+
+> 서로다른 디스플레이나 기기에서 해당 뷰포트에 알맞게 채워질 수 있도록 여러 개의 이미지 중에서 적절한 이미지를 사용할 수 있도록 함.
+> 반응형 디자인에서 주로 사용
+
+브라우저는 `<source>`요소들의 속성값을 각각 확인해가며 조건을 만족하는 첫번째 `<source>`요소를 사용하고 나머지 `<source>`요소는 무시함. 이때 `<img>`는 `<picture>` 요소중에서 가장 마지막에 위치해야한다.
 
 - [ficture pollifill](https://github.com/scottjehl/picturefill)
 
@@ -240,7 +254,11 @@ figure {
 </figure>
 ```
 
-- source 여러개해도 하나만 렌더링됨
+- `<source>` 여러개해도 하나만 렌더링됨
+
+> source는 브라우저 뷰포트에 맞춰서 하나의 리소스만 렌더링하도록 함
+
+- `poster`속성은 썸네일!
 
 ## iframe
 
@@ -261,7 +279,7 @@ figure {
 </figure>
 ```
 
-- 옛날 반응형
+- 옛날 반응형 : `padding` 트릭
 
 ```css
 /* iframe 비디오 크기 컨테이너에 맞추기 - 옛날버전 */
@@ -288,7 +306,7 @@ figure {
 }
 ```
 
-- 모던 반응형
+- 모던 반응형 : `aspect-ratio`
 
 ```css
 /* iframe 비디오 크기 컨테이너에 맞추기 
@@ -300,13 +318,11 @@ aspect-ratio: 4 / 3;
 */
 .iframe-container {
   width: 100%;
-  /* height: 0; */
   position: relative;
+  /* 높이를 가짐! */
 }
-/* 컨테이너가 높이를 가지지 않으니 패딩 트릭을 사용함. */
 .iframe4 {
   aspect-ratio: 4 / 3;
-  /* 너비 기준 75%임. */
 }
 .iframe16 {
   aspect-ratio: 16 / 9;
