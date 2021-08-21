@@ -16,17 +16,17 @@
 
 ### Pingdom을 이용하여 네이버 확인
 
-<img scr="./img/naver1.png" width="400">
+<img src="./img/naver1.png" width="400">
 
-<img scr="./img/naver2.png" width="400">
+<img src="./img/naver2.png" width="400">
 
-<img scr="./img/naver3.png" width="400">
+<img src="./img/naver3.png" width="400">
 
 ## 이미지 최적화를 해야하는 이유
 
 웹 페이지에서 대부분의 용량을 차지하는 것은 이미지이다.
 
-<img scr="https://miro.medium.com/max/660/1*jvoa4e5EhEav-SwsYjNbQw.png" width="400">
+<img src="https://miro.medium.com/max/660/1*jvoa4e5EhEav-SwsYjNbQw.png" width="400">
 
 이미지 최적화를 한다면
 
