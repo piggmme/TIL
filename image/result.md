@@ -35,7 +35,7 @@
 
 ### 예시1 실제 사진
 
-<img src="./img/ex.png">
+<img src="./img/ex.png" width="300">
 
 아래의 규격 4032 × 3024 이미지를 JPG와 PNG로 저장했을 때 용량차이는 다음과 같다.
 
@@ -46,7 +46,7 @@ PNG가 JPG의 3.6배 용량이 더 크다.
 
 ### 예시2 만들어진 이미지
 
-<img src="./img/ex2.png">
+<img src="./img/ex2.png" width="300">
 
 아래의 규격 2224 × 1668 이미지를 JPG와 PNG로 저장했을 때 용량차이는 다음과 같다.
 
