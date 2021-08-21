@@ -14,6 +14,8 @@
 
 - [Improving mobile page speed by 200% using SVG and Nano](https://medium.com/@Vectaio/improving-mobile-page-speed-by-200-using-svg-and-nano-a0f67ece95fa)
 
+- [이미지 최적화](https://sw-ryu.tistory.com/80)
+
 ### Pingdom을 이용하여 네이버 확인
 
 <img src="./img/naver1.png" width="400">
