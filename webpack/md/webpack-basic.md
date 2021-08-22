@@ -153,7 +153,167 @@ JavaScript 모듈 내에서 CSS 파일을 import 하려면 style-loader와 css-l
 
 <br>
 
-## Output 설정
+## [Output 설정](https://webpack.kr/configuration/output/)
+
+두 개의 html파일을 만들어, 그 것과 연결된 js파일도 따로 생성.
+그 다음 각각을 번들링 하기 위해서는 다음과 같이한다.
+
+- webpack.config.js
+
+```js
+const path = require("path");
+
+module.exports = {
+  // 번들링 할 두개의 js파일들
+  entry: {
+    index: "./source/index.js",
+    about: "./source/about.js",
+  },
+  output: {
+    path: path.resolve(__dirname, "public"),
+    filename: "[name]_bundle.js", // entry에서 두 개의 파일을 [name]변수로 받아옴.
+  },
+  module: {
+    rules: [
+      {
+        test: /\.css$/i,
+        use: ["style-loader", "css-loader"],
+      },
+    ],
+  },
+};
+```
+
+- html
+
+```html
+<html>
+  <head> </head>
+  <body>
+    <h1>Hello, Webpack</h1>
+    <div id="root"></div>
+    <!-- 번들링 한 최종 파일을 연결 -->
+    <script src="./public/index_bundle.js"></script>
+    <a href="./about.html">about</a>
+  </body>
+</html>
+```
+
+- index.js
+
+```js
+// 번들링 하기 위한 js파일들을 index.js파일에 참조시켜놓음
+import hello_word from "./hello.js";
+import world_word from "./world.js";
+import css from "./style.css";
+document.querySelector("#root").innerHTML = hello_word + " " + world_word;
+console.log("css", css);
+```
+
+## [플러그인의 도입](https://webpack.kr/plugins/)
+
+로더는 모듈을 최종적인 아웃풋으로 만들어가는 과정에서 사용하는 것.
+
+만들어진 최종적인 결과물을 변형하는 것이 플러그인.
+
+플러그인은 더 복합적이고 자유로운 일을 많이할 수 있다.
+
+플러그인은 플러그인 마다 사용방법이 제각각 다르다.
+
+### [HtmlWebpackPlugin](https://webpack.kr/plugins/html-webpack-plugin/)
+
+- install
+
+npm install --save-dev html-webpack-plugin
+
+- webpack.config.js
+
+```js
+const path = require("path");
+// html webpack plugin
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+
+module.exports = {
+  entry: {
+    index: "./source/index.js",
+    about: "./source/about.js",
+  },
+  output: {
+    path: path.resolve(__dirname, "public"),
+    filename: "[name]_bundle.js",
+  },
+  module: {
+    rules: [
+      {
+        test: /\.css$/i,
+        use: ["style-loader", "css-loader"],
+      },
+    ],
+  },
+  // plugins 추가
+  plugins: [
+    new HtmlWebpackPlugin({
+      // source에 있는 index.html를 가지고 번들러로 합쳐져
+      template: "./source/index.html",
+      // 다음과 같은 index.html로 만들어짐
+      filename: "./index.html",
+      // html에 연결되는 js파일을 하나로 결정해줌
+      chunks: ["index"],
+    }),
+    new HtmlWebpackPlugin({
+    template: "./source/about.html",
+    filename: "./about.html",
+    chunks: ["about"],
+  ],
+};
+```
+
+- `npx webpack` 으로 실행하면.. 다음과 같은 결과
+
+      - public/about_bundle.js
+      - public/index_bundle.js
+      - public/index.html
+      ```html
+      <html>
+        <head>
+            <script defer="defer" src="index_bundle.js"></script>
+        </head>
+        <body>
+            <h1>Hello, Webpack</h1>
+            <div id="root"></div>
+            <a href="./about.html">about</a>
+        </body>
+        </html>
+
+      ```
+
+## 자동화
+
+`npx webpack --watch`
+
+위의 명령어를 입력하면, 파일을 수정했을 때 자동으로 컴파일해서 번들링됨
+
+## npm 패키지 사용
+
+- `npm install lodash`
+
+lodash라는 파일이 생성됨
+
+- index.js
+
+```js
+import hello_word from "./hello.js";
+import world_word from "./world.js";
+// lodash 추가
+import _ from "lodash";
+import css from "./style.css";
+// lodash로 다음과같이 추가
+document.querySelector("#root").innerHTML = _.join(
+  [hello_word, world_word],
+  " "
+);
+console.log("css", css);
+```
 
 ---
 
