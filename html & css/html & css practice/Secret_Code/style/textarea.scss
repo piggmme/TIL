@@ -1,0 +1,94 @@
+@import 'base';
+@import 'colors';
+@import 'functions';
+@import 'form';
+
+// textarea 요소의 기본 에이전트 스타일 저거
+.form-textarea__textarea{
+  appearance: none;
+
+  // 포커스 시 아웃라인 제거 후 추후 border 색상으로 재정의
+  &:focus{
+    outline: 0;
+  }
+}
+
+// .form-input과 .form-textarea 공통
+.form-input__input,
+.form-textarea__textarea{
+  display: block;
+  padding: 0 rem(16px);
+  width: 100%;
+  height: 48px;
+  border-radius: 4px;
+  border: 1px solid $form-border-color;
+  background: $form-bg-color;
+  color: $form-text-color;
+  font-size: rem(14px);
+  
+  &::placeholder,
+  &:-ms-input-placeholder{
+    color: $form-placeholder-color;
+  }
+
+  &::-ms-clear,
+  &::-webkit-search-cancel-button,
+  &::-webkit-search-results-button{
+    display: none;
+  }
+
+  &::-ms-reveal{
+    display: none;
+  }
+
+  &:not(:read-only):not([readonly]):not(:disabled):not(.error){
+   
+    &:hover{
+      border-color: $form-border-hover-color;
+    }
+    &:focus{
+      border-color: $form-border-focus-color;
+    }
+  }
+
+  &:read-only,
+  &[readonly]{
+    background-color: $form-bg-readonly-color;
+  }
+
+  &:disabled{
+    background-color: $form-bg-disabled-color;
+    color: $form-text-disabled-color;
+    cursor: not-allowed;
+  }
+
+  &.error{
+    border-color: $form-error-color;
+    color: $form-error-color;
+    
+    & + .error-message {
+      display: block;
+    }
+  }
+}
+
+// .form-textarea 스타일링
+// https://forum.whale.naver.com/ 웨일 브라우저 lab에서 스크롤바 이슈를 찾아볼 것
+.form-textarea__textarea{
+  // 기존 .form-input의 스타일 재정의
+  padding: rem(16px);
+  height: auto;
+  // textarea에서 resize 속성에 horizontal/vertical로 설정할 수도 있음
+  // 다만 resize 속성은 IE에서는 조정이 불가능 함.
+  resize: none;
+
+// 스크롤의 경우 -webkit- 기반의 브라우저만 스타일링이 가능함.
+  &::-webkit-scrollbar {
+      width: 4px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 2px;
+    background-color: rgba(black, 0.2);
+  }
+}

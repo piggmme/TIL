@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+    <title>03-form-checkbox</title>
+    <link rel="stylesheet"
+          href="./css/checkbox.css">
+  </head>
+
+  <body>
+    <div class="form-components">
+      <h1>03-checkbox</h1>
+      <!-- icon 클래스 -->
+      <!-- <span class="icon icon-checkbox--square"></span> -->
+
+      <h2 class="mgt8">체크박스 + 레이블</h2>
+      <!-- normal 타입 -->
+      <div class="mgt8 form-group form-checkbox">
+        <input type="checkbox"
+               id="checkboxNormal"
+               name="checkboxNormal"
+               class="form-checkbox__checkbox">
+        <label for="checkboxNormal"
+               class="form-checkbox__label">
+          <span class="icon icon-checkbox--square"></span>
+          일반(Normal)
+        </label>
+      </div>
+
+      <!-- checked 타입 -->
+      <div class="mgt8 form-group form-checkbox">
+        <input type="checkbox"
+               id="checkboxChecked"
+               name="checkboxChecked"
+               class="form-checkbox__checkbox"
+               checked>
+        <label for="checkboxChecked"
+               class="form-checkbox__label">
+          <span class="icon icon-checkbox--square"></span>
+          선택(Checked)
+        </label>
+      </div>
+
+      <!-- disabled 타입 -->
+      <div class="mgt8 form-group form-checkbox">
+        <input type="checkbox"
+               id="checkboxDisabled"
+               name="checkboxDisabled"
+               class="form-checkbox__checkbox"
+               disabled>
+        <label for="checkboxDisabled"
+               class="form-checkbox__label">
+          <span class="icon icon-checkbox--square"></span>
+          비활성화(Disabled)
+        </label>
+      </div>
+
+      <!-- checked, disabled 타입 -->
+      <div class="mgt8 form-group form-checkbox">
+        <input type="checkbox"
+               id="checkboxCheckedDisabled"
+               name="checkboxCheckedDisabled"
+               class="form-checkbox__checkbox"
+               checked
+               disabled>
+        <label for="checkboxCheckedDisabled"
+               class="form-checkbox__label">
+          <span class="icon icon-checkbox--square"></span>
+          선택 및 비활성화(Checked &amp; Disabled)
+        </label>
+      </div>
+    </div>
+  </body>
+
+</html>

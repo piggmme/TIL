@@ -1,0 +1,73 @@
+// @import 'base';
+// @import 'colors';
+// @import 'functions';
+// @import 'form';
+
+// // icon 공통
+// .icon{
+//   display: inline-block;
+//   overflow: hidden;
+//   font-size: 0;
+//   line-height: 0;
+
+//   &-checkbox--square{
+//     position: absolute;
+//     top: 0;
+//     left: 0;
+//     width: rem(18px);
+//     height: rem(18px);
+//     background-image: url(./../assets/sprite-checkbox-square.png);
+//     background-repeat: no-repeat;
+//     background-position: 0 0;
+//     // apperance: none의 경우 :disabled 상태일 때
+//     // 아이콘 배경이미지가 반투명 이미지로 표시 됨
+//     // 이 경우 IE에서 문제가 발생하기 때문에 배경색상을 추가해서 해결
+//     background-color: #fff;
+//   }
+// }
+
+// .form-checkbox{
+//   // .form-checkbox__checkbox의 컨테이닝 블록
+//   position: relative;
+
+//   // 체크박스 버튼
+//   &__checkbox{
+//     appearance: none;
+//     cursor: pointer;
+//     position: absolute;
+//     top: 0;
+//     left: 0;
+//     width: rem(18px);
+//     height: rem(18px);
+
+//   }
+
+//   // .form-checkbox__checkbox의 상태가 변경 되었을 때 아이콘의 배경 위치
+//   // 체크된 상태에서는 마우스 포인터 이벤트가 발생하지 않도록 처리
+//   &__checkbox:checked + &__label .icon-checkbox--square{
+//     pointer-events: none;
+//     background-position: -20px 0;
+//   }
+//   &__checkbox:disabled + &__label .icon-checkbox--square{
+//     background-position: -40px 0;
+//   }
+//   &__checkbox:checked:disabled + &__label .icon-checkbox--square{
+//     background-position: -60px 0;
+//   }
+
+//   // 비활성화 상태일 때 포인터 스타일 (_form.scss로 공통 스타일로 분리 필요)
+//   &__checkbox:disabled,
+//   &__checkbox:checked:disabled,
+//   &__checkbox:disabled + &__label,
+//   &__checkbox:checked:disabled + &__label{
+//     cursor: not-allowed;
+//   }
+
+//   // 체크박스 버튼 레이블
+//   &__label{
+//     position: relative;
+//     height: rem(18px);
+//     line-height: rem(18px);
+//     padding-left: rem(22px);
+//   }
+// }

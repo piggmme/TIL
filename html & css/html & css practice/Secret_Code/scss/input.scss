@@ -1,0 +1,86 @@
+@use "./base" as *;
+@use "./color" as *;
+@use "./function" as *;
+
+// 입력 서식의 기본 스타일 및 아웃라인 제거
+.form-input__input {
+  appearance: none;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.form-input {
+  &__label {
+    display: block;
+    color: $form-text-color;
+    font-weight: 500;
+    font-size: rem(14px);
+  }
+  &__input {
+    display: block;
+    padding: 0 rem(16);
+    width: 100%;
+    height: 48px;
+    border: 1px solid $form-border-color;
+    color: $form-text-color;
+    font-size: rem(14px);
+
+    // cross browsing
+    &::-ms-clear,
+    &::-webkit-search-cancel-button,
+    &::-webkit-search-results-button {
+      display: none;
+    }
+    &::-ms-reveal {
+      display: none;
+    }
+    &::placeholder,
+    &::-ms-input-placeholder {
+      color: $form-placeholder-color;
+    }
+
+    // not 지원 안할 수 있음.... 밑에 따로 처리
+    &:not(:read-only):not([readonly]):not(:disabled) {
+      &:hover {
+        border-color: $form-border-hover-color;
+      }
+      &:focus {
+        border-color: $form-border-focus-color;
+      }
+    }
+
+    &:read-only,
+    &[readonly] {
+      background-color: $form-bg-readonly-color;
+      cursor: default;
+    }
+
+    &:disabled {
+      background-color: $form-bg-disabled-color;
+      color: $form-text-disabled-color;
+      cursor: not-allowed;
+    }
+
+    &:read-only:hover,
+    &[readonly]:hover,
+    &:disabled:hover,
+    &:read-only:focus,
+    &[readonly]:focus,
+    &:disabled:focus {
+      border-color: $form-border-color;
+    }
+  }
+
+  @at-root .error-message {
+    font-size: rem(14px);
+    color: $form-error-color;
+    margin-top: rem(8px);
+    display: none;
+  }
+
+  &__input--error + .error-message {
+    display: block;
+  }
+}

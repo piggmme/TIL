@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+    <title>01-form-input</title>
+    <link rel="stylesheet"
+          href="./css/input.css">
+  </head>
+
+  <body>
+    <!-- 
+        <label> <input type="text">를 사용해서 주어진 요구사항을 완성하세요. 
+        디자인 시안에서는 Lable, placeholder 로 문구가 적혀있지만 디자인 예시이기 때문에,
+        영상 강의에서는 실무라고 생각하고 '이름'을 입력받는 상황으로 진행하였습니다.
+        readonly, disabled, error 케이스에서는 별도로 레이블을 연결하지 않았습니다.
+    -->
+    <div class="form-components">
+      <h1>01-form-input</h1>
+
+      <h2>Dafault</h2>
+      <div class="mgt32 form-group form-input">
+        <!-- label 활용법1 : 명시적 레이블 / input id 값을 label for로 연결시킨다 -->
+        <!-- type here -->
+        <label for="name"
+               class="form-input__label">이름</label>
+        <input id="name"
+               type="text"
+               placeholder="이름을 적어주세요."
+               class="form-input__input">
+      </div>
+
+      <div class="mgt32 form-group form-input">
+        <!-- label 활용법2 : 암시적 레이블 / label으로 input을 감싼다. -->
+        <!-- type here -->
+        <label>
+          <span class="form-input__label">이름</span>
+          <input type="text"
+                 placeholder="이름을 적어주세요."
+                 class="form-input__input">
+        </label>
+      </div>
+
+      <div class="mgt32 form-group form-input">
+        <!-- label 활용법3 : label을 적지 않는 경우 input에 aria-label=""을 적는다. -->
+        <!-- https://developer.mozilla.org/ko/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_aria-label_attribute -->
+        <!-- type here -->
+        <input type="text"
+               placeholder="이름을 적어주세요."
+               aria-label="이름"
+               class="form-input__input">
+      </div>
+
+
+      <h2>Readonly</h2>
+      <div class="mgt32 form-group form-input">
+        <!-- type here -->
+        <input type="text"
+               placeholder="이름을 적어주세요."
+               aria-label="이름"
+               value="네카라쿠배"
+               class="form-input__input"
+               readonly>
+      </div>
+
+      <h2>Disabled</h2>
+      <div class="mgt32 form-group form-input">
+        <!-- type here -->
+        <input type="text"
+               placeholder="이름을 적어주세요."
+               aria-label="이름"
+               value="네카라쿠배"
+               class="form-input__input"
+               disabled>
+      </div>
+
+      <h2>Error</h2>
+      <div class="mgt32 form-group form-input">
+        <!-- type here -->
+        <input type="text"
+               placeholder="이름을 적어주세요."
+               aria-label="이름"
+               value="123"
+               class="form-input__input form-input__input--error">
+        <p class="error-message">잘못된 입력값입니다.</p>
+      </div>
+    </div>
+  </body>
+
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport"
+              content="width=device-width, initial-scale=1.0">
+        <title>02-form-textarea</title>
+        <link rel="stylesheet"
+              href="./css/textarea.css">
+    </head>
+
+    <body>
+        <!-- textarea를 사용해서 주어진 요구사항을 완성하세요. -->
+        <div class="form-components">
+            <h1>02-form-textarea</h1>
+
+            <p class="mgt32">
+                1. textarea 스타일 작성<br>
+                2. 세로 5줄 입력이 가능하도록<br>
+                3. resize 되지 않도록<br>
+                4. 내부 스크롤 스타일링 (가로폭 4px, 배경색 rgba(black,0.2))
+            </p>
+            <h2>Dafault</h2>
+            <div class="mgt16 form-group form-textarea">
+                <label for="memo"
+                       class="form-textarea__label">메모</label>
+                <textarea id="memo"
+                          rows="5"
+                          class="form-textarea__textarea"
+                          placeholder="내용을 입력하세요">야무와, 한글 로렘입숨. 위에, 밤마다 피었다.. 허공을 눈에 따라서 흘러가는 산은 비치어, 바라보고 있었다. 깊이, 수평선 띄지 K는 조금씩? 성이 꽃이 있었다. 바라보고, 섬들은 조차 동녘 모를 언제 눈에 서서 노을이! 야무와, 한글 로렘입숨. 위에, 밤마다 피었다.. 허공을 눈에 따라서 흘러가는 산은 비치어, 바라보고 있었다. 깊이, 수평선 띄지 K는 조금씩? 성이 꽃이 있었다. 바라보고, 섬들은 조차 동녘 모를 언제 눈에 서서 노을이!</textarea>
+            </div>
+
+            <h2>Readonly</h2>
+            <div class="form-group form-textarea">
+                <textarea aria-label="메모"
+                          rows="5"
+                          class="form-textarea__textarea mgt16"
+                          placeholder="내용을 입력하세요"
+                          readonly>123</textarea>
+            </div>
+
+            <h2>Disabled</h2>
+            <div class="form-group form-textarea">
+                <textarea aria-label="메모"
+                          rows="5"
+                          class="form-textarea__textarea mgt16"
+                          placeholder="내용을 입력하세요"
+                          disabled>123</textarea>
+            </div>
+
+            <p class="mgt32">
+                (번외) textarea 태그를 외에 입력창을 구현할 수 있는 다른 방법
+            </p>
+            <div class="mgt16">
+                <div class="form-textarea__textarea"
+                     contenteditable="true"></div>
+            </div>
+        </div>
+    </body>
+
+</html>

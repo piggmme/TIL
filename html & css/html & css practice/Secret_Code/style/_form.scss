@@ -1,0 +1,35 @@
+// form 공통
+
+// 기존 input 요소의 기본 에이전트 스타일을 제거한 코드에
+// textarea 요소 선택자 추가
+.form-group input, 
+.form-group textarea{
+  appearance: none;
+}
+
+// form-group 내 label 공통
+.form-group [class$="__label"]{
+  // display: block은 inline인 레이블을 블록 요소로 변환시키기 위함
+  display: block;
+  font-size: rem(14px); 
+  font-weight: 500;
+  cursor: pointer;
+  color: $form-text-color;
+}
+
+// 비활성화 상태일 때 포인터 스타일
+.form-group input:disabled,
+.form-group input:checked:disabled,
+.form-group input:disabled + [class$="__label"],
+.form-group input:checked:disabled + [class$="__label"]{
+  cursor: not-allowed;
+}
+
+
+// 에러 메시지는 기본적으로 보이지 않도록 처리
+.error-message{
+  display: none;
+  margin-top: rem(8px);
+  font-size: rem(14px);
+  color: $form-error-color;
+}

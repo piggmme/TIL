@@ -1,0 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Roboto:wght@300;500;700&display=swap');
+
+.a11y{
+    position:absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    clip: rect(0, 0, 0, 0);
+    clip-path: inset(50%);
+}
+
+body { 
+    box-sizing: border-box; 
+    margin: 0; 
+    line-height: 1.15;
+    font-family: 'Roboto', 'Noto Sans KR', sans-serif;
+    background-color: #f7f7f7; 
+}
+
+body *, 
+body *::before, 
+body *::after { 
+    box-sizing: border-box;
+    margin: 0; 
+    padding: 0; 
+}
+
+.mgt8 { margin-top: 8px; }
+.mgt16 { margin-top: 16px; }
+.mgt32 { margin-top: 32px; }
+
+.form-components { 
+    margin: 32px auto; 
+    padding: 50px; 
+    max-width: 500px; 
+    border-radius: 12px; 
+    border: 1px solid #ddd; 
+    background-color: #fff; 
+}
+
+h1 { font-size: 32px; }
+h2 { margin: 40px 0 0; }
+
+input,
+textarea {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.hidden {
+    display: none;
+}
+
+[contenteditable]:focus {
+    outline: none;
+}

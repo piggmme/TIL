@@ -1,0 +1,67 @@
+@import 'base';
+@import 'colors';
+@import 'functions';
+@import 'form';
+
+.form-switch{
+  // 스위치 버튼 그룹 배치 
+  display: inline-block;
+  position: relative;
+  vertical-align: top;
+  
+  // type="checkbox"로 스위치 버튼 구현
+  &__switch{
+    appearance: none;
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    margin-right: 80px;
+  }
+
+  // 스위치(토글 버튼) 레이블
+  // ::before와 ::after 선택자를 이용하여 스위치(토글)버튼 구현
+  &__label{
+    position: relative;
+    height: rem(24px);
+    line-height: rem(24px);
+    padding-left: rem(50px);
+
+    &::before, &::after{
+      content: "";
+      position: absolute;
+      transition: transform 300ms;
+    }
+
+    &::before{
+      top: 0;
+      left: 0;
+      width: rem(40px);
+      height: 100%;
+      border-radius: rem(12px);
+      background-color: $form-switch-bg-color;
+    }
+
+    &::after{
+      top: rem(4px);
+      left: rem(4px);
+      width: rem(16px);
+      height: rem(16px);
+      border-radius: 50%;
+      background-color: $form-switch-button-color;
+    }
+  }
+
+  // 스위치 버튼이 선택 되었을 때
+  &__switch:checked + &__label::after{
+    transform: translateX(16px);
+  }
+
+  // 스위치 버튼이  비활성화 되었을 때
+  &__switch:disabled + &__label::before{
+    opacity: 0.4;
+  }
+
+}

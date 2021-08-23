@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+    <title>05-form-radio</title>
+    <link rel="stylesheet"
+          href="./css/radio.css">
+  </head>
+
+  <body>
+    <div class="form-components">
+      <h1>05-form-radio</h1>
+      <!-- icon -->
+      <!-- <span class="icon icon-radio--square"></span> 와 같이 마크업에 추가할 수 있으나 -->
+      <!-- 이번에는 ::before와 ::after 선택자를 이용하여 구현해 봅니다. -->
+
+      <h2 class="mgt8">Radio Button + Label</h2>
+      <!-- normal 타입 -->
+      <div class="mgt8 form-group form-radio">
+        <input type="radio"
+               id="radioNormal"
+               name="radioGroup"
+               class="form-radio__radio">
+        <label for="radioNormal"
+               class="form-radio__label">
+          <span class="icon icon-radio--square"></span>
+          일반(Normal)
+        </label>
+      </div>
+
+      <!-- checked 타입 -->
+      <div class="mgt8 form-group form-radio">
+        <input type="radio"
+               id="radioChecked"
+               name="radioGroup"
+               class="form-radio__radio"
+               checked>
+        <label for="radioChecked"
+               class="form-radio__label">
+          <span class="icon icon-radio--square"></span>
+          선택(Checked)
+        </label>
+      </div>
+
+      <!-- disabled 타입 -->
+      <div class="mgt8 form-group form-radio">
+        <input type="radio"
+               id="radioDisabled"
+               name="radioGroup"
+               class="form-radio__radio"
+               disabled>
+        <label for="radioDisabled"
+               class="form-radio__label">
+          <span class="icon icon-radio--square"></span>
+          비활성화(Disabled)
+        </label>
+      </div>
+
+      <!-- checked, disabled 타입 -->
+      <div class="mgt8 form-group form-radio">
+        <input type="radio"
+               id="radioCheckedDisabled"
+               name="radioGroup"
+               class="form-radio__radio"
+               checked
+               disabled>
+        <label for="radioCheckedDisabled"
+               class="form-radio__label">
+          <span class="icon icon-radio--square"></span>
+          선택 및 비활성화(Checked &amp; Disabled)
+        </label>
+      </div>
+    </div>
+  </body>
+
+</html>

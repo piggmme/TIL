@@ -1,0 +1,32 @@
+// figma : https://www.figma.com/file/9FXkniEMPgZKtJY4GwP60z/Input?node-id=0%3A3
+
+// color palette
+$gray1: #333333;
+$gray2: #4f4f4f;
+$gray3: #828282;
+$gray4: #BDBDBD;
+$gray5: #E0E0E0;
+$gray6: #F2F2F2;
+$gray7: #F9F9F9;
+$red: #EB5757;
+$blue : #4056c7;
+$white : #fff;
+
+// color variable rename
+$form-border-color: $gray5;
+$form-border-hover-color: $gray3;
+$form-border-focus-color: $gray1;
+$form-bg-color: #fff;
+$form-bg-readonly-color: $gray7;
+$form-bg-disabled-color: $gray7;
+$form-placeholder-color: $gray4;
+$form-text-color: $gray1;
+$form-text-disabled-color: $gray4;
+$form-error-color: $red;
+$form-switch-bg-color: $blue;
+$form-switch-button-color: $white;
+$button-shadow-color: $gray3;
+$button-default-color: $gray4;
+$button-primary-color: $blue;
+$button-warning-color: $red;
+$button-white-color: $white;

@@ -1,0 +1,83 @@
+@import 'base';
+@import 'colors';
+@import 'functions';
+@import 'form';
+
+.button{
+  box-sizing: border-box;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: rem(8px) rem(16px);
+  border: 0;
+  // outline 제거 후 :focus 색상으로 키보드 접근 시 구분할 수 있도록 구현
+  outline: 0;
+  font-size: rem(14px);
+  font-weight: 600;
+  cursor: pointer;
+  letter-spacing: rem(-1px);
+  color: inherit;
+  text-decoration: none;
+  border-radius: rem(5px);
+
+  &:hover, &:focus{
+    box-shadow: 0 0 1px 1px rgba($button-shadow-color, 0.3);
+    background-color: darken($button-default-color, 15%);
+  } 
+}
+
+[class*="button-fill--"]{
+  color: $button-white-color;
+}
+
+.button-fill{
+  &--default{
+    background-color: $button-default-color;
+
+    &:hover, &:focus{
+      background-color: darken($button-default-color, 15%);
+    }
+  }
+
+  &--primary{
+    background-color: $button-primary-color;
+
+    &:hover, &:focus{
+      background-color: darken($button-primary-color, 15%);
+    }
+  }
+  &--warning{
+    background-color: $button-warning-color;
+
+    &:hover, &:focus{
+      background-color: darken($button-warning-color, 15%);
+    }
+  }
+}
+
+[class*="button-outline--"]{
+  border: 1px solid currentColor;
+  background-color: transparent;
+
+  &:hover, &:focus{
+    background-color: transparent;
+    box-shadow: 0 0 2px 2px rgba($button-shadow-color, 0.3);
+  }
+}
+
+.button-outline{
+  &--primary{
+    color: $button-primary-color;
+
+    &:hover, &:focus{
+      border-color: darken($button-primary-color, 15%);
+    }
+  }
+  &--warning{
+    color: $button-warning-color;
+
+    &:hover, &:focus{
+      border-color: darken($button-warning-color, 15%);
+    }
+  }
+}

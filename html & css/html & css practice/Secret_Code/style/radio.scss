@@ -1,0 +1,49 @@
+@import 'base';
+@import 'colors';
+@import 'functions';
+@import 'form';
+
+.form-radio{
+  // .form-radio__radio의 컨테이닝 블록
+  position: relative;
+
+  // 라디오 버튼
+  &__radio{
+    appearance: none;
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: rem(18px);
+    height: rem(18px);
+  }
+
+  // 라디오 버튼 레이블
+  &__label{
+    position: relative;
+    padding-left: rem(22px);
+
+    &::before{
+      content: "";
+      display: inline-block;
+      position: absolute;
+      transform: translateY(-55%);
+      top: 50%;
+      left: 0;
+      width: rem(16px);
+      height: rem(16px);
+      background: url(./../assets/sprite-radio.png) no-repeat 0 0;
+      background-size: 100% auto;
+    }
+  }
+
+  &__radio:checked + &__label::before{
+    background-position: 0 rem(-20px);
+  }
+
+  &__radio:disabled + &__label::before,
+  &__radio:checked:disabled + &__label::before{
+    opacity: 0.4;
+  }
+
+}

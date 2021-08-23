@@ -1,0 +1,99 @@
+@use 'sass:math';
+@use "./base" as *;
+@use "./color" as *;
+@use "./function" as *;
+@use "./form" as *; // 기본 appearence가 none임...
+
+// 강사님 코드
+.form-switch {
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+
+  &__switch {
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    // margin-right: 80px;
+  }
+
+  // 움직임
+  &__switch:checked + &__label::after {
+    transform: translateX(rem(16px));
+  }
+  &__switch:checked + &__label::before {
+    background-color: $form-switch-bg-color;
+  }
+
+  &__label {
+    $h: 24px;
+    position: relative;
+    height: rem($h);
+    line-height: $h; // 중간에 글씨 배치
+    padding-left: rem(50px);
+
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+    }
+
+    // 배경
+    &::before {
+      width: rem(40px);
+      top: 0;
+      left: 0;
+      height: 100%;
+      border-radius: math.div($h, 2);
+      background-color: $gray6;
+    }
+    // 동그라미
+    &::after {
+      top: rem(4px);
+      left: rem(4px);
+      width: rem(16px);
+      height: rem(16px);
+      border-radius: 50%;
+      background-color: $form-switch-button-color;
+      transition: transform 0.3s;
+    }
+  }
+}
+
+// // 내 코드
+// .form-switch {
+//     position: relative;
+//     display: inline-flex;
+
+//     &__switch {
+//       display: inline-block;
+//       width: rem(50px);
+//       height: rem(25px);
+//       background-color: rgb(97, 211, 97);
+//       border-radius: rem(25px);
+//       transition: all 0.4s ease;
+//     }
+//     &__switch + &__label::before {
+//       content: "";
+//       display: block;
+//       width: rem(20px);
+//       height: rem(20px);
+//       border-radius: 50%;
+//       background-color: #fff;
+//       position: absolute;
+//       top: rem(2.5px);
+//       left: rem(2.5px);
+//       transition: all 0.4s ease;
+//     }
+//     &__switch:checked {
+//       background-color: rgb(84, 118, 205);
+//     }
+//     &__switch:checked + &__label::before {
+//       left: rem(25px);
+//     }
+//     &__switch:disabled {
+//       opacity: 0.4;
+//     }
+//   }

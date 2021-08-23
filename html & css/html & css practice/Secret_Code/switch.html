@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>04-form-switch</title>
+    <link rel="stylesheet" href="./css/switch.css" />
+  </head>
+
+  <body>
+    <div class="form-components">
+      <h1>04-form-switch</h1>
+      <h2 class="">Switch Button Only</h2>
+
+      <!-- normal 타입 -->
+      <div class="mgt16 form-group form-switch switch-only">
+        <input
+          type="checkbox"
+          id="switchOnlyNormal"
+          class="form-switch__switch"
+        />
+        <label
+          for="switchOnlyNormal"
+          class="form-switch__label"
+          aria-label="off"
+        ></label>
+      </div>
+
+      <!-- checked 타입 -->
+      <div class="mgt16 form-group form-switch switch-only">
+        <input
+          type="checkbox"
+          id="switchOnlyChecked"
+          class="form-switch__switch"
+          checked
+        />
+        <label
+          for="switchOnlyChecked"
+          class="form-switch__label"
+          aria-label="on"
+        ></label>
+      </div>
+
+      <!-- disabled 타입 -->
+      <div class="mgt16 form-group form-switch switch-only">
+        <input
+          type="checkbox"
+          id="switchOnlyDisabled"
+          class="form-switch__switch"
+          disabled="disabled"
+        />
+        <label
+          for="switchOnlyDisabled"
+          class="form-switch__label"
+          aria-label="off"
+        ></label>
+      </div>
+
+      <!-- checked, disabled 타입 -->
+      <div class="mgt16 form-group form-switch switch-only">
+        <input
+          type="checkbox"
+          id="switchOnlyCheckedDisabled"
+          class="form-switch__switch"
+          checked
+          disabled
+        />
+        <label
+          for="switchOnlyCheckedDisabled"
+          class="form-switch__label"
+          aria-label="on"
+        ></label>
+      </div>
+
+      <h2>Switch Button + Label</h2>
+      <!-- normal 타입 -->
+      <div class="mgt16 form-group form-switch switch-text">
+        <input
+          type="checkbox"
+          id="switchTextNormal"
+          class="form-switch__switch"
+        />
+        <label for="switchTextNormal" class="form-switch__label"
+          >일반(Normal)</label
+        >
+      </div>
+
+      <!-- checked 타입 -->
+      <div class="mgt16 form-group form-switch switch-text">
+        <input
+          type="checkbox"
+          id="switchTextChecked"
+          class="form-switch__switch"
+          checked
+        />
+        <label for="switchTextChecked" class="form-switch__label"
+          >선택(Checked)</label
+        >
+      </div>
+
+      <!-- disabled 타입 -->
+      <div class="mgt16 form-group form-switch switch-text">
+        <input
+          type="checkbox"
+          id="switchTextDisabled"
+          class="form-switch__switch"
+          disabled="disabled"
+        />
+        <label for="switchTextDisabled" class="form-switch__label"
+          >비활성화(Disabled)</label
+        >
+      </div>
+
+      <!-- checked, disabled 타입 -->
+      <div class="mgt16 form-group form-switch switch-text">
+        <input
+          type="checkbox"
+          id="switchTextCheckedDisabled"
+          class="form-switch__switch"
+          checked
+          disabled
+        />
+        <label for="switchTextCheckedDisabled" class="form-switch__label"
+          >선택 및 비활성화(Checked &amp; Disabled)</label
+        >
+      </div>
+    </div>
+  </body>
+</html>

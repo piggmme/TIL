@@ -1,0 +1,115 @@
+@import 'base';
+@import 'colors';
+@import 'functions';
+
+// input 요소의 기본 에이전트 스타일 저거
+.form-input__input{
+  appearance: none;
+
+  // 포커스 시 아웃라인 제거 후 추후 border 색상으로 재정의
+  &:focus{
+    outline: 0;
+  }
+}
+
+.form-input{
+  // form-input__label (레이블 공통 스타일은 _form.scss로 분리)
+  &__label{
+    display: block;
+    font-size: 0.875rem; // 14px
+    font-size: rem(14px); // 함수 사용 
+    font-weight: 500;
+    color: $form-text-color;
+  }
+
+  // .form-input__input 공통
+  &__input{
+    display: block;
+    padding: 0 rem(16px);
+    width: 100%;
+    height: 48px;
+    border-radius: 4px;
+    border: 1px solid $form-border-color;
+    background: $form-bg-color;
+    color: $form-text-color;
+    font-size: rem(14px);
+    
+    // placeholder 스타일
+    // -webkit-, -moz- 등 브라우저 접두사는 autoprefixer 사용
+    &::placeholder,
+    &:-ms-input-placeholder{
+      color: $form-placeholder-color;
+    }
+  
+    // IE 10 이하에서 입력 서식에 발생하는 X 버튼 제거
+    // 구글, 사파리 등 type="search"에서 발생하는 X 버튼 제거 
+    &::-ms-clear,
+    &::-webkit-search-cancel-button,
+    &::-webkit-search-results-button{
+      display: none;
+    }
+  
+    // type="password"에서 비밀번호 보이기/감추기 토글 버튼 제거
+    &::-ms-reveal{
+      display: none;
+    }
+  
+    // readonly가 아니고 disabled가 아닐 때 :hover와 :focus가 적용되도록 해야 함
+    // .error 클래스가 있는 경우에도 :hover와 :focus가 적용되지 않도록 제외하고 싶다면
+    // :not(.error), 을 추가한다.
+    // &:not(:read-only):not([readonly]):not(:disabled){
+    //   // 아래 선언한 :hover, :focus 스타일을 다음 과 같이 코드 블록으로 옮겨 올 것
+    //   &:hover{
+    //     border-color: $form-border-hover-color;
+    //   }
+    //   &:focus{
+    //     border-color: $form-border-focus-color;
+    //   }
+    // }
+  
+    // :hover 테두리선 색상 변경
+    &:hover{
+      border-color: $form-border-hover-color;
+    }
+  
+    // :focus 배경 색상 변경
+    &:focus{
+      border-color: $form-border-focus-color;
+    }
+  
+    // :read-only 배경 색상 변경
+    &:read-only,
+    &[readonly]{
+      background-color: $form-bg-readonly-color;
+      cursor: default;
+    }
+  
+    // :disabled 배경 색상 변경
+    &:disabled{
+      background-color: $form-bg-disabled-color;
+      color: $form-text-disabled-color;
+      cursor: not-allowed;
+    }
+  
+    // error 클래스가 .form-input에 있을 때
+    &--error{
+      border-color: $form-error-color;
+      color: $form-error-color;
+      
+      // .error 클래스가 .form-input에 있을 때 
+      // 형제 요소인 .error-message를 보이도록 display를 block로 설정
+      & + .error-message {
+        display: block;
+      }
+    }
+  }
+}
+
+// (에러 메시지 스타일은 _form.scss로 분리)
+// 에러 메시지는 기본적으로 보이지 않도록 처리
+.error-message{
+  display: none;
+  margin-top: rem(8px);
+  font-size: rem(14px);
+  color: $form-error-color;
+}

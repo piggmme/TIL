@@ -1,0 +1,55 @@
+@use "./base" as *;
+@use "./color" as *;
+@use "./function" as *;
+@use "./form" as *; // 기본 appearence가 none임...
+
+.icon {
+  display: inline-block;
+  font-size: 0;
+  line-height: 0;
+  overflow: hidden;
+
+  &-checkbox--square {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: rem(18px);
+    height: rem(18px);
+    background-image: url(../assets/sprite-checkbox-square.png);
+    background-repeat: no-repeat;
+  }
+}
+
+.form-checkbox {
+  position: relative;
+
+  // 초점이 가게됨!!
+  &__checkbox {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: rem(18px);
+    height: rem(18px);
+    cursor: pointer;
+  }
+
+  &__checkbox:checked + &__label .icon-checkbox--square {
+    background-position: -20px 0;
+  }
+
+  &__checkbox:disabled + &__label .icon-checkbox--square {
+    background-position: -40px 0;
+  }
+
+  &__checkbox:checked:disabled + &__label .icon-checkbox--square {
+    background-position: -60px 0;
+  }
+
+  // 글씨의 왼쪽에 패딩을 주어, 왼쪽에 체크박스가 absolute로 들어갈 수 있게함
+  &__label {
+    position: relative;
+    height: rem(18px);
+    line-height: rem(18px);
+    padding-left: rem(22px);
+  }
+}

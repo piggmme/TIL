@@ -1,0 +1,35 @@
+@use "./base" as *;
+@use "./color" as *;
+@use "./function" as *;
+@use "./form" as *;
+
+// 입력 서식의 기본 스타일 및 아웃라인 제거
+.form-textarea__textarea {
+  &:focus {
+    outline: none;
+  }
+}
+
+.form-textarea {
+  &__textarea {
+    display: block;
+    padding: 0 rem(16);
+    width: 100%;
+    height: auto;
+    min-height: 80px;
+    border: 1px solid $form-border-color;
+    color: $form-text-color;
+    font-size: rem(14px);
+    resize: none;
+
+    // 스크롤의 경우 -webkit- 기반의 브라우저만 스타일링이 가능함.
+    &::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      border-radius: 2px;
+      background-color: rgba(#f00, 0.5);
+    }
+  }
+}
