@@ -2,3 +2,8 @@ body {
   background-color: powderblue;
   color: red;
 }
+div::after {
+  content: "test";
+  display: block;
+  width: 50px;
+}

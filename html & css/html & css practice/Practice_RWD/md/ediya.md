@@ -402,8 +402,6 @@ a:focus {
 
 #### 모달은? - [aria-modal MDN](https://developer.mozilla.org/ko/docs/Web/Accessibility/ARIA/Roles/dialog_role)
 
-<img src="./img/modal.png" width="400">
-
 - `role="dialog"`
 - `aria-describedby = "dialog-heading"`
 
@@ -435,6 +433,7 @@ a:focus {
 - `ediya-menu__item--active`
 
   > `__` : block과 요소를 분리
+
   > `--` : 상태를 표시
 
 - `hidden`
@@ -601,6 +600,20 @@ a:focus {
 }
 ```
 
+- `그리드로 쓸 때 transform은 안됨...`
+
+- `/* 사용자 드래그 금지 */ user-select: none; -webkit-user-select: none;`
+
+- `현재 글씨 색 currentColor`
+
+- `.ediya-menu__item--name [lang="en"]`
+
+- `/* 단 나누기 */ column-count: 2; column-rule: 1px solid var(--black2);`
+
+- ` margin: 0 -1.25rem -1.875rem;`
+
+---
+
 - 모바일버전
 
 ```css
@@ -628,6 +641,11 @@ a:focus {
 }
 ```
 
+- `menu를 relative로, 이미지를 transform으로 작성해서 nav보다 메뉴가 더 위에 떠있는 버그가 발생! 이는 추후에 해결하자`
+- `/* 겹쳐지는 뒷배경이 흐릿해짐 */ backdrop-filter: blur(20px);`
+
+---
+
 - 데스크탑 버전
 
 ```css
@@ -644,6 +662,8 @@ a:focus {
   }
 }
 ```
+
+---
 
 #### 애니메이션
 
@@ -700,3 +720,17 @@ a:focus {
   }
 }
 ```
+
+- animation
+
+  > animation-name
+
+  > animation-duration
+
+  > animation-fill-mode: forwards;
+
+  > animation-timing-function
+
+  > animation-delay
+
+---
