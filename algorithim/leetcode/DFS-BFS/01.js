@@ -14,6 +14,51 @@
 // Constraints:
 // 1 <= n <= 8
 
+// 정민님 풀이로 다시풀어보기 => 성공!!
+// 중복순열. (, )를 중복으로 뽑기
+{
+  function generateParenthesis(n) {
+    let pick = ["(", ")"];
+    let answer = [];
+    let temp = [];
+    let i = 0;
+
+    function DFS(L, cnt) {
+      i++;
+      // 닫는거 너무 많이 뽑거나, 여는거 너무 많이 뽑았어!!
+      if (cnt < 0 || cnt > n) {
+        return;
+      }
+      if (L === n * 2) {
+        // 다 뽑았나?
+        if (cnt == 0) answer.push(temp.join(""));
+      } else {
+        for (let i = 0; i < 2; i++) {
+          // 2개 중에 하나를 뽑아라!!
+          temp.push(pick[i]);
+          if (i == 0) cnt++;
+          if (i == 1) cnt--;
+
+          DFS(L + 1, cnt);
+
+          temp.pop();
+          if (i == 0) cnt--;
+          if (i == 1) cnt++;
+        }
+      }
+    }
+    DFS(0, 0);
+    // console.log(i);
+    return answer;
+  }
+  //   console.log(generateParenthesis(3)); // ["((()))","(()())","(())()","()(())","()()()"]
+  //   console.log(generateParenthesis(1)); // ["()"]
+  //   console.log(generateParenthesis(4)); // 14개
+
+  //   Runtime: 80 ms, faster than 39.18% of JavaScript online submissions for Generate Parentheses.
+  // Memory Usage: 41 MB, less than 18.92% of JavaScript online submissions for Generate Parentheses.
+}
+
 // (())(()) 를 찾지 못함.
 {
   function generateParenthesis(n) {
@@ -195,50 +240,6 @@
   //   console.log(generateParenthesis(3)); // ["((()))","(()())","(())()","()(())","()()()"]
   //   console.log(generateParenthesis(1)); // ["()"]
   //   console.log(generateParenthesis(2));
-  //   console.log(generateParenthesis(4)); // 14개
-  // ["(((())))","((()()))","((())())","((()))()","(()(()))","(()()())","(()())()","(())(())","(())()()","()((()))","()(()())","()(())()","()()(())","()()()()"]
-}
-
-{
-  function generateParenthesis(n) {
-    let answer = [];
-    let part = ["("];
-    let d = [];
-    let ch = Array(n).fill(0);
-
-    for (let i = 0; i < n; i++) {
-      d.push("(");
-    }
-
-    // cnt 한번도 음수가 되지 않아야 함.
-    function DFS(L, cnt) {
-      if (L === n) {
-        // 종료
-        if (cnt === 0) {
-          //   console.log(part);
-          if (!answer.includes(part.join(""))) answer.push(part.join(""));
-        }
-        return;
-      } else {
-        for (let i = 0; i < n; i++) {
-          if (cnt < 0) return;
-
-          if (ch[i] === 0) {
-            part.push("(");
-            cnt++;
-            DFS(L, cnt);
-            part.pop();
-            part.push(")");
-            cnt--;
-          }
-        }
-      }
-    }
-    DFS(0, 0, 0);
-    return answer;
-  }
-  console.log(generateParenthesis(3)); // ["((()))","(()())","(())()","()(())","()()()"]
-  //   console.log(generateParenthesis(1)); // ["()"]
   //   console.log(generateParenthesis(4)); // 14개
   // ["(((())))","((()()))","((())())","((()))()","(()(()))","(()()())","(()())()","(())(())","(())()()","()((()))","()(()())","()(())()","()()(())","()()()()"]
 }
