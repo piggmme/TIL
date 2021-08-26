@@ -1,5 +1,32 @@
-// Sass 코드 실습
+@use './media-query' as *;
 
-.container {
+// media query 구문이 분할되어 많이 들어간 경우.
+
+body {
   background-color: yellow;
+
+  @include mobile {
+    background-color: pink;
+  }
+  @include desktop {
+    background-color: yellowgreen;
+  }
+}
+
+div {
+  @include mobile {
+    font-size: 20px;
+  }
+  @include desktop {
+    font-size: 40px;
+  }
+}
+
+p {
+  @include mobile {
+    font-weight: 500;
+  }
+  @include desktop {
+    font-weight: 900;
+  }
 }

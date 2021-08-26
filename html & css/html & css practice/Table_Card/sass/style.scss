@@ -1,0 +1,210 @@
+@use './a11y.scss' as *;
+@use './color' as *;
+@use './media-query' as *;
+@use './unit' as *;
+@use './mixin' as *;
+@use './base' as *;
+
+// 주문내역
+.order {
+  padding: rem(32px) rem(24px);
+
+  // 주문 내역 제목
+  &__title {
+    font-size: rem(24px);
+    font-weight: 700;
+    color: $black;
+  }
+
+  // 주문 내역 테이블 및 리스트
+  &__list {
+    margin-top: rem(16px);
+    color: $gray1;
+
+    @include desktop {
+      border-top: 1px solid $gray5;
+    }
+  }
+
+  // 주문 내역 테이블 요약 정보
+  &__description {
+    @include a11yHidden;
+  }
+
+  // 테이블 개별 행 또는 카드
+  &__item {
+    @include mobile {
+      // 모바일 디자인 설정 필요
+      @include flexbox(column);
+      border: 1px solid $gray1;
+      margin-top: rem(16px);
+      border-radius: rem(8px);
+      padding: rem(22px) rem(28px);
+    }
+
+    @include desktop {
+      @include flexbox(row);
+      border-bottom: 1px solid $gray5;
+      min-width: 1000px;
+      //   스크롤바 표현안됨
+      overflow: auto;
+    }
+
+    // 제목 행
+    &--head {
+      @include desktop {
+        background-color: $gray7;
+        font-weight: 700;
+        padding: rem(8px);
+      }
+
+      @include mobile {
+        display: none;
+      }
+    }
+
+    // 내용 행
+    &--body {
+      @include desktop {
+        padding: rem(8px);
+      }
+    }
+  }
+
+  // 주문자
+  &__name {
+    @include desktop {
+      width: 15%;
+    }
+  }
+  // 연락처
+  &__phone {
+    @include desktop {
+      width: 15%;
+    }
+  }
+  // 주소
+  &__address {
+    @include desktop {
+      width: 40%;
+    }
+  }
+  // 주문내역
+  &__detail {
+    @include desktop {
+      width: 20%;
+    }
+    @include mobile {
+      order: -1;
+      margin: rem(8px) 0;
+      font-size: rem(24px);
+      font-weight: 700;
+    }
+  }
+  // 결제
+  &__payment {
+    @include desktop {
+      width: 10%;
+    }
+    @include mobile {
+      order: -2;
+    }
+  }
+  // 결제 관련 badge 스타일
+  &__badge {
+    @include mobile {
+      padding: rem(2px) rem(8px);
+      font-size: rem(10px);
+      font-weight: 700;
+      color: $white;
+      background-color: $gray1;
+      border-radius: 4px;
+    }
+
+    &--done {
+      @include mobile {
+        background-color: $primary;
+      }
+    }
+  }
+
+  // data-label 속성이 있는 요소 (.order__name, .order__phone, .order__address)
+  [data-label] {
+    @include mobile {
+      @include flexbox(row, flex-start, baseline);
+      //   단어 단위로 줄바꿈
+      word-break: keep-all;
+      margin-top: rem(4px);
+      color: $gray3;
+
+      &::before {
+        content: attr(data-label);
+        width: em(64px, 16px);
+        //   축소하지 말라고 알려줌.
+        flex-shrink: 0;
+        font-weight: 500;
+      }
+    }
+  }
+}
+
+// 내 코드
+// .order {
+//   &__list {
+//     @include mobile {
+//     }
+//   }
+//   &__item {
+//     @include mobile {
+//       &--head {
+//         display: none;
+//       }
+//       display: flex;
+//       flex-direction: column;
+//       margin-bottom: rem(16px);
+//       height: rem(205px);
+//       padding: rem(20px);
+//       box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+//       border-radius: 8px;
+//       position: relative;
+//       padding-top: rem(87px);
+//       font-size: rem(14px);
+//     }
+//   }
+//   &__name,
+//   &__phone,
+//   &__address {
+//     padding-left: rem(60px);
+//   }
+//   &__name::before,
+//   &__phone::before,
+//   &__address::before {
+//     content: attr(data-label);
+//     display: block;
+//     position: absolute;
+//     left: rem(20px);
+//     width: rem(60px);
+//   }
+//   &__detail {
+//     position: absolute;
+//     top: rem(46px);
+//     font-size: rem(20px);
+//     font-weight: bold;
+//     line-height: 29px;
+//   }
+//   &__badge {
+//     position: absolute;
+//     top: rem(20px);
+//     background-color: $gray1;
+//     color: $white;
+//     border-radius: 4px;
+//     font-size: rem(10px);
+//     padding: rem(2px) rem(8px);
+//     text-align: center;
+//     font-weight: bold;
+
+//     &--done {
+//       background-color: $primary;
+//     }
+//   }
+// }

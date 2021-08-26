@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+      <head>
+            <meta charset="UTF-8">
+            <meta name="viewport"
+                  content="width=device-width, initial-scale=1.0">
+            <title>반응형 테이블 및 카드 UI</title>
+            <link rel="stylesheet"
+                  href="./css/style.css">
+      </head>
+
+      <body>
+            <div class="order">
+                  <h1 class="order__title">주문내역</h1>
+
+                  <div class="order__list"
+                       role="table"
+                       aria-label="고객 주문내역"
+                       aria-describedby="orderListDetail">
+                        <div id="orderListDetail"
+                             class="order__description">
+                              주문 고객의 성명, 연락처, 주소, 주문내역, 결재 정보
+                        </div>
+                        <div class="order__item order__item--head"
+                             role="row">
+                              <span class="order__name"
+                                    role="columnheader"
+                                    aria-sort="none">주문자</span>
+                              <span class="order__phone"
+                                    role="columnheader"
+                                    aria-sort="none">연락처</span>
+                              <span class="order__address"
+                                    role="columnheader"
+                                    aria-sort="none">주소</span>
+                              <span class="order__detail"
+                                    role="columnheader"
+                                    aria-sort="none">주문 내역</span>
+                              <span class="order__payment"
+                                    role="columnheader"
+                                    aria-sort="none">결제</span>
+                        </div>
+
+                        <div class="order__item order__item--body">
+                              <span class="order__name"
+                                    data-label="주문자"
+                                    role="cell">홍길동</span>
+                              <span class="order__phone"
+                                    data-label="연락처"
+                                    role="cell">010-0000-0000</span>
+                              <span class="order__address"
+                                    data-label="주소"
+                                    role="cell">서울시 강남구 강남대로 123 강남빌딩 10층</span>
+                              <span class="order__detail"
+                                    role="cell">하와이안 피자 R * 12</span>
+                              <span class="order__payment"
+                                    role="cell"><span class="order__badge order__badge--done">결제완료</span></span>
+                        </div>
+
+                        <div class="order__item order__item--body">
+                              <span class="order__name"
+                                    data-label="주문자"
+                                    role="cell">홍길동</span>
+                              <span class="order__phone"
+                                    data-label="연락처"
+                                    role="cell">010-0000-0000</span>
+                              <span class="order__address"
+                                    data-label="주소"
+                                    role="cell">서울시 강남구 강남대로 123 강남빌딩 10층</span>
+                              <span class="order__detail"
+                                    role="cell">하와이안 피자 R * 12</span>
+                              <span class="order__payment"
+                                    role="cell"><span class="order__badge">현장결제</span></span>
+                        </div>
+
+                        <div class="order__item order__item--body">
+                              <span class="order__name"
+                                    data-label="주문자"
+                                    role="cell">홍길동</span>
+                              <span class="order__phone"
+                                    data-label="연락처"
+                                    role="cell">010-0000-0000</span>
+                              <span class="order__address"
+                                    data-label="주소"
+                                    role="cell">서울시 강남구 강남대로 123 강남빌딩 10층</span>
+                              <span class="order__detail"
+                                    role="cell">하와이안 피자 R * 12</span>
+                              <span class="order__payment"
+                                    role="cell"><span class="order__badge order__badge--done">결제완료</span></span>
+                        </div>
+                  </div>
+            </div>
+      </body>
+
+</html>

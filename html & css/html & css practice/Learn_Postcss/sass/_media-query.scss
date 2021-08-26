@@ -1,0 +1,15 @@
+$breakpoint: 768px;
+
+@mixin mobile {
+  // 모바일 미디어 쿼리
+  @media (max-width: 767px) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  // 데스크탑 미디어 쿼리
+  @media (min-width: 768px) {
+    @content;
+  }
+}

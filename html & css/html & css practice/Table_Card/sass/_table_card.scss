@@ -1,0 +1,149 @@
+@use './a11y.scss' as *;
+@use './color' as *;
+@use './media-query' as *;
+@use './unit' as *;
+@use './mixin' as *;
+@use './base' as *;
+
+
+// 주문 내역
+.order{
+  padding: rem(32px) rem(24px);
+
+  // 주문 내역 제목 (<h1> 요소)
+  &__title{
+    font-size: rem(24px);
+    font-weight: 700;
+    color: $black;
+  }
+
+  // 주문내역 테이블 및 리스트
+  &__list{
+    margin-top: rem(16px);
+    color: $gray1;
+  
+    @include desktop{
+      border-top: 1px solid $gray5;
+      overflow: auto;
+    }
+  }
+
+  &__description{
+    @include a11yHidden;
+  }
+
+  &__item{
+    @include mobile{
+      @include flexbox(column);
+      margin-top: rem(16px);
+      padding: rem(22px) rem(28px);
+    }
+
+    @include desktop{
+      @include flexbox(row);
+      min-width: rem(1000px);
+      border-bottom: 1px solid $gray5;
+    }
+    &--head{
+      @include mobile{
+        display: none;
+      }
+
+      @include desktop{
+        background: $gray7;
+
+        [role="columnheader"]{
+          font-weight: 700;
+          padding: rem(8px);
+        }
+      }
+    }
+  
+    &--body{
+      @include mobile{
+        border: 1px solid $gray6;
+        border-radius: rem(8px);
+        background: $gray7;
+        box-shadow: 0 0 20px 0 rgba($black, 0.1);
+      }
+    }
+  }
+
+  [role="cell"]{
+    @include desktop{
+      @include flexbox(row, flex-start, center);
+      padding: rem(8px);
+    }
+  }
+
+  [data-label]{
+    @include mobile{
+      @include flexbox(row, flex-start, baseline);
+      margin-top: rem(4px);
+      word-break: keep-all;
+      color: $gray3;
+
+      &::before{
+        content: attr(data-label);
+        font-weight: 500;
+        width: em(64px, 16px);
+        flex-shrink: 0;
+      }
+    }
+  }
+
+  &__name{
+    @include desktop{
+      width: 15%;
+    }
+  }
+
+  &__phone{
+    @include desktop{
+      width: 15%;
+    }
+  }
+
+  &__address{
+    @include desktop{
+      width: 40%;
+    }
+  }
+
+  &__detail{
+    @include mobile{
+      order: -1;
+      margin: rem(8px) 0;
+      font-size: rem(20px);
+      font-weight: 700;
+    }
+    @include desktop{
+      width: 20%;
+    }
+  }
+
+  &__payment{
+    @include mobile{
+      order: -2;
+    }
+
+    @include desktop{
+      width: 10%;
+    }
+  }
+
+  &__badge{
+    @include mobile{
+      padding: rem(2px) rem(8px);
+      border-radius: rem(4px);
+      background: $gray1;
+      font-size: rem(10px);
+      font-weight: 700;
+      color: $white;
+      
+      &--done{
+        background: $primary;
+      }
+    }
+  }
+} 

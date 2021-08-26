@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible"
+          content="IE=edge" />
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0" />
+    <title>Tailwindcss를 활용한 로그인 페이지 스타일링</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap"
+          rel="stylesheet" />
+    <link rel="stylesheet"
+          href="./css/style.css" />
+
+  </head>
+
+  <body>
+    <!-- 라이트 / 다크 모드 토글 버튼 -->
+    <!-- <button type="button"
+            class=""
+            onclick="toggleTheme()">
+      <span class="theme-mode">다크</span>모드 보기
+    </button> -->
+    <!-- 전체 콘텐츠 컨테이너 -->
+    <div class="">
+
+      <!-- 데스크 탑에서 보여지게 될 로그인 콘텐츠 박스(테두리) -->
+      <div class="">
+        <!-- 패스트 캠퍼스 브랜드 로고 -->
+        <!-- 패스트 캠퍼스 브랜드 로고 -->
+        <h1 class="logo">
+          <a href="#">
+            <picture>
+              <source srcset="./images/fastcampus-logo-dark.png"
+                      media="(prefers-color-scheme: dark)">
+              <img src="./images/fastcampus-logo.png"
+                   alt="fastcampus" />
+            </picture>
+          </a>
+        </h1>
+
+        <!-- 패스트 캠퍼스 슬로건 -->
+        <p class="">
+          인생을 바꾸는 교육,
+          <span class="block">패스트 캠퍼스.</span>
+        </p>
+
+        <!-- 회원 로그인 폼 -->
+        <form class="">
+          <fieldset>
+            <legend class="">회원 로그인 폼</legend>
+            <!-- 아이디 입력 서식 -->
+            <div class="">
+              <label for="userId"
+                     class="">아이디</label>
+              <input id="userId"
+                     class=""
+                     type="text"
+                     placeholder="아이디"
+                     required />
+            </div>
+
+            <!-- 비밀번호 입력 서식 -->
+            <div class="">
+              <label for="userPassword"
+                     class="">비밀번호</label>
+              <input id="userPassword"
+                     class=""
+                     type="password"
+                     placeholder="비밀번호"
+                     required />
+            </div>
+
+            <!-- 자동 로그인 및 비밀번호 찾기 그룹 컨테이너 -->
+            <div class="">
+              <!-- 자동 로그인 및 비밀번호 -->
+              <div class="">
+                <input class=""
+                       type="checkbox"
+                       id="autoLogin" />
+                <label for="autoLogin"
+                       class="">
+                  자동 로그인
+                </label>
+              </div>
+
+              <!-- 비밀번호 찾기 링크 -->
+              <a href="#">비밀번호 찾기</a>
+            </div>
+
+            <button type="submit"
+                    class="">로그인</button>
+          </fieldset>
+        </form>
+
+        <!-- 회원가입 링크 -->
+        <p class="">
+          아직 계정이 없으신가요?
+          <a class=""
+             href="#">간편 회원가입</a>
+        </p>
+
+      </div>
+
+    </div>
+    <!-- <script defer
+            src="js/main.js"></script> -->
+  </body>
+
+</html>
