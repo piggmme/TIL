@@ -1,0 +1,12 @@
+{
+  "scripts": {
+    "start": "npm run watch",
+    "tailwind": "tailwind -i src/css/tailwind.css -o src/css/style.css",
+    "watch": "npm run tailwind -- --watch"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.3.2",
+    "postcss": "^8.3.6",
+    "tailwindcss": "^2.2.7"
+  }
+}
