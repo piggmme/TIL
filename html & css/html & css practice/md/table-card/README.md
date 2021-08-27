@@ -9,9 +9,6 @@
 
 - [신현석 table](https://hyeonseok.com/blog/729)
 
-<img src="./img/mobile.png" width="400">
-<img src="./img/desk.png" width="400">
-
 ## HTML
 
 ```html
@@ -229,9 +226,13 @@
 
 ### 데스크탑
 
+<img src="./img/desk.png" width="700">
+
 - `order__name`, `order__phone`, `order__address` ... 에게 width값을 %로 주었다.
 
 ### 모바일
+
+<img src="./img/mobile.png" width="400">
 
 - flex를 사용하여 order을 바꿔줌
 
