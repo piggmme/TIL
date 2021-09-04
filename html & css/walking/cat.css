@@ -1,0 +1,56 @@
+.walking {
+  width: 400px;
+  height: 200px;
+  /* y - 200px씩 하면됨 * 11번 */
+
+  background-color: aquamarine;
+  transform: scaleX(-1);
+
+  background-image: url("cat.png");
+  background-repeat: no-repeat;
+  overflow: hidden;
+  zoom: 0.4;
+
+  animation: walking 0.7s step-start infinite;
+}
+.container {
+  background-color: aqua;
+}
+@keyframes walking {
+  0% {
+    background-position-y: 0px;
+  }
+  9% {
+    background-position-y: -200px;
+  }
+  18% {
+    background-position-y: -400px;
+  }
+  27% {
+    background-position-y: -600px;
+  }
+  36% {
+    background-position-y: -800px;
+  }
+  45% {
+    background-position-y: -1000px;
+  }
+  54% {
+    background-position-y: -1200px;
+  }
+  63% {
+    background-position-y: -1400px;
+  }
+  72% {
+    background-position-y: -1600px;
+  }
+  81% {
+    background-position-y: -1800px;
+  }
+  90% {
+    background-position-y: -2000px;
+  }
+  100% {
+    background-position-y: -2200px;
+  }
+}

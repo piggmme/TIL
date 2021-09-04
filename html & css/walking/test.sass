@@ -1,0 +1,56 @@
+.gallery {
+    height: 4000px;
+
+
+  &__container {
+
+      position: sticky;
+      overflow: hidden;
+
+  }
+  &__slide {
+
+      width: 4000px;
+
+  }
+}
+
+
+//-------- 헤딩 애니메이션
+@mixin headingAnimation($delay: 0s) {
+  animation: moveup 2s $delay ease-in-out forwards;
+
+  @keyframes moveup {
+    0% {
+      안보이게
+      Y축 이동 없음
+    }
+    40% {
+      보이게
+      Y축 이동
+    }
+    100% {
+      보이게
+      Y=0으로 돌아옴
+    }
+  }
+}
+
+
+@mixin walkingCat {
+  ...
+  
+  background-image: url('/src/assets/images/cat.png');
+  background-repeat: no-repeat;
+
+  animation: walking 0.7s step-start infinite;
+
+  @keyframes walking {
+    0% {
+      background-position-y: 0px;
+    }
+    100% {
+      background-position-y: -440px;
+    }
+  }
+}
