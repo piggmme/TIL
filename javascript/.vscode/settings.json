@@ -1,3 +1,29 @@
 {
-    "liveServer.settings.port": 5501
+  "liveServer.settings.port": 5501,
+  /////////////////////////////
+  // ESLint
+  "eslint.validate": [
+    "html",
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ],
+  "eslint.alwaysShowStatus": true,
+  // save시 eslint를 사용해 autofix 실행 (ex. let => const)
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  /////////////////////////////
+  // Prettier
+  // 수정 후 저장할 때 prettier로 자동 스타일링
+  "javascript.format.enable": false,
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  // Prettier 기본 설정. 프로젝트 루트의 .prettierrc 파일의 설정이 우선한다.
+  "prettier.arrowParens": "avoid",
+  "prettier.singleQuote": true,
+  "prettier.jsxSingleQuote": true,
+  "prettier.printWidth": 100,
+  "prettier.useTabs": false
 }
