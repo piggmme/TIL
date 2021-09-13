@@ -1,11 +1,53 @@
-// 전달 받은 배열 중 짝수만 더해서 반환하는 함수
+const obj = {
+  a: 1,
+  b: 2,
+};
 
-// 명령형 함수
-function sumEven(numbers) {
-  // sum even nubmers 라고 읽을 수 있도록 함수 이름과 매개변수 이름을 지어줌
+const copy = obj;
 
-  var sum = 0; // 초기화를 해주어야한다. 산술 연산을 해야해서.
+console.log(copy === obj); // true
+console.log(copy, obj); // { a: 1, b: 2 } { a: 1, b: 2 }
 
-  for (let i = 0; i < numbers.length; i++) {}
+obj.c = 3;
+
+console.log(copy === obj); // true
+console.log(copy, obj); // { a: 1, b: 2, c: 3 } { a: 1, b: 2, c: 3 }
+
+function isEqueal(obj1, obj2) {
+  // 두 객체의 동일한 프로퍼티가 있고, 값도 다 똑같은지 확인해라
 }
-console.log(sumEven([1, 2, 3, 4, 5]));
+function deepCopy(obj) {
+  // 입력 객체를 깊은 복사해서 만든 값을 반환함
+}
+
+{
+  var add = function (x, y) {
+    return x + y;
+  };
+
+  console.log(add(1, 2));
+  // ()는 함수 호출 연산자, add는 식별자로 함수 객체를 가리켜야한다.
+}
+{
+  $.ajax({
+    method: "POST",
+    url: "/user",
+    data: { id: 1, name: "Lee" },
+    cache: false,
+  });
+}
+{
+  setTimeout(function () {
+    console.log("1초 경과");
+  }, 1000);
+}
+{
+  var counter = {
+    n: 0,
+    increase() {
+      this.n += 1;
+    },
+  };
+  counter.increase();
+  counter.n = -100; // 문제!!
+}
