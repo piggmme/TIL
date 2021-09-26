@@ -67,7 +67,9 @@
 
 // 그냥 BFS 돌리면 됨
 {
-  var ladderLength = function (beginWord, endWord, wordList) {};
+  var ladderLength = function (beginWord, endWord, wordList) {
+    let ch = new Map();
+  };
 
   //   console.log(ladderLength('hit', 'cog', ['hot', 'dot', 'dog', 'lot', 'log', 'cog'])); // 5
   //   console.log(ladderLength('hit', 'cog', ['hot', 'dot', 'dog', 'lot', 'log'])); // 0
