@@ -1,16 +1,2 @@
- console.log(
-    solution(
-      9,
-      [
-        [1, 2],
-        [2, 3],
-        [3, 4],
-        [1, 5],
-        [6, 7],
-        [7, 8],
-        [8, 9],
-      ],
-      3,
-      2
-    )
-  ); // YES
+  console.log(solution([3, 30, 34, 5, 9]));
+  console.log(solution([0, 0, 0, 0]));
