@@ -35,6 +35,7 @@
           s2.split("").reverse().join("") !== s2
         )
           return "NO";
+        else return 'YES';
       } else {
         lt++;
         rt--;
