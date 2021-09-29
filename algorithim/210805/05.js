@@ -20,6 +20,21 @@
 
 {
   function solution(nums, m) {
+    const n = nums.length;
+    const dy = Array.from({ length: m + 1 }, () => 0);
+
+    for (const [weight, value] of nums) {
+      for (let i = weight; i <= m; i++) {
+        if (dy[i] < dy[i - weight] + value) dy[i] = dy[i - weight] + value;
+      }
+    }
+
+    return dy[m];
+  }
+}
+
+{
+  function solution(nums, m) {
     let n = nums.length;
     let dy = Array.from({ length: m + 1 }, () => 0);
     // dy 가 필요함
