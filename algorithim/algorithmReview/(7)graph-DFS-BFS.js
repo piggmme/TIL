@@ -134,7 +134,6 @@
     const dy = [-1, -1, -1, 0, 0, 1, 1, 1];
     const n = board.length;
     const m = board[0].length;
-    const dist = Array.from({ length: n }, () => Array(m));
 
     function DFS(x, y) {
       for (let i = 0; i < 8; i++) {

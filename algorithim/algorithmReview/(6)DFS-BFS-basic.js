@@ -76,23 +76,45 @@
 
 // 3. 부분집합 구하기
 {
-  function solution(n) {
-    let answer = [];
-    let tmp = [];
-    function DFS(L) {
-      if (L > n) {
-        if (tmp.length !== 0) answer.push(tmp.slice());
-      } else {
-        tmp.push(L);
-        DFS(L + 1);
-        tmp.pop();
-        DFS(L + 1);
+  {
+    function solution(n) {
+      const answer = [];
+      const temp = [];
+
+      function DFS(L) {
+        if (L === n + 1) {
+          if (temp.length !== 0) answer.push(temp.slice());
+        } else {
+          temp.push(L);
+          DFS(L + 1);
+          temp.pop();
+          DFS(L + 1);
+        }
       }
+      DFS(1);
+      return answer;
     }
-    DFS(1);
-    return answer;
+    // console.log(solution(3));
   }
-  //   console.log(solution(3));
+  {
+    function solution(n) {
+      let answer = [];
+      let tmp = [];
+      function DFS(L) {
+        if (L > n) {
+          if (tmp.length !== 0) answer.push(tmp.slice());
+        } else {
+          tmp.push(L);
+          DFS(L + 1);
+          tmp.pop();
+          DFS(L + 1);
+        }
+      }
+      DFS(1);
+      return answer;
+    }
+    //   console.log(solution(3));
+  }
   {
     // 조합으로 부분집합 구하기
     function solution(n, m) {
@@ -120,12 +142,10 @@
     const total = nums.reduce((acc, cur) => acc + cur, 0);
     const n = nums.length;
     let answer = false;
-    let flag = false;
 
     function DFS(L, sum) {
       if (L === n) {
         if (total - sum === sum) {
-          flag = true;
           answer = true;
         }
       } else {
@@ -144,6 +164,7 @@
 
 // 5. 바둑이 승차
 {
+  // 부분집합, 컷 엣지
   function solution(nums, c) {
     let answer = Number.MIN_SAFE_INTEGER;
     const n = nums.length;
@@ -169,6 +190,7 @@
 
 // 6. 최대 점수 구하기
 {
+  // 부분집합, 컷 엣지
   function solution(nums, m) {
     const total = nums.reduce((acc, cur) => acc + cur, 0);
     const n = nums.length;

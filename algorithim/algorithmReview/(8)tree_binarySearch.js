@@ -282,7 +282,8 @@
         }
       }
 
-      return ch[e] === 0 ? false : true;
+      // 도착 했는지 안했는지
+      return ch[e] !== 0;
     }
 
     while (lt <= rt) {
