@@ -59,7 +59,10 @@
     let answer = BFS();
     return answer;
   }
+  // console.log(solution());
+  console.log(solution(11, 2)); // 5
   console.log(solution(5, 6)); // 2
   console.log(solution(10, 3)); // 3
   console.log(solution(1, 11)); // 6
+  console.log(solution(211, 1)); // 20 -> ch 배열 말고, Set을 사용해야함. 올바른 괄호만들기!
 }
