@@ -7,15 +7,26 @@ const todos = [
   { id: 1, content: 'Javascript', completed: false }
 ];
 
+// const render = todos =>
+//   todos.reduce((acc, cur) => {
+//     const { id, content, completed } = cur;
+//     return (
+//       acc +
+//       `<li id="${id}">
+//               <label><input type="checkbox" ${completed ? 'checked' : ''}>${content}</label>
+//           </li>`
+//     );
+//   }, '');
+
 const render = todos =>
-  todos.reduce((acc, cur) => {
-    const { id, content, completed } = cur;
-    return (
+  todos.reduce(
+    (acc, { id, content, completed }) =>
       acc +
       `<li id="${id}">
               <label><input type="checkbox" ${completed ? 'checked' : ''}>${content}</label>
-          </li>`
-    );
-  }, '');
+          </li>`,
+
+    ''
+  );
 
 console.log(render(todos));
