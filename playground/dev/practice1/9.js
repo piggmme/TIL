@@ -7,13 +7,6 @@ const todos = [
   { id: 1, content: 'Javascript', completed: false }
 ];
 
-// const getMaxId = todos => todos.reduce((acc, todo) => (acc < todo.id ? todo.id : acc), 0);
-
-// const getMaxId = todos => {
-//   const ids = todos.map(todo => todo.id);
-//   return ids.length === 0 ? 0 : Math.max(...ids);
-// };
-
 const getMaxId = todos => (todos.length ? Math.max(...todos.map(todo => todo.id)) : 0);
 
 console.log(getMaxId(todos)); // 3

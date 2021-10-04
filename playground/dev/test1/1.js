@@ -7,26 +7,27 @@ const todos = [
   { id: 1, content: 'Javascript', completed: false }
 ];
 
-// const render = todos =>
-//   todos.reduce((acc, cur) => {
-//     const { id, content, completed } = cur;
-//     return (
-//       acc +
-//       `<li id="${id}">
-//               <label><input type="checkbox" ${completed ? 'checked' : ''}>${content}</label>
-//           </li>`
-//     );
-//   }, '');
-
 const render = todos =>
   todos.reduce(
-    (acc, { id, content, completed }) =>
-      acc +
+    (html, { id, content, completed }) =>
+      html +
       `<li id="${id}">
-              <label><input type="checkbox" ${completed ? 'checked' : ''}>${content}</label>
-          </li>`,
-
+        <label><input type="checkbox" ${completed ? 'checked' : ''}>${content}</label>
+      </li>`,
     ''
   );
-
 console.log(render(todos));
+
+// another solution
+{
+  const render = todos =>
+    todos
+      .map(
+        ({ id, content, completed }) =>
+          `<li id="${id}">
+            <label><input type="checkbox" ${completed ? 'checked' : ''}>${content}</label>
+          </li>`
+      )
+      .join('');
+  console.log(render(todos));
+}

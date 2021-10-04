@@ -8,12 +8,6 @@ let todos = [
   { id: 1, content: 'Javascript', completed: false }
 ];
 
-// const toggleCompletedById = (todos, id) =>
-//   todos.map(todo => {
-//     todo.completed = todo.id === id ? !todo.completed : todo.completed;
-//     return todo;
-//   });
-
 const toggleCompletedById = (todos, id) =>
   todos.map(todo => (todo.id === id ? { ...todo, completed: !todo.completed } : todo));
 
