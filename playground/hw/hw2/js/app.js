@@ -4,9 +4,6 @@ const $toggleAll = document.querySelector('.toggle-all');
 const $todoList = document.querySelector('.todo-list');
 const $todoCount = document.querySelector('.todo-count');
 const $filters = document.querySelector('.filters');
-const $all = document.getElementById('all');
-const $active = document.getElementById('active');
-const $completed = document.getElementById('completed');
 const $clearCompleted = document.querySelector('.clear-completed');
 
 // 상태 ----------------------------------------
@@ -54,9 +51,22 @@ const fetchTodos = () => {
   render(todos);
 };
 
+const renderFilteredTodos = () => {
+  const { id } = [...$filters.children].find(li =>
+    li.firstElementChild.classList.contains('selected')
+  ).lastElementChild;
+
+  if (id === 'all') {
+    render(todos);
+    return;
+  }
+  const completed = id !== 'active';
+  render(todos.filter(todo => todo.completed === completed));
+};
+
 const setTodos = newTodos => {
   todos = newTodos;
-  render(todos);
+  renderFilteredTodos();
 };
 
 const generateTodosId = () => Math.max(...todos.map(({ id }) => id), 0) + 1;
@@ -98,15 +108,6 @@ const editTodos = (id, input) => {
   } else {
     removeTodos(id);
   }
-};
-
-const renderFilteredTodos = id => {
-  if (id === 'all') {
-    render(todos);
-    return;
-  }
-  const completed = id !== 'active';
-  render(todos.filter(todo => todo.completed === completed));
 };
 
 const filterTodos = id => {
@@ -156,7 +157,7 @@ $toggleAll.onchange = e => {
   }
 };
 
-// li를 더블 클릭함
+// todo 수정
 $todoList.ondblclick = e => {
   const li = e.target.parentNode.parentNode;
   changeEditingMode(li);
@@ -167,12 +168,13 @@ $todoList.onkeydown = e => {
   editTodos(e.target.parentNode.dataset.id, e.target.value);
 };
 
-// filter
+// All/ Active/ Completed
 $filters.onclick = e => {
+  if (e.target.tagName !== 'A') return;
   filterTodos(e.target.id);
 };
 
-// clear completed
+// completed 한번에 삭제
 $clearCompleted.onclick = () => {
   clearCompleted();
 };
