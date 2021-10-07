@@ -110,6 +110,8 @@ const editTodos = (id, input) => {
   }
 };
 
+const completeEditingTodos = e => editTodos(e.target.parentNode.dataset.id, e.target.value);
+
 const filterTodos = id => {
   [...$filters.children].forEach(li =>
     li.firstElementChild.id === id
@@ -162,6 +164,8 @@ $todoList.ondblclick = e => {
   const li = e.target.parentNode.parentNode;
   changeEditingMode(li);
 };
+
+$todoList.addEventListener('focusout', completeEditingTodos);
 
 $todoList.onkeydown = e => {
   if (!e.target.classList.contains('edit') || e.key !== 'Enter') return;
