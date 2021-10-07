@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Todos v2</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <section class="todo-app">
+      <header class="header">
+        <h1>todos</h1>
+        <input
+          class="new-todo"
+          placeholder="What needs to be done?"
+          autofocus
+        />
+      </header>
+      <!-- todo의 갯수가 0이면 .main 요소를 비표시한다. -->
+      <section class="main">
+        <!-- 체크박스가 on 상태가 되면 모든 todo를 done 상태로 변경한다. -->
+        <input type="checkbox" id="toggle-all" class="toggle-all" />
+        <label for="toggle-all">Mark all as complete</label>
+        <ul class="todo-list">
+          <!--
+            todo list
+            1. todo를 나타내는 li 요소는 HTML에 정적으로 존재하지 않는다. todos 배열을 기반으로 자바스크립트에 의해 동적으로 DOM에 추가되어야 한다.
+            2. todo를 나타내는 li 요소를 더블 클릭하면 li 요소에 editing 클래스를 추가해 편집 모드로 변경한다.
+            3. 편집 모드가 되면 CSS에 의해 div.view가 비표시되고 input.edit가 표시된다.
+          -->
+          <!--
+          <li data-id="3" class="editing">
+            <div class="view">
+              <input type="checkbox" class="toggle" />
+              <label>JavaScript</label>
+              <button class="destroy"></button>
+            </div>
+            <input class="edit" value="JavaScript" />
+          </li>
+          <li data-id="2">
+            <div class="view">
+              <input type="checkbox" class="toggle" checked />
+              <label>CSS</label>
+              <button class="destroy"></button>
+            </div>
+            <input class="edit" value="CSS" />
+          </li>
+          <li data-id="1">
+            <div class="view">
+              <input type="checkbox" class="toggle" />
+              <label>HTML</label>
+              <button class="destroy"></button>
+            </div>
+            <input class="edit" value="HTML" />
+          </li> -->
+        </ul>
+      </section>
+      <!-- todo의 갯수가 0이면 .footer 요소를 비표시한다. -->
+      <footer class="footer">
+        <!-- todo의 갯수가 0 또는 1개면 'n item left' todo의 갯수가 2개 이상이면 'n items left' -->
+        <span class="todo-count">0 item left</span>
+        <ul class="filters">
+          <li>
+            <a id="all" class="selected" href="javascript:void(0);">All</a>
+          </li>
+          <li>
+            <a id="active" href="javascript:void(0);">Active</a>
+          </li>
+          <li>
+            <a id="completed" href="javascript:void(0);">Completed</a>
+          </li>
+        </ul>
+        <!-- completed 상태인 todo가 없으면 비표시한다. -->
+        <button class="clear-completed">Clear completed</button>
+      </footer>
+    </section>
+    <footer class="info">
+      <p>Double-click to edit a todo</p>
+    </footer>
+    <script type="module" src="js/app.js"></script>
+  </body>
+</html>
