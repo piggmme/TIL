@@ -5,6 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <style>
+      .todo-completed:checked + span {
+        text-decoration: line-through;
+      }
+    </style>
   </head>
   <body>
     <form>
@@ -16,12 +21,12 @@
     <script>
       // state
       let todos = [];
-      // DOM 요소 ----------
+      // DOM 요소 ----------------------------------------
       const $todoInput = document.querySelector('.todo-input');
-      const $todoAdd = document.querySelector('.todo-add');
       const $todoList = document.querySelector('.todo-list');
+      const $form = document.querySelector('form');
 
-      // Event handler -------
+      // Event handler -------------------------------------
       const render = () => {
         $todoList.innerHTML = todos
           .map(
@@ -45,9 +50,46 @@
         render();
       };
 
+      const setTodos = newTodos => {
+        todos = newTodos;
+        render();
+      };
+
+      const generateTodoId = () => Math.max(...todos.map(({ id }) => id), 0) + 1;
+      const addTodos = e => {
+        e.preventDefault();
+        const content = $todoInput.value.trim();
+
+        if (content) {
+          setTodos([{ id: generateTodoId(), content, completed: false }, ...todos]);
+        }
+        $todoInput.value = '';
+        $todoInput.focus();
+      };
+
+      const toggleTodosComplete = e => {
+        setTodos(
+          todos.map(todo =>
+            todo.id === +e.target.parentNode.id ? { ...todo, completed: !todo.completed } : todo
+          )
+        );
+      };
+
+      const removeTodos = e => {
+        if (!e.target.classList.contains('todo-remove')) return;
+
+        setTodos(todos.filter(({ id }) => id !== +e.target.parentNode.id));
+      };
+
       // Event 처리 ---------
       //   window.onDOMContentLoaded = fetchTodos; // 는 안됨.
       window.addEventListener('DOMContentLoaded', fetchTodos);
+
+      $form.addEventListener('submit', addTodos);
+
+      $todoList.addEventListener('change', toggleTodosComplete);
+
+      $todoList.addEventListener('click', removeTodos);
     </script>
   </body>
 </html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .todo-completed:checked + span {
+        text-decoration: line-through;
+      }
+    </style>
+  </head>
+  <body>
+    <form>
+      <input type="text" class="todo-input" />
+      <button>입력</button>
+    </form>
+    <ul class="todo-list"></ul>
+
+    <script>
+      // DOM 요소
+      const $form = document.querySelector('form');
+      const $todoInput = document.querySelector('.todo-input');
+      const $todoList = document.querySelector('.todo-list');
+
+      // 상태
+      let todos = [];
+
+      // 이벤트 핸들러
+      const render = () => {
+        $todoList.innerHTML = todos
+          .map(
+            ({ id, content, completed }) => `
+                <li id = "${id}">
+                    <input type="checkbox" class="todo-completed" ${completed ? 'checked' : ''}>
+                    <span>${content}</span>
+                    <button class="todo-remove">X</button>
+                </li>
+           `
+          )
+          .join('');
+      };
+
+      const fetchTodos = () => {
+        todos = [
+          { id: 1, content: 'JavaScript', completed: false },
+          { id: 2, content: 'CSS', completed: true },
+          { id: 3, content: 'HTML', completed: false }
+        ];
+        render();
+      };
+
+      const setTodos = newTodos => {
+        todos = newTodos;
+        render();
+      };
+
+      const generateTodosId = () => Math.max(...todos.map(({ id }) => id), 0) + 1;
+
+      const addTodos = () => {
+        const content = $todoInput.value.trim();
+
+        if (content) {
+          setTodos([{ id: generateTodosId(), content, completed: false }, ...todos]);
+        }
+
+        $todoInput.value = '';
+        $todoInput.focus();
+      };
+
+      const toggleTodosCompleted = id => {
+        setTodos(
+          todos.map(todo => (todo.id === +id ? { ...todo, completed: !todo.completed } : todo))
+        );
+      };
+
+      const removeTodos = id => {
+        setTodos(todos.filter(todo => todo.id !== +id));
+      };
+
+      // 이벤트 등록
+      window.addEventListener('DOMContentLoaded', fetchTodos);
+
+      $form.onsubmit = e => {
+        e.preventDefault();
+        addTodos();
+      };
+
+      $todoList.onchange = e => {
+        if (!e.target.classList.contains('todo-completed')) return;
+        toggleTodosCompleted(e.target.parentNode.id);
+      };
+
+      $todoList.onclick = e => {
+        if (!e.target.classList.contains('todo-remove')) return;
+        removeTodos(e.target.parentNode.id);
+      };
+    </script>
+  </body>
+</html>
