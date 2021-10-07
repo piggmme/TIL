@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      /* 스타일링은 css로 */
+      .todo-completed:checked + span {
+        text-decoration: line-through;
+      }
+    </style>
+  </head>
+  <body>
+    <form>
+      <input type="text" class="todo-input" />
+      <button class="todo-add">입력</button>
+    </form>
+    <ul class="todo-list"></ul>
+
+    <script>
+      // state: 상태가 변하면 view가 변한다!
+      // 상태는 불변성을 유지시키기 위해서, todos엔 mutator한 함수는 호출하지 않을 것이다.
+      // 그렇다면 상태가 변경됬는지 확인하고 싶으면 === 하면됨
+      let todos = [];
+
+      // DOM Nodes ----------------------------
+      const $form = document.querySelector('form');
+      const $todoInput = document.querySelector('.todo-input');
+      const $todoList = document.querySelector('.todo-list');
+
+      // todos가 변경될 때 마다 view를 그려주기 위한 함수
+      const render = () => {
+        $todoList.innerHTML = todos
+          .map(
+            ({ id, content, completed }) => `
+            <li id="${id}">
+                <input class="todo-completed" type="checkbox" ${completed ? 'checked' : ''}>
+                <span>${content}</span>
+                <button class="todo-remove">X</button>
+            </li>
+          `
+          )
+          .join('');
+      };
+
+      // todos를 초기화 해주고 렌더링해줌
+      const setTodos = newTodos => {
+        todos = newTodos;
+
+        console.log('todos', todos);
+        render();
+      };
+
+      // 초기상태를 가져옴
+      const fetchTodos = () => {
+        todos = [
+          { id: 3, content: 'JavaScript', completed: false },
+          { id: 2, content: 'CSS', completed: true },
+          { id: 1, content: 'HTML', completed: false }
+        ];
+        render();
+      };
+
+      const generateTodoId = () => Math.min(...todos.map(todo => todo.id), 0) + 1;
+
+      const addTodo = content => {
+        todos = [{ id: generateTodoId(), content, completed: false }, ...todos];
+        render();
+      };
+
+      const toggleTodoCompleted = id => {
+        setTodos(
+          todos.map(todo => (todo.id === +id ? { ...todo, completed: !todo.completed } : todo))
+        );
+      };
+
+      const removeTodo = id => {
+        setTodos(todos.filter(todo => todo.id !== +id));
+      };
+
+      // Event Bindings ----------------------------
+
+      // DOM이 전부 생성되었을 때 todos 초기값을 가져온다
+      window.addEventListener('DOMContentLoaded', fetchTodos);
+
+      // 사용자가 입력한 경우
+      $form.onsubmit = e => {
+        e.preventDefault(); // 화면 다시 로드되는거 막는다
+        const content = $todoInput.value.trim();
+
+        if (content) addTodo(content);
+        $todoInput.value = '';
+        $todoInput.focus();
+      };
+
+      // 사용자가 check한 경우
+      $todoList.onchange = e => {
+        toggleTodoCompleted(e.target.parentNode.id);
+      };
+
+      // 지우는 경우
+      $todoList.onclick = e => {
+        // className은 여러개의 클래스를 하나의 문자열로 가져와서 splite처리가 필요함.
+        if (!e.target.classList.contains('todo-remove')) return;
+        removeTodo(e.target.parentNode.id);
+      };
+    </script>
+  </body>
+</html>

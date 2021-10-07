@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      /* 스타일링은 css로 */
+      .todo-completed:checked + span {
+        text-decoration: line-through;
+      }
+    </style>
+  </head>
+  <body>
+    <form>
+      <input type="text" class="todo-input" />
+      <button class="todo-add">입력</button>
+    </form>
+    <ul class="todo-list"></ul>
+
+    <script>
+      // 헝가리언 케이스 $DOM노드
+      const $form = document.querySelector('form');
+      const $todoInput = document.querySelector('.todo-input');
+      const $todoList = document.querySelector('.todo-list');
+
+      $form.onsubmit = e => {
+        e.preventDefault();
+
+        const content = $todoInput.value.trim();
+
+        if (content)
+          $todoList.innerHTML =
+            `<li>
+                <input type="checkbox" class="todo-completed">
+                <span>${$todoInput.value}</span>
+                <button class="remove">X</button>
+            </li>` + $todoList.innerHTML;
+
+        $todoInput.value = '';
+        $todoInput.focus();
+
+        // js로 스타일링은 하면 안됨...
+        // $todoList.onchange = e => {
+        //   e.target.nextElementSibling.style.textDecoration = e.target.checked ? 'line-through' : '';
+        // };
+
+        $todoList.onclick = e => {
+          // class를 가졌는지 확인하여, 해당 클래스만 실행해줌
+          // matches로 걸러줄 수 도 있다.
+          if (!e.target.classList.contains('remove')) return;
+
+          $todoList.removeChild(e.target.parentNode);
+        };
+      };
+    </script>
+  </body>
+</html>
