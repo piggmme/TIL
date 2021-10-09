@@ -1,3 +1,5 @@
+// 소수 찾기
+// https://leetcode.com/problems/count-primes/submissions/
 // 1
 var countPrimes = n => {
   const isPrime = Array(n).fill(1);

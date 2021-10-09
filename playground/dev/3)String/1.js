@@ -6,9 +6,14 @@
 //   return trimStr.toUpperCase() === [...trimStr].reverse().join('').toUpperCase();
 // };
 
+// const isPalindrome = str => {
+//   const temp = str.toLowerCase().replace(/[^a-z0-9]/gi, '');
+//   return temp === [...temp].reverse().join('');
+// };
+
 const isPalindrome = str => {
-  const temp = str.toLowerCase().replace(/[^a-z0-9]/gi, '');
-  return temp === [...temp].reverse().join('');
+  const strTemp = str.toLowerCase().replace(/[^A-Za-z0-9]/g, '');
+  return strTemp === [...strTemp].reverse().join('');
 };
 
 console.log(isPalindrome('A man, a plan, a canal: Panama')); // => true
