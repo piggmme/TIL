@@ -1,6 +1,8 @@
-// 6. 2개의 Date 객체가 같은 년도/월/날짜를 가리키는지 확인하기
+// 5. 두 날짜 사이의 일수 구하기
 
-const isEqualDate = (date1, date2) => +date1 === +date2;
+// const diffDays = (date1, date2) =>
+//   Math.floor(Math.abs(date1.getTime() - date2.getTime()) / (24 * 60 * 60 * 1000));
 
-console.log(isEqualDate(new Date('2021/07/24'), new Date('2021/07/24'))); // => true
-console.log(isEqualDate(new Date('2021/07/24'), new Date('2022/07/2'))); // => false
+const diffDays = (date1, date2) => Math.floor(Math.abs(date1 - date2) / (24 * 60 * 60 * 1000));
+
+console.log(diffDays(new Date('2021/01/01'), new Date('2021/12/31'))); // => 364

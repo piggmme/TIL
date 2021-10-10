@@ -1,9 +1,8 @@
-// 3. 1일의 요일을 나타내는 정수(0 ~ 6) 구하기. 0은 일요일이고 6은 토요일이다.
+// 2. 특정 달의 말일 구하기
 
-const getFirstDayOfMonth = (year, month) => new Date(year, month, 1).getDay();
+const getLastDateOfMonth = (year, month) => new Date(year, month + 1, 0).getDate();
+// 2021년 1월의 마지막 날은 31일
+console.log(getLastDateOfMonth(2021, 0)); // => 31
 
-// 2021년 1월 1일은 금요일
-console.log(getFirstDayOfMonth(2021, 0)); // => 5
-
-// 2021년 12월 1일은 수요일
-console.log(getFirstDayOfMonth(2021, 11)); // => 3
+// 2021년 2월의 마지막 날은 28일
+console.log(getLastDateOfMonth(2021, 1)); // => 28

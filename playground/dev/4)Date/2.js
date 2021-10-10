@@ -1,8 +1,9 @@
-// 2. 특정 달의 말일 구하기
+// 2. 요일 구하기
 
-const getLastDateOfMonth = (year, month) => new Date(year, month + 1, 0).getDate();
-// 2021년 1월의 마지막 날은 31일
-console.log(getLastDateOfMonth(2021, 0)); // => 31
+const day = ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'];
 
-// 2021년 2월의 마지막 날은 28일
-console.log(getLastDateOfMonth(2021, 1)); // => 28
+const getDay = dateStr => day[new Date(dateStr).getDay()];
+
+console.log(getDay('2021-07-24')); // => '토요일'
+console.log(getDay('2021-07-25')); // => '일요일'
+console.log(getDay('2021-07-26')); // => '월요일'

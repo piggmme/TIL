@@ -1,8 +1,9 @@
-// 5. 두 날짜 사이의 일수 구하기
+// 4. 말일의 요일을 나타내는 정수(0 ~ 6) 구하기. 0은 일요일이고 6은 토요일이다.
 
-// const diffDays = (date1, date2) =>
-//   Math.floor(Math.abs(date1.getTime() - date2.getTime()) / (24 * 60 * 60 * 1000));
+const getLastDayOfMonth = (year, month) => new Date(year, month + 1, 0).getDay();
 
-const diffDays = (date1, date2) => Math.floor(Math.abs(date1 - date2) / (24 * 60 * 60 * 1000));
+// 2021년 1월 말일은 일요일
+console.log(getLastDayOfMonth(2021, 0)); // => 0
 
-console.log(diffDays(new Date('2021/01/01'), new Date('2021/12/31'))); // => 364
+// 2021년 12월 말일은 금요일
+console.log(getLastDayOfMonth(2021, 11)); // => 5
