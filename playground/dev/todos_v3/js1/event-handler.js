@@ -1,5 +1,4 @@
 import {
-  setFilter,
   fetchTodos,
   addTodos,
   toggleTodosCompleted,
@@ -7,7 +6,9 @@ import {
   updateTodoContent,
   removeTodo,
   removeAllCompletedTodos
-} from './state.js';
+} from './state-function.js';
+
+import { setFilter } from './state.js';
 
 // DOM Nodes ------------------------------------
 
