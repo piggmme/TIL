@@ -12,7 +12,7 @@
 // };
 
 const isPalindrome = str => {
-  const strTemp = str.toLowerCase().replace(/[^A-Za-z0-9]/g, '');
+  const strTemp = str.toLowerCase().replace(/[^a-z0-9]/g, '');
   return strTemp === [...strTemp].reverse().join('');
 };
 

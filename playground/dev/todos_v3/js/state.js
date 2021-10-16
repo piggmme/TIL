@@ -5,6 +5,8 @@ let currentFilter = 'all';
 
 // DOM Nodes ------------------------------------
 
+// 상태를 사용하거나 수정하는 함수들
+
 const $main = document.querySelector('.main');
 const $todoList = document.querySelector('.todo-list');
 const $footer = document.querySelector('.footer');
