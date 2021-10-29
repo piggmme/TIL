@@ -23,15 +23,15 @@
 function solution(s) {
   let one = 0,
     zero = 0;
-  s[0] === "1" ? (one = 1) : (zero = 1); // idx = 0
+  s[0] === '1' ? (one = 1) : (zero = 1); // idx = 0
   for (let i = 1; i < s.length; i++) {
     // idx = 1부터 시작!
     if (s[i - 1] !== s[i]) {
-      s[i] === "1" ? (one += 1) : (zero += 1);
+      s[i] === '1' ? (one += 1) : (zero += 1);
     }
   }
   // return Math.min(one, zero);
   return one > zero ? zero : one;
 }
-console.log(solution("100001111"));
-console.log(solution("10010111100"));
+console.log(solution('100001111'));
+console.log(solution('10010111100'));

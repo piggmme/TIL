@@ -41,9 +41,9 @@
       }
     }
   }
-  console.log(solution(["seeasue", "sesseysu", "semeas"]));
-  console.log(solution(["ackky", "kabck", "yokkcs"]));
-  console.log(solution(["longlong", "longtong", "longbig"]));
+  console.log(solution(['seeasue', 'sesseysu', 'semeas']));
+  console.log(solution(['ackky', 'kabck', 'yokkcs']));
+  console.log(solution(['longlong', 'longtong', 'longbig']));
 }
 
 // MySol)
@@ -59,7 +59,7 @@
     }
     return cnt;
   }
-  console.log(solution(["seeasue", "sesseysu", "semeas"]));
-  console.log(solution(["ackky", "kabck", "yokkcs"]));
-  console.log(solution(["longlong", "longtong", "longbig"]));
+  console.log(solution(['seeasue', 'sesseysu', 'semeas']));
+  console.log(solution(['ackky', 'kabck', 'yokkcs']));
+  console.log(solution(['longlong', 'longtong', 'longbig']));
 }

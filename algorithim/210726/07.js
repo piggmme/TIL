@@ -21,16 +21,16 @@
 {
   // Sol)
   function solution(s1, s2) {
-    let answer = "YES";
+    let answer = 'YES';
     let sH = new Map();
 
-    if (s1.length !== s2.length) return "NO";
+    if (s1.length !== s2.length) return 'NO';
 
     for (let x of s1) {
       sH.set(x, sH.get(x) + 1 || 1);
     }
     for (let x of s2) {
-      if (!sH.has(x) || sH.get(x) === 0) return "NO";
+      if (!sH.has(x) || sH.get(x) === 0) return 'NO';
       sH.set(x, sH.get(x) - 1);
     }
     return answer;
@@ -42,7 +42,7 @@
   function solution(s1, s2) {
     let hash1 = new Map();
     let hash2 = new Map();
-    if (s1.length !== s2.length) return "NO";
+    if (s1.length !== s2.length) return 'NO';
 
     for (let i = 0; i < s1.length; i++) {
       hash1.set(s1[i], hash1.get(s1[i]) + 1 || 1);
@@ -50,11 +50,11 @@
     }
     for (let [key, value] of hash1) {
       if (hash2.get(key) !== value) {
-        return "NO";
+        return 'NO';
       }
     }
-    return "YES";
+    return 'YES';
   }
-  console.log(solution("AbaAeCe", "baeeACA"));
-  console.log(solution("abaCC", "Caaab"));
+  console.log(solution('AbaAeCe', 'baeeACA'));
+  console.log(solution('abaCC', 'Caaab'));
 }

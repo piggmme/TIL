@@ -2,14 +2,19 @@
 // https://leetcode.com/problems/product-of-array-except-self/
 
 var productExceptSelf = function (nums) {
-  const productedAllIncludeZero = nums.reduce((acc, cur) => acc * cur, 1);
+  const left = Array(nums.length).fill(1);
+  const right = Array(nums.length).fill(1);
+  const answer = Array(nums.length).fill(1);
 
-  const answer = [];
-  for (const num of nums) {
-    if (num === 0) answer.push(productedAll);
-    else if (productedAllIncludeZero === 0) answer.push(0);
-    else answer.push(productedAllIncludeZero / num);
+  for (let i = 1; i < nums.length; i++) {
+    left[i] = left[i - 1] * nums[i - 1];
+    const j = nums.length - i - 1;
+    right[j] = right[j + 1] * nums[j + 1];
   }
+  for (let i = 0; i < nums.length; i++) {
+    answer[i] = left[i] * right[i];
+  }
+
   return answer;
 };
 

@@ -23,11 +23,11 @@ function solution(s1, s2) {
     one = 0;
   for (let i = 0; i < s1.length; i++) {
     if (s1[i] !== s2[i]) {
-      if (s1[i] === "1") one += 1;
+      if (s1[i] === '1') one += 1;
       else zero += 1;
     }
   }
 
   return Math.min(zero, one) + Math.max(zero, one) - Math.min(zero, one);
 }
-console.log(solution("11000111", "11111110"));
+console.log(solution('11000111', '11111110'));

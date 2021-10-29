@@ -17,4 +17,4 @@ function solution(s) {
   }
   return answer.sort();
 }
-console.log(solution("kseaedu"));
+console.log(solution('kseaedu'));

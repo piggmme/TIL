@@ -31,17 +31,17 @@
         let s1 = s.substring(lt, rt);
         let s2 = s.substring(lt + 1, rt + 1);
         if (
-          s1.split("").reverse().join("") !== s1 &&
-          s2.split("").reverse().join("") !== s2
+          s1.split('').reverse().join('') !== s1 &&
+          s2.split('').reverse().join('') !== s2
         )
-          return "NO";
+          return 'NO';
         else return 'YES';
       } else {
         lt++;
         rt--;
       }
     }
-    return "YES";
+    return 'YES';
   }
 }
 {
@@ -70,10 +70,10 @@
           continue;
         }
 
-        return "NO"; // 문자 잘라도 회문이 안됨.
+        return 'NO'; // 문자 잘라도 회문이 안됨.
       }
     }
-    return "YES";
+    return 'YES';
   }
 
   // console.log(solution("abcbdcba"));

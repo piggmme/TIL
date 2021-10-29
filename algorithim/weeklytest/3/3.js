@@ -15,63 +15,43 @@
 
 // 출력설명 : 1번째 회문수는 1, 12번째 회문수는 33, 24번째 회문수는 151입니다.
 
-{
-  function solution(nums) {}
-  //   console.log(solution([1, 12, 24])); // [1, 33, 151]
-}
-
+// 강사님 SOL)
 {
   function solution(nums) {
-    let dy = Array.from({ length: 10 }, (_, i) => i);
-
-    // 길이 2의 회문 문자열
-    for (let i = 10; i < 19; i++) {
-      dy[i] = `${dy[i - 9]}${dy[i - 9]}` * 1;
-    }
-    let start = 10;
-    let end = 18;
-
-    // 길이 3이상의 회문 문자열
-    let cnt = Math.max(...nums) - 18;
-    let len = 3;
-    while (cnt > 0) {
-      if (len % 2 === 1) {
-        // 길이가 홀수라면 짝수길이 + 가운데 0~9
-        let temp = [];
-        let tempEnd = end;
-        for (let i = start; i <= end; i++) {
-          for (let j = 0; j <= 9; j++) {
-            const str = dy[i] + '';
-            const preNum = str.slice(0, Math.floor(str.length / 2));
-            temp.push(`${preNum}${j}${preNum}` * 1);
-            tempEnd++;
+    let answer = [];
+    let tmp;
+    for (let n of nums) {
+      n--;
+      let t = 1;
+      for (let i = 1; ; i++) {
+        if (n >= t * 9) n -= t * 9;
+        else {
+          tmp = parseInt((i + 1) / 2);
+          let res = Array(100).fill(0);
+          let pal = '';
+          res[0] = 1;
+          for (let j = 0; j < tmp; j++) {
+            res[j] += parseInt(n / t);
+            pal += res[j];
+            n %= t;
+            t /= 10;
           }
+          for (let j = tmp - (i % 2) - 1; j >= 0; j--) {
+            pal += res[j];
+          }
+          answer.push(parseInt(pal));
+          break;
         }
-        start = end + 1;
-        end = tempEnd + 1;
-        dy = [...dy, ...temp];
-        cnt -= end - start + 1;
-      } else {
-        // 길이가 짝수라면 홀수 처음부터 중간까지 2번 반복
-        let temp = [];
-        let tempEnd = end;
-        for (let i = start; i <= end; i++) {
-          const str = dy[i] + '';
-          const preNum1 = str.slice(0, Math.ceil(str.length / 2));
-          const preNum2 = Array.from(preNum1).reverse().join('');
-          temp.push(`${preNum1}${preNum2}` * 1);
-          tempEnd++;
-        }
-        start = end + 1;
-        end = tempEnd + 1;
-        dy = [...dy, ...temp];
-        cnt -= end - start + 1;
+        if (i % 2 === 0) t *= 10;
       }
-      len++;
     }
-
-    return nums.map(a => dy[a]);
+    return answer;
   }
-  //   console.log(solution([1, 12, 24])); // [1, 33, 151]
-  console.log(solution([110]));
+  console.log(solution([1, 12, 24]));
+  console.log(solution([10, 15, 30]));
+  console.log(solution([345, 3456, 2352, 939595]));
+  console.log(solution([345, 3456, 2352, 2326, 138748, 395802, 930595]));
+  console.log(
+    solution([643809, 968068, 287576, 798592, 138749, 395802, 939595, 958085]),
+  );
 }
