@@ -1,8 +1,35 @@
 // https://leetcode.com/problems/find-eventual-safe-states/
 // 802. Find Eventual Safe States
 {
-  const eventualSafeNodes = graph => {};
+  const eventualSafeNodes = graph => {
+    const result = [];
+    const visited = new Set();
+    const safe = new Set();
+
+    const isNodeSafe = node => {
+      if (safe.has(node)) return true;
+      if (visited.has(node)) return false;
+
+      visited.add(node);
+      for (const next of graph[node]) {
+        if (!isNodeSafe(next)) return false;
+      }
+      safe.add(node);
+      return true;
+    };
+
+    for (let i = 0; i < graph.length; i++) {
+      if (isNodeSafe(i)) {
+        result.push(i);
+      }
+    }
+    return result.sort((a, b) => a - b);
+  };
+  console.log(eventualSafeNodes([[1, 2], [2, 3], [5], [0], [5], [], []])); // [2,3,5,6]
+  // console.log(eventualSafeNodes([[1, 2, 3, 4], [1, 2], [3, 4], [0, 4], []])); // [4]
 }
+
+// 위상 정렬
 
 {
   const topologySort = input => {
@@ -41,29 +68,29 @@
 
     return result.length === input.length ? result : '사이클 존재';
   };
-  console.log(
-    topologySort([
-      [1, 2],
-      [1, 5],
-      [2, 3],
-      [3, 4],
-      [4, 6],
-      [5, 6],
-      [6, 7],
-    ]),
-  );
-  console.log(
-    topologySort([
-      [1, 2],
-      [1, 5],
-      [2, 3],
-      [3, 4],
-      [4, 6],
-      [6, 4],
-      [5, 6],
-      [6, 7],
-    ]),
-  );
+  // console.log(
+  //   topologySort([
+  //     [1, 2],
+  //     [1, 5],
+  //     [2, 3],
+  //     [3, 4],
+  //     [4, 6],
+  //     [5, 6],
+  //     [6, 7],
+  //   ]),
+  // );
+  // console.log(
+  //   topologySort([
+  //     [1, 2],
+  //     [1, 5],
+  //     [2, 3],
+  //     [3, 4],
+  //     [4, 6],
+  //     [6, 4],
+  //     [5, 6],
+  //     [6, 7],
+  //   ]),
+  // );
 }
 
 {
