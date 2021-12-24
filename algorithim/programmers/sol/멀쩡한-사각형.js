@@ -83,12 +83,12 @@
 
     return w * h - delRec * (short / smallRec[1]);
   }
-  //   console.log(solution(8, 12)); // 80
-  //   console.log(solution(5, 10)); // 40
-  //   console.log(solution(5, 4)); // 12
-  //   console.log(solution(5, 5)); // 20
-  //   console.log(solution(1, 8)); // 0
-  //   console.log(solution(1, 9)); // 0
-  //   console.log(solution(2, 18)); // 18
-  //   console.log(solution(5, 3)); //8
+  // console.log(solution(8, 12)); // 80
+  // console.log(solution(5, 10)); // 40
+  // console.log(solution(5, 4)); // 12
+  // console.log(solution(5, 5)); // 20
+  // console.log(solution(1, 8)); // 0
+  // console.log(solution(1, 9)); // 0
+  // console.log(solution(2, 18)); // 18
+  // console.log(solution(5, 3)); //8
 }

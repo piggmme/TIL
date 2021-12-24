@@ -4,6 +4,71 @@
 // 제한사항을 잘 보자
 // numbers의 길이는 1 이상 100,000 이하입니다. numbers의 원소는 0 이상 1,000 이하입니다.
 // https://dailyheumsi.tistory.com/102
+
+{
+  function findMaxNum(numbers) {
+    let strNums = numbers.map(num => num + '');
+
+    strNums.sort((str1, str2) => {
+      if (!str1.length && !str2.length) return 1;
+      if (!str1.length && str2[0] > 0) return 1;
+      if (!str2.length && str1[0] > 0) return -1;
+
+      if (str1[0] === 0) return 1;
+      if (str2[0] === 0) return -1;
+
+      return str2[0] - str1[0];
+    });
+
+    let start = 0;
+    let flag = false;
+    let zero = false;
+    for (let i = 0; i < strNums.length - 1; i++) {
+      if (strNums[i][0] !== strNums[i + 1][0]) {
+        if (flag) {
+          const first = strNums[i][0];
+
+          const subSortedNums = zero
+            ? strNums.slice(start, i)
+            : findMaxNum(
+                strNums.slice(start, i).map(str => str.substring(1)),
+              ).map(str => first + str);
+          strNums = [...strNums.slice(0, start), ...subSortedNums];
+        }
+        start = i + 1;
+        flag = false;
+        zero = false;
+        continue;
+      }
+      if (+strNums[i] === 0 && +strNums[i + 1] === 0) zero = true;
+      else zero = false;
+      flag = true;
+    }
+    if (flag) {
+      const first = strNums[strNums.length - 1][0];
+      const subSortedNums = zero
+        ? strNums.slice(start)
+        : findMaxNum(strNums.slice(start).map(str => str.substring(1))).map(
+            str => first + str,
+          );
+      strNums = [...strNums.slice(0, start), ...subSortedNums];
+    }
+
+    return strNums;
+  }
+  function solution(numbers) {
+    return +findMaxNum(numbers).join('') + '';
+  }
+  console.log(solution([6, 10, 2])); // 6210
+  console.log(solution([3, 30, 34, 5, 9])); // 9534330
+  console.log(solution([0, 0, 0, 0])); // 0
+  console.log(solution([21, 212])); // 21221
+  console.log(solution([40, 405])); // 40540
+  console.log(solution([40, 403])); // 40403
+  console.log(solution([70, 0, 0, 0])); // 70000
+  console.log(solution([12, 1213])); // 121312
+}
+
 {
   function solution(numbers) {
     let answer = [];
@@ -21,14 +86,14 @@
     answer.sort((a, b) => b[0] - a[0]);
     return answer.map(a => a[1]).join('') * 1 + '';
   }
-  console.log(solution([6, 10, 2]));
-  console.log(solution([3, 30, 34, 5, 9]));
-  console.log(solution([0, 0, 0, 0]));
-  console.log(solution([21, 212]));
-  console.log(solution([40, 405])); // 40540
-  console.log(solution([40, 403])); // 40403
-  console.log(solution([70, 0, 0, 0])); // 70000
-  console.log(solution([12, 1213]));
+  // console.log(solution([6, 10, 2]));
+  // console.log(solution([3, 30, 34, 5, 9]));
+  // console.log(solution([0, 0, 0, 0]));
+  // console.log(solution([21, 212]));
+  // console.log(solution([40, 405])); // 40540
+  // console.log(solution([40, 403])); // 40403
+  // console.log(solution([70, 0, 0, 0])); // 70000
+  // console.log(solution([12, 1213]));
 }
 
 // 문자열로..풀어보기 => 땡
