@@ -51,19 +51,22 @@
 
     function DFS(L, sum, tsum) {
       if (sum > c) return; // cut 해주기!!
-      if (sum + (total - tsum) < answer) return; // total-tsum = 앞으로 적용할 애들과 sum의 합이, 현재 최대값보다 작다면? 그만!
+      if (sum + (total - tsum) < answer) {
+        console.log({ L, total, sum, tsum, answer });
+        return;
+      } // total-tsum = 앞으로 적용할 애들과 sum의 합이, 현재 최대값보다 작다면? 그만!
       if (L === n) {
         answer = Math.max(answer, sum);
       } else {
-        DFS(L + 1, sum + nums[L], tsum + sum[L]); // tsum은 적용한 애들의 총 무게...
-        DFS(L + 1, sum, tsum + sum[L]);
+        DFS(L + 1, sum + nums[L], tsum + nums[L]); // tsum은 적용한 애들의 총 무게...
+        DFS(L + 1, sum, tsum + nums[L]);
       }
     }
     DFS(0, 0, 0);
     return answer;
   }
-  // console.log(solution([81, 58, 42, 33, 61], 259)); //  242
-  // console.log(solution([34, 56, 55, 67, 33, 76, 63, 43], 379)); // 372
+  console.log(solution([81, 58, 42, 33, 61], 259)); //  242
+  console.log(solution([34, 56, 55, 67, 33, 76, 63, 43], 379)); // 372
 }
 
 // mysol2)
